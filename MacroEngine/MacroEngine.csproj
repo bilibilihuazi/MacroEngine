@@ -118,6 +118,12 @@
     <Compile Include="Main_Window.Designer.cs">
       <DependentUpon>Main_Window.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pos_Window.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pos_Window.Designer.cs">
+      <DependentUpon>Pos_Window.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddCommand_Window.resx">
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Window.resx">
       <DependentUpon>Main_Window.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pos_Window.resx">
+      <DependentUpon>Pos_Window.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -128,6 +128,10 @@ namespace MacroEngine
 
         public static string AddW_TYPE = "UNKNOWN";
 
+        public static Point QuickSelectPos;
+        
+
+
         public MacroEditor_Window()
         {
             InitializeComponent();
@@ -679,6 +683,21 @@ namespace MacroEngine
         private void numericUpDown_MOUSE_WHELL_dis_ValueChanged(object sender, EventArgs e)
         {
             WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dis", $"{numericUpDown_MOUSE_WHELL_dis.Value}");
+        }
+
+        private void button_MOUSE_POS_select_Click(object sender, EventArgs e)
+        {
+            button_MOUSE_POS_select.Text = "请点击要选择的位置";
+            button_MOUSE_POS_select.Enabled = false;
+            using(Pos_Window pos_Window=new Pos_Window())
+            {
+                pos_Window.ShowDialog();
+            }
+            numericUpDown_MOUSE_POS_x.Value = QuickSelectPos.X;
+            numericUpDown_MOUSE_POS_y.Value = QuickSelectPos.Y;
+
+            button_MOUSE_POS_select.Text = "快速选择坐标";
+            button_MOUSE_POS_select.Enabled = true;
         }
     }
 }

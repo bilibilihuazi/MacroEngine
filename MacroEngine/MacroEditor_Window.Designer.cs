@@ -48,6 +48,7 @@
             this.tabPage_NONE = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.tabPage_MOUSE_POS = new System.Windows.Forms.TabPage();
+            this.button_MOUSE_POS_select = new System.Windows.Forms.Button();
             this.numericUpDown_MOUSE_POS_y = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_MOUSE_POS_x = new System.Windows.Forms.NumericUpDown();
             this.label_MOUSE_POS_y = new System.Windows.Forms.Label();
@@ -282,6 +283,7 @@
             // 
             // tabPage_MOUSE_POS
             // 
+            this.tabPage_MOUSE_POS.Controls.Add(this.button_MOUSE_POS_select);
             this.tabPage_MOUSE_POS.Controls.Add(this.numericUpDown_MOUSE_POS_y);
             this.tabPage_MOUSE_POS.Controls.Add(this.numericUpDown_MOUSE_POS_x);
             this.tabPage_MOUSE_POS.Controls.Add(this.label_MOUSE_POS_y);
@@ -293,6 +295,16 @@
             this.tabPage_MOUSE_POS.Size = new System.Drawing.Size(496, 183);
             this.tabPage_MOUSE_POS.TabIndex = 0;
             this.tabPage_MOUSE_POS.UseVisualStyleBackColor = true;
+            // 
+            // button_MOUSE_POS_select
+            // 
+            this.button_MOUSE_POS_select.Location = new System.Drawing.Point(9, 84);
+            this.button_MOUSE_POS_select.Name = "button_MOUSE_POS_select";
+            this.button_MOUSE_POS_select.Size = new System.Drawing.Size(124, 28);
+            this.button_MOUSE_POS_select.TabIndex = 22;
+            this.button_MOUSE_POS_select.Text = "快速选择坐标";
+            this.button_MOUSE_POS_select.UseVisualStyleBackColor = true;
+            this.button_MOUSE_POS_select.Click += new System.EventHandler(this.button_MOUSE_POS_select_Click);
             // 
             // numericUpDown_MOUSE_POS_y
             // 
@@ -622,5 +634,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numericUpDown_MOUSE_WHELL_dis;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button_MOUSE_POS_select;
     }
 }
