@@ -19,6 +19,7 @@ namespace MacroEngine
             toolTip.SetToolTip(button_MOUSE_POS, "设置鼠标坐标\n参数:  pos-x:X坐标  pos-y:Y坐标");
             toolTip.SetToolTip(button_WAIT, "等待指定时间后再执行下一条命令(单位:ms)\n参数:  time:等待的时间");
             toolTip.SetToolTip(button_MOUSE_PRESS, "操作鼠标的按键\n参数:  key:按键，0左键 1中键 2右键  keytype: 0点击 1按下 2放开");
+            toolTip.SetToolTip(button_MOUSE_WHEEL, "操作鼠标的滚轮\n参数:  dire:方向,0向上1向下  dis:滚动距离");
         }
 
         private void button_MOUSE_POS_Click(object sender, EventArgs e)
@@ -36,6 +37,12 @@ namespace MacroEngine
         private void button_MOUSE_PRESS_Click(object sender, EventArgs e)
         {
             MacroEditor_Window.AddW_TYPE = "MOUSE_PRESS";
+            this.Close();
+        }
+
+        private void button_MOUSE_WHEEL_Click(object sender, EventArgs e)
+        {
+            MacroEditor_Window.AddW_TYPE = "MOUSE_WHEEL";
             this.Close();
         }
     }

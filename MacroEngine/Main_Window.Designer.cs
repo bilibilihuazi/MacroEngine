@@ -165,7 +165,7 @@ namespace MacroEngine
             // 设置ToolStripMenuItem
             // 
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.设置ToolStripMenuItem.Text = "应用热键";
             this.设置ToolStripMenuItem.Click += new System.EventHandler(this.设置ToolStripMenuItem_Click);
             // 
@@ -181,14 +181,14 @@ namespace MacroEngine
             // 关于程序ToolStripMenuItem
             // 
             this.关于程序ToolStripMenuItem.Name = "关于程序ToolStripMenuItem";
-            this.关于程序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.关于程序ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.关于程序ToolStripMenuItem.Text = "关于程序";
             this.关于程序ToolStripMenuItem.Click += new System.EventHandler(this.关于程序ToolStripMenuItem_Click);
             // 
             // 帮助ToolStripMenuItem
             // 
             this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.帮助ToolStripMenuItem.Text = "帮助";
             this.帮助ToolStripMenuItem.Click += new System.EventHandler(this.帮助ToolStripMenuItem_Click);
             // 

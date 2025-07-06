@@ -33,6 +33,7 @@
             this.button_MOUSE_POS = new System.Windows.Forms.Button();
             this.button_WAIT = new System.Windows.Forms.Button();
             this.button_MOUSE_PRESS = new System.Windows.Forms.Button();
+            this.button_MOUSE_WHEEL = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_MOUSE_POS
@@ -47,7 +48,7 @@
             // 
             // button_WAIT
             // 
-            this.button_WAIT.Location = new System.Drawing.Point(352, 12);
+            this.button_WAIT.Location = new System.Drawing.Point(522, 11);
             this.button_WAIT.Name = "button_WAIT";
             this.button_WAIT.Size = new System.Drawing.Size(164, 41);
             this.button_WAIT.TabIndex = 1;
@@ -65,18 +66,31 @@
             this.button_MOUSE_PRESS.UseVisualStyleBackColor = true;
             this.button_MOUSE_PRESS.Click += new System.EventHandler(this.button_MOUSE_PRESS_Click);
             // 
+            // button_MOUSE_WHEEL
+            // 
+            this.button_MOUSE_WHEEL.Location = new System.Drawing.Point(352, 11);
+            this.button_MOUSE_WHEEL.Name = "button_MOUSE_WHEEL";
+            this.button_MOUSE_WHEEL.Size = new System.Drawing.Size(164, 41);
+            this.button_MOUSE_WHEEL.TabIndex = 3;
+            this.button_MOUSE_WHEEL.Text = "鼠标_滚轮";
+            this.button_MOUSE_WHEEL.UseVisualStyleBackColor = true;
+            this.button_MOUSE_WHEEL.Click += new System.EventHandler(this.button_MOUSE_WHEEL_Click);
+            // 
             // AddCommand_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 64);
+            this.ClientSize = new System.Drawing.Size(693, 64);
+            this.Controls.Add(this.button_MOUSE_WHEEL);
             this.Controls.Add(this.button_MOUSE_PRESS);
             this.Controls.Add(this.button_WAIT);
             this.Controls.Add(this.button_MOUSE_POS);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(709, 103);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(709, 103);
             this.Name = "AddCommand_Window";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -91,5 +105,6 @@
         private System.Windows.Forms.Button button_MOUSE_POS;
         private System.Windows.Forms.Button button_WAIT;
         private System.Windows.Forms.Button button_MOUSE_PRESS;
+        private System.Windows.Forms.Button button_MOUSE_WHEEL;
     }
 }

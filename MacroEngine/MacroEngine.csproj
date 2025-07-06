@@ -96,6 +96,7 @@
     <Compile Include="AddCommand_Window.Designer.cs">
       <DependentUpon>AddCommand_Window.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CrosshairControl.cs" />
     <Compile Include="Controls\HotkeyBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -122,6 +123,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddCommand_Window.resx">
       <DependentUpon>AddCommand_Window.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CrosshairControl.resx">
+      <DependentUpon>CrosshairControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Help_Window.resx">
       <DependentUpon>Help_Window.cs</DependentUpon>

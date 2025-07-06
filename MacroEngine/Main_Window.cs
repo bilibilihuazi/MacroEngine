@@ -219,6 +219,21 @@ namespace MacroEngine
                             }
                         }
                     }
+                    else if (NowCmdType == "MOUSE_WHEEL")
+                    {
+                        string temp_dire = ReadConfig(CommandPath, $"{i + 1}", "dire");
+                        string temp_dis = ReadConfig(CommandPath, $"{i + 1}", "dis");
+
+                        if (temp_dire == "0")
+                        {
+                            m_WheelUp(int.Parse(temp_dis));
+                        }
+                        else if (temp_dire == "1")
+                        {
+                            m_WheelDown(int.Parse(temp_dis));
+                        }
+
+                    }
                 }
             }
             catch (Exception ex)

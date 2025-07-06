@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using static Funcitons.NormalFunc;
 using Funcitons;
 using System.IO;
+using static MacroEngine.Controls.HotkeyTextBox;
 
 namespace MacroEngine
 {
@@ -100,6 +101,10 @@ namespace MacroEngine
                     {
                         listBox_MacroList.Items.Add("鼠标_按键");
                     }
+                    else if (StepType == "MOUSE_WHEEL")
+                    {
+                        listBox_MacroList.Items.Add("鼠标_滚轮");
+                    }
 
                     else
                     {
@@ -132,6 +137,8 @@ namespace MacroEngine
             LoadCommandList();
 
 
+
+
         }
 
         private void listBox_MacroList_SelectedIndexChanged(object sender, EventArgs e)
@@ -153,6 +160,13 @@ namespace MacroEngine
 
                 comboBox_MOUSE_PRESS_key.SelectedIndex = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "key"));
                 comboBox_MOUSE_PRESS_keytype.SelectedIndex = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "keytype"));
+            }
+            else if (listBox_MacroList.Text == "鼠标_滚轮")
+            {
+                tabControl_Edit.SelectedIndex = 4;
+
+                comboBox_MOUSE_WHELL_dire.SelectedIndex = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dire"));
+                numericUpDown_MOUSE_WHELL_dis.Value = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dis"));
             }
 
 
@@ -220,7 +234,7 @@ namespace MacroEngine
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"在更新配置文件时发生错误！\n\n错误原因：{ex.Message}", "发僧错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"在更新配置文件时发生错误！\n\n错误原因：{ex.Message}", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 
             }
 
@@ -283,11 +297,20 @@ namespace MacroEngine
                 WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "keytype", "0");
                 listBox_MacroList.Items.Add("鼠标_按键");
             }
+            else if (AddW_TYPE == "MOUSE_WHEEL")
+            {
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "MOUSE_WHEEL");
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "dire", "0");
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "dis", "10");
+                listBox_MacroList.Items.Add("鼠标_滚轮");
+            }
 
             if (AddW_TYPE != "UNKNOWN")
             {
                 WriteConfig(tempPath, "info", "Step", $"{int.Parse(ReadConfig(tempPath, "info", "Step")) + 1}");
             }
+
+            listBox_MacroList.SelectedIndex = listBox_MacroList.Items.Count - 1;
 
             AddW_TYPE = "UNKNOWN";
         }
@@ -317,6 +340,11 @@ namespace MacroEngine
                     WriteConfig(tempPath, "temp", "key", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "key"));
                     WriteConfig(tempPath, "temp", "keytype", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "keytype"));
                 }
+                else if (tempTYPE == "MOUSE_WHEEL")
+                {
+                    WriteConfig(tempPath, "temp", "dire", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "dire"));
+                    WriteConfig(tempPath, "temp", "dis", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "dis"));
+                }
 
                 WriteConfig(tempPath, "temp2", "type", $"{tempNowTYPE}");
 
@@ -334,7 +362,11 @@ namespace MacroEngine
                     WriteConfig(tempPath, "temp2", "key", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "key"));
                     WriteConfig(tempPath, "temp2", "keytype", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "keytype"));
                 }
-
+                else if (tempNowTYPE == "MOUSE_WHEEL")
+                {
+                    WriteConfig(tempPath, "temp2", "dire", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dire"));
+                    WriteConfig(tempPath, "temp2", "dis", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dis"));
+                }
 
                 //===============================================================================================================
 
@@ -357,6 +389,11 @@ namespace MacroEngine
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "key", ReadConfig(tempPath, "temp2", "key"));
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "keytype", ReadConfig(tempPath, "temp2", "keytype"));
                 }
+                else if (tempNowTYPE == "MOUSE_WHEEL")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "dire", ReadConfig(tempPath, "temp2", "dire"));
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "dis", ReadConfig(tempPath, "temp2", "dis"));
+                }
 
                 WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "type", tempTYPE);
 
@@ -376,7 +413,12 @@ namespace MacroEngine
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "keytype", ReadConfig(tempPath, "temp", "keytype"));
 
                 }
+                else if (tempTYPE == "MOUSE_WHEEL")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dire", ReadConfig(tempPath, "temp", "dire"));
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dis", ReadConfig(tempPath, "temp", "dis"));
 
+                }
 
 
                 DeleteSection(tempPath, "temp");
@@ -424,14 +466,19 @@ namespace MacroEngine
                     WriteConfig(tempPath, "temp", "pos-x", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex+2}", "pos-x"));
                     WriteConfig(tempPath, "temp", "pos-y", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex+2}", "pos-y"));
                 }
-                else if (tempTYPE == "WAIT")     //             <========此处修改==========================================================
+                else if (tempTYPE == "WAIT")
                 {
                     WriteConfig(tempPath, "temp", "time", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex+2}", "time"));
                 }
-                else if (tempTYPE == "MOUSE_PRESS")     //             <========此处修改==========================================================
+                else if (tempTYPE == "MOUSE_PRESS")
                 {
                     WriteConfig(tempPath, "temp", "key", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "key"));
                     WriteConfig(tempPath, "temp", "keytype", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "keytype"));
+                }
+                else if (tempTYPE == "MOUSE_WHEEL")
+                {
+                    WriteConfig(tempPath, "temp", "dire", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "dire"));
+                    WriteConfig(tempPath, "temp", "dis", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "dis"));
                 }
 
                 WriteConfig(tempPath, "temp2", "type", $"{tempNowTYPE}");
@@ -441,14 +488,19 @@ namespace MacroEngine
                     WriteConfig(tempPath, "temp2", "pos-x", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pos-x"));
                     WriteConfig(tempPath, "temp2", "pos-y", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pos-y"));
                 }
-                else if (tempNowTYPE == "WAIT")   //             <========此处修改==========================================================
+                else if (tempNowTYPE == "WAIT")
                 {
                     WriteConfig(tempPath, "temp2", "time", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "time"));
                 }
-                else if (tempNowTYPE == "MOUSE_PRESS")   //             <========此处修改==========================================================
+                else if (tempNowTYPE == "MOUSE_PRESS")
                 {
                     WriteConfig(tempPath, "temp2", "key", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "key"));
                     WriteConfig(tempPath, "temp2", "keytype", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "keytype"));
+                }
+                else if (tempNowTYPE == "MOUSE_WHEEL")
+                {
+                    WriteConfig(tempPath, "temp2", "dire", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dire"));
+                    WriteConfig(tempPath, "temp2", "dis", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dis"));
                 }
 
 
@@ -464,14 +516,19 @@ namespace MacroEngine
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex+2}", "pos-x", ReadConfig(tempPath, "temp2", "pos-x"));
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex+2}", "pos-y", ReadConfig(tempPath, "temp2", "pos-y"));
                 }
-                else if (tempNowTYPE == "WAIT")   //             <========此处修改==========================================================
+                else if (tempNowTYPE == "WAIT")
                 {
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex+2}", "time", ReadConfig(tempPath, "temp2", "time"));
                 }
-                else if (tempNowTYPE == "MOUSE_PRESS")   //             <========此处修改==========================================================
+                else if (tempNowTYPE == "MOUSE_PRESS")
                 {
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "key", ReadConfig(tempPath, "temp2", "key"));
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "keytype", ReadConfig(tempPath, "temp2", "keytype"));
+                }
+                else if (tempNowTYPE == "MOUSE_WHEEL")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "dire", ReadConfig(tempPath, "temp2", "dire"));
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "dis", ReadConfig(tempPath, "temp2", "dis"));
                 }
 
                 WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "type", tempTYPE);
@@ -481,15 +538,21 @@ namespace MacroEngine
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pos-x", ReadConfig(tempPath, "temp", "pos-x"));
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pos-y", ReadConfig(tempPath, "temp", "pos-y"));
                 }
-                else if (tempTYPE == "WAIT")//             <========此处修改==========================================================
+                else if (tempTYPE == "WAIT")
                 {
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "time", ReadConfig(tempPath, "temp", "time"));
 
                 }
-                else if (tempTYPE == "MOUSE_PRESS")//             <========此处修改==========================================================
+                else if (tempTYPE == "MOUSE_PRESS")
                 {
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "key", ReadConfig(tempPath, "temp", "key"));
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "keytype", ReadConfig(tempPath, "temp", "keytype"));
+
+                }
+                else if (tempTYPE == "MOUSE_WHEEL")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dire", ReadConfig(tempPath, "temp", "dire"));
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dis", ReadConfig(tempPath, "temp", "dis"));
 
                 }
 
@@ -543,14 +606,19 @@ namespace MacroEngine
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "pos-x", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "pos-x"));
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "pos-y", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "pos-y"));
                     }
-                    else if (temp == "WAIT")   //             <========此处修改==========================================================
+                    else if (temp == "WAIT")
                     {
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "time", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "time"));
                     }
-                    else if (temp == "MOUSE_PRESS")   //             <========此处修改==========================================================
+                    else if (temp == "MOUSE_PRESS")
                     {
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "key", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "key"));
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "keytype", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "keytype"));
+                    }
+                    else if (temp == "MOUSE_WHEEL")
+                    {
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "dire", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "dire"));
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "dis", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "dis"));
                     }
 
                     DeleteSection(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}");
@@ -563,6 +631,12 @@ namespace MacroEngine
 
                 
                 listBox_MacroList.Items.RemoveAt(listBox_MacroList.SelectedIndex);
+
+
+                if (listBox_MacroList.Items.Count > 0)
+                {
+                    listBox_MacroList.SelectedIndex = 0;
+                }
 
 
             }
@@ -595,6 +669,16 @@ namespace MacroEngine
         private void comboBox_MOUSE_PRESS_keytype_SelectedIndexChanged(object sender, EventArgs e)
         {
             WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "keytype", $"{comboBox_MOUSE_PRESS_keytype.SelectedIndex}");
+        }
+
+        private void comboBox_MOUSE_WHELL_dire_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dire", $"{comboBox_MOUSE_WHELL_dire.SelectedIndex}");
+        }
+
+        private void numericUpDown_MOUSE_WHELL_dis_ValueChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dis", $"{numericUpDown_MOUSE_WHELL_dis.Value}");
         }
     }
 }

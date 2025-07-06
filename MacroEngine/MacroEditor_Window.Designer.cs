@@ -37,13 +37,17 @@
             this.textBox_Path = new System.Windows.Forms.TextBox();
             this.label_Path = new System.Windows.Forms.Label();
             this.groupBox_edit = new System.Windows.Forms.GroupBox();
+            this.button_Down = new System.Windows.Forms.Button();
+            this.button_Up = new System.Windows.Forms.Button();
             this.button_Cancel = new System.Windows.Forms.Button();
             this.button_Remove = new System.Windows.Forms.Button();
             this.button_Add = new System.Windows.Forms.Button();
             this.button_Save = new System.Windows.Forms.Button();
             this.tabControl_Edit = new System.Windows.Forms.TabControl();
             this.tabPage_NONE = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
             this.tabPage_MOUSE_POS = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
             this.numericUpDown_MOUSE_POS_y = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_MOUSE_POS_x = new System.Windows.Forms.NumericUpDown();
             this.label_MOUSE_POS_y = new System.Windows.Forms.Label();
@@ -53,26 +57,33 @@
             this.numericUpDown_WAIT_time = new System.Windows.Forms.NumericUpDown();
             this.label_WAIT_time = new System.Windows.Forms.Label();
             this.label_WAIT_info = new System.Windows.Forms.Label();
-            this.listBox_MacroList = new System.Windows.Forms.ListBox();
-            this.label_HotKey = new System.Windows.Forms.Label();
-            this.button_Up = new System.Windows.Forms.Button();
-            this.button_Down = new System.Windows.Forms.Button();
-            this.hotkeyTextBox = new MacroEngine.Controls.HotkeyTextBox();
             this.tabPage_MOUSE_PRESS = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox_MOUSE_PRESS_key = new System.Windows.Forms.ComboBox();
             this.comboBox_MOUSE_PRESS_keytype = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.comboBox_MOUSE_PRESS_key = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabPage_MOUSE_WHEEL = new System.Windows.Forms.TabPage();
+            this.numericUpDown_MOUSE_WHELL_dis = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox_MOUSE_WHELL_dire = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.listBox_MacroList = new System.Windows.Forms.ListBox();
+            this.label_HotKey = new System.Windows.Forms.Label();
+            this.hotkeyTextBox = new MacroEngine.Controls.HotkeyTextBox();
             this.groupBox_info.SuspendLayout();
             this.groupBox_edit.SuspendLayout();
             this.tabControl_Edit.SuspendLayout();
+            this.tabPage_NONE.SuspendLayout();
             this.tabPage_MOUSE_POS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_MOUSE_POS_y)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_MOUSE_POS_x)).BeginInit();
             this.tabPage_WAIT.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_WAIT_time)).BeginInit();
             this.tabPage_MOUSE_PRESS.SuspendLayout();
+            this.tabPage_MOUSE_WHEEL.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_MOUSE_WHELL_dis)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox_info
@@ -159,6 +170,28 @@
             this.groupBox_edit.TabStop = false;
             this.groupBox_edit.Text = "脚本编辑";
             // 
+            // button_Down
+            // 
+            this.button_Down.Enabled = false;
+            this.button_Down.Location = new System.Drawing.Point(159, 140);
+            this.button_Down.Name = "button_Down";
+            this.button_Down.Size = new System.Drawing.Size(41, 33);
+            this.button_Down.TabIndex = 12;
+            this.button_Down.Text = "↓";
+            this.button_Down.UseVisualStyleBackColor = true;
+            this.button_Down.Click += new System.EventHandler(this.button_Down_Click);
+            // 
+            // button_Up
+            // 
+            this.button_Up.Enabled = false;
+            this.button_Up.Location = new System.Drawing.Point(159, 47);
+            this.button_Up.Name = "button_Up";
+            this.button_Up.Size = new System.Drawing.Size(41, 33);
+            this.button_Up.TabIndex = 11;
+            this.button_Up.Text = "↑";
+            this.button_Up.UseVisualStyleBackColor = true;
+            this.button_Up.Click += new System.EventHandler(this.button_Up_Click);
+            // 
             // button_Cancel
             // 
             this.button_Cancel.Location = new System.Drawing.Point(517, 234);
@@ -205,6 +238,7 @@
             this.tabControl_Edit.Controls.Add(this.tabPage_MOUSE_POS);
             this.tabControl_Edit.Controls.Add(this.tabPage_WAIT);
             this.tabControl_Edit.Controls.Add(this.tabPage_MOUSE_PRESS);
+            this.tabControl_Edit.Controls.Add(this.tabPage_MOUSE_WHEEL);
             this.tabControl_Edit.ItemSize = new System.Drawing.Size(20, 15);
             this.tabControl_Edit.Location = new System.Drawing.Point(206, 22);
             this.tabControl_Edit.Name = "tabControl_Edit";
@@ -215,6 +249,7 @@
             // 
             // tabPage_NONE
             // 
+            this.tabPage_NONE.Controls.Add(this.label7);
             this.tabPage_NONE.Location = new System.Drawing.Point(4, 19);
             this.tabPage_NONE.Name = "tabPage_NONE";
             this.tabPage_NONE.Padding = new System.Windows.Forms.Padding(3);
@@ -222,8 +257,20 @@
             this.tabPage_NONE.TabIndex = 1;
             this.tabPage_NONE.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("微软雅黑", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(6, 3);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(484, 177);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "请在左侧列表中选择一条指令编辑";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tabPage_MOUSE_POS
             // 
+            this.tabPage_MOUSE_POS.Controls.Add(this.label8);
             this.tabPage_MOUSE_POS.Controls.Add(this.numericUpDown_MOUSE_POS_y);
             this.tabPage_MOUSE_POS.Controls.Add(this.numericUpDown_MOUSE_POS_x);
             this.tabPage_MOUSE_POS.Controls.Add(this.label_MOUSE_POS_y);
@@ -235,6 +282,14 @@
             this.tabPage_MOUSE_POS.Size = new System.Drawing.Size(496, 183);
             this.tabPage_MOUSE_POS.TabIndex = 0;
             this.tabPage_MOUSE_POS.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(51, 99);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(152, 18);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "←拖动此准心快速设置坐标";
             // 
             // numericUpDown_MOUSE_POS_y
             // 
@@ -331,60 +386,6 @@
             this.label_WAIT_info.Text = "等待指定的时间再执行下一段命令(单位：ms)";
             this.label_WAIT_info.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // listBox_MacroList
-            // 
-            this.listBox_MacroList.FormattingEnabled = true;
-            this.listBox_MacroList.ItemHeight = 17;
-            this.listBox_MacroList.Location = new System.Drawing.Point(6, 22);
-            this.listBox_MacroList.Name = "listBox_MacroList";
-            this.listBox_MacroList.Size = new System.Drawing.Size(147, 242);
-            this.listBox_MacroList.TabIndex = 3;
-            this.listBox_MacroList.SelectedIndexChanged += new System.EventHandler(this.listBox_MacroList_SelectedIndexChanged);
-            // 
-            // label_HotKey
-            // 
-            this.label_HotKey.AutoSize = true;
-            this.label_HotKey.Location = new System.Drawing.Point(349, 241);
-            this.label_HotKey.Name = "label_HotKey";
-            this.label_HotKey.Size = new System.Drawing.Size(68, 17);
-            this.label_HotKey.TabIndex = 9;
-            this.label_HotKey.Text = "触发热键：";
-            // 
-            // button_Up
-            // 
-            this.button_Up.Enabled = false;
-            this.button_Up.Location = new System.Drawing.Point(159, 47);
-            this.button_Up.Name = "button_Up";
-            this.button_Up.Size = new System.Drawing.Size(41, 33);
-            this.button_Up.TabIndex = 11;
-            this.button_Up.Text = "↑";
-            this.button_Up.UseVisualStyleBackColor = true;
-            this.button_Up.Click += new System.EventHandler(this.button_Up_Click);
-            // 
-            // button_Down
-            // 
-            this.button_Down.Enabled = false;
-            this.button_Down.Location = new System.Drawing.Point(159, 140);
-            this.button_Down.Name = "button_Down";
-            this.button_Down.Size = new System.Drawing.Size(41, 33);
-            this.button_Down.TabIndex = 12;
-            this.button_Down.Text = "↓";
-            this.button_Down.UseVisualStyleBackColor = true;
-            this.button_Down.Click += new System.EventHandler(this.button_Down_Click);
-            // 
-            // hotkeyTextBox
-            // 
-            this.hotkeyTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.hotkeyTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.hotkeyTextBox.Hotkey = System.Windows.Forms.Keys.None;
-            this.hotkeyTextBox.Location = new System.Drawing.Point(423, 238);
-            this.hotkeyTextBox.Name = "hotkeyTextBox";
-            this.hotkeyTextBox.ReadOnly = true;
-            this.hotkeyTextBox.Size = new System.Drawing.Size(88, 23);
-            this.hotkeyTextBox.TabIndex = 8;
-            this.hotkeyTextBox.TabStop = false;
-            this.hotkeyTextBox.Text = "无";
-            // 
             // tabPage_MOUSE_PRESS
             // 
             this.tabPage_MOUSE_PRESS.Controls.Add(this.comboBox_MOUSE_PRESS_keytype);
@@ -397,38 +398,6 @@
             this.tabPage_MOUSE_PRESS.Size = new System.Drawing.Size(496, 183);
             this.tabPage_MOUSE_PRESS.TabIndex = 3;
             this.tabPage_MOUSE_PRESS.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(6, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 23);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "按键：";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(6, 3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(487, 20);
-            this.label2.TabIndex = 24;
-            this.label2.Text = "鼠标按键操作，包括左键、中键、右键的单击、按下、抬起操作";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // comboBox_MOUSE_PRESS_key
-            // 
-            this.comboBox_MOUSE_PRESS_key.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_MOUSE_PRESS_key.FormattingEnabled = true;
-            this.comboBox_MOUSE_PRESS_key.Items.AddRange(new object[] {
-            "左键",
-            "中键",
-            "右键"});
-            this.comboBox_MOUSE_PRESS_key.Location = new System.Drawing.Point(68, 26);
-            this.comboBox_MOUSE_PRESS_key.Name = "comboBox_MOUSE_PRESS_key";
-            this.comboBox_MOUSE_PRESS_key.Size = new System.Drawing.Size(425, 25);
-            this.comboBox_MOUSE_PRESS_key.TabIndex = 26;
-            this.comboBox_MOUSE_PRESS_key.SelectedIndexChanged += new System.EventHandler(this.comboBox_MOUSE_PRESS_key_SelectedIndexChanged);
             // 
             // comboBox_MOUSE_PRESS_keytype
             // 
@@ -453,6 +422,136 @@
             this.label3.Text = "操作：";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // comboBox_MOUSE_PRESS_key
+            // 
+            this.comboBox_MOUSE_PRESS_key.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_MOUSE_PRESS_key.FormattingEnabled = true;
+            this.comboBox_MOUSE_PRESS_key.Items.AddRange(new object[] {
+            "左键",
+            "中键",
+            "右键"});
+            this.comboBox_MOUSE_PRESS_key.Location = new System.Drawing.Point(68, 26);
+            this.comboBox_MOUSE_PRESS_key.Name = "comboBox_MOUSE_PRESS_key";
+            this.comboBox_MOUSE_PRESS_key.Size = new System.Drawing.Size(425, 25);
+            this.comboBox_MOUSE_PRESS_key.TabIndex = 26;
+            this.comboBox_MOUSE_PRESS_key.SelectedIndexChanged += new System.EventHandler(this.comboBox_MOUSE_PRESS_key_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(6, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 23);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "按键：";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(6, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(487, 20);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "鼠标按键操作，包括左键、中键、右键的单击、按下、抬起操作";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tabPage_MOUSE_WHEEL
+            // 
+            this.tabPage_MOUSE_WHEEL.Controls.Add(this.numericUpDown_MOUSE_WHELL_dis);
+            this.tabPage_MOUSE_WHEEL.Controls.Add(this.label4);
+            this.tabPage_MOUSE_WHEEL.Controls.Add(this.comboBox_MOUSE_WHELL_dire);
+            this.tabPage_MOUSE_WHEEL.Controls.Add(this.label5);
+            this.tabPage_MOUSE_WHEEL.Controls.Add(this.label6);
+            this.tabPage_MOUSE_WHEEL.Location = new System.Drawing.Point(4, 19);
+            this.tabPage_MOUSE_WHEEL.Name = "tabPage_MOUSE_WHEEL";
+            this.tabPage_MOUSE_WHEEL.Size = new System.Drawing.Size(496, 183);
+            this.tabPage_MOUSE_WHEEL.TabIndex = 4;
+            this.tabPage_MOUSE_WHEEL.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown_MOUSE_WHELL_dis
+            // 
+            this.numericUpDown_MOUSE_WHELL_dis.Location = new System.Drawing.Point(81, 57);
+            this.numericUpDown_MOUSE_WHELL_dis.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.numericUpDown_MOUSE_WHELL_dis.Name = "numericUpDown_MOUSE_WHELL_dis";
+            this.numericUpDown_MOUSE_WHELL_dis.Size = new System.Drawing.Size(412, 23);
+            this.numericUpDown_MOUSE_WHELL_dis.TabIndex = 33;
+            this.numericUpDown_MOUSE_WHELL_dis.ValueChanged += new System.EventHandler(this.numericUpDown_MOUSE_WHELL_dis_ValueChanged);
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(6, 57);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(69, 23);
+            this.label4.TabIndex = 32;
+            this.label4.Text = "滚动距离：";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // comboBox_MOUSE_WHELL_dire
+            // 
+            this.comboBox_MOUSE_WHELL_dire.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_MOUSE_WHELL_dire.FormattingEnabled = true;
+            this.comboBox_MOUSE_WHELL_dire.Items.AddRange(new object[] {
+            "向上",
+            "向下"});
+            this.comboBox_MOUSE_WHELL_dire.Location = new System.Drawing.Point(68, 26);
+            this.comboBox_MOUSE_WHELL_dire.Name = "comboBox_MOUSE_WHELL_dire";
+            this.comboBox_MOUSE_WHELL_dire.Size = new System.Drawing.Size(425, 25);
+            this.comboBox_MOUSE_WHELL_dire.TabIndex = 31;
+            this.comboBox_MOUSE_WHELL_dire.SelectedIndexChanged += new System.EventHandler(this.comboBox_MOUSE_WHELL_dire_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(6, 26);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 23);
+            this.label5.TabIndex = 30;
+            this.label5.Text = "方向";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(6, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(487, 20);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "操作鼠标滚轮";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // listBox_MacroList
+            // 
+            this.listBox_MacroList.FormattingEnabled = true;
+            this.listBox_MacroList.ItemHeight = 17;
+            this.listBox_MacroList.Location = new System.Drawing.Point(6, 22);
+            this.listBox_MacroList.Name = "listBox_MacroList";
+            this.listBox_MacroList.Size = new System.Drawing.Size(147, 242);
+            this.listBox_MacroList.TabIndex = 3;
+            this.listBox_MacroList.SelectedIndexChanged += new System.EventHandler(this.listBox_MacroList_SelectedIndexChanged);
+            // 
+            // label_HotKey
+            // 
+            this.label_HotKey.AutoSize = true;
+            this.label_HotKey.Location = new System.Drawing.Point(349, 241);
+            this.label_HotKey.Name = "label_HotKey";
+            this.label_HotKey.Size = new System.Drawing.Size(68, 17);
+            this.label_HotKey.TabIndex = 9;
+            this.label_HotKey.Text = "触发热键：";
+            // 
+            // hotkeyTextBox
+            // 
+            this.hotkeyTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.hotkeyTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.hotkeyTextBox.Hotkey = System.Windows.Forms.Keys.None;
+            this.hotkeyTextBox.Location = new System.Drawing.Point(423, 238);
+            this.hotkeyTextBox.Name = "hotkeyTextBox";
+            this.hotkeyTextBox.ReadOnly = true;
+            this.hotkeyTextBox.Size = new System.Drawing.Size(88, 23);
+            this.hotkeyTextBox.TabIndex = 8;
+            this.hotkeyTextBox.TabStop = false;
+            this.hotkeyTextBox.Text = "无";
+            // 
             // MacroEditor_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -463,6 +562,8 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(756, 424);
+            this.MinimumSize = new System.Drawing.Size(756, 424);
             this.Name = "MacroEditor_Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "宏编辑器";
@@ -474,12 +575,15 @@
             this.groupBox_edit.ResumeLayout(false);
             this.groupBox_edit.PerformLayout();
             this.tabControl_Edit.ResumeLayout(false);
+            this.tabPage_NONE.ResumeLayout(false);
             this.tabPage_MOUSE_POS.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_MOUSE_POS_y)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_MOUSE_POS_x)).EndInit();
             this.tabPage_WAIT.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_WAIT_time)).EndInit();
             this.tabPage_MOUSE_PRESS.ResumeLayout(false);
+            this.tabPage_MOUSE_WHEEL.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_MOUSE_WHELL_dis)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -521,5 +625,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox_MOUSE_PRESS_keytype;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TabPage tabPage_MOUSE_WHEEL;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox_MOUSE_WHELL_dire;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown numericUpDown_MOUSE_WHELL_dis;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
