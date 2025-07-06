@@ -40,6 +40,7 @@
             this.button_Down = new System.Windows.Forms.Button();
             this.button_Up = new System.Windows.Forms.Button();
             this.button_Cancel = new System.Windows.Forms.Button();
+            this.hotkeyTextBox = new MacroEngine.Controls.HotkeyTextBox();
             this.button_Remove = new System.Windows.Forms.Button();
             this.button_Add = new System.Windows.Forms.Button();
             this.button_Save = new System.Windows.Forms.Button();
@@ -47,7 +48,6 @@
             this.tabPage_NONE = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.tabPage_MOUSE_POS = new System.Windows.Forms.TabPage();
-            this.label8 = new System.Windows.Forms.Label();
             this.numericUpDown_MOUSE_POS_y = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_MOUSE_POS_x = new System.Windows.Forms.NumericUpDown();
             this.label_MOUSE_POS_y = new System.Windows.Forms.Label();
@@ -71,7 +71,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.listBox_MacroList = new System.Windows.Forms.ListBox();
             this.label_HotKey = new System.Windows.Forms.Label();
-            this.hotkeyTextBox = new MacroEngine.Controls.HotkeyTextBox();
             this.groupBox_info.SuspendLayout();
             this.groupBox_edit.SuspendLayout();
             this.tabControl_Edit.SuspendLayout();
@@ -202,6 +201,19 @@
             this.button_Cancel.UseVisualStyleBackColor = true;
             this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
             // 
+            // hotkeyTextBox
+            // 
+            this.hotkeyTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.hotkeyTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.hotkeyTextBox.Hotkey = System.Windows.Forms.Keys.None;
+            this.hotkeyTextBox.Location = new System.Drawing.Point(423, 238);
+            this.hotkeyTextBox.Name = "hotkeyTextBox";
+            this.hotkeyTextBox.ReadOnly = true;
+            this.hotkeyTextBox.Size = new System.Drawing.Size(88, 23);
+            this.hotkeyTextBox.TabIndex = 8;
+            this.hotkeyTextBox.TabStop = false;
+            this.hotkeyTextBox.Text = "无";
+            // 
             // button_Remove
             // 
             this.button_Remove.Location = new System.Drawing.Point(254, 234);
@@ -270,7 +282,6 @@
             // 
             // tabPage_MOUSE_POS
             // 
-            this.tabPage_MOUSE_POS.Controls.Add(this.label8);
             this.tabPage_MOUSE_POS.Controls.Add(this.numericUpDown_MOUSE_POS_y);
             this.tabPage_MOUSE_POS.Controls.Add(this.numericUpDown_MOUSE_POS_x);
             this.tabPage_MOUSE_POS.Controls.Add(this.label_MOUSE_POS_y);
@@ -282,14 +293,6 @@
             this.tabPage_MOUSE_POS.Size = new System.Drawing.Size(496, 183);
             this.tabPage_MOUSE_POS.TabIndex = 0;
             this.tabPage_MOUSE_POS.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(51, 99);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(152, 18);
-            this.label8.TabIndex = 23;
-            this.label8.Text = "←拖动此准心快速设置坐标";
             // 
             // numericUpDown_MOUSE_POS_y
             // 
@@ -539,19 +542,6 @@
             this.label_HotKey.TabIndex = 9;
             this.label_HotKey.Text = "触发热键：";
             // 
-            // hotkeyTextBox
-            // 
-            this.hotkeyTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.hotkeyTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.hotkeyTextBox.Hotkey = System.Windows.Forms.Keys.None;
-            this.hotkeyTextBox.Location = new System.Drawing.Point(423, 238);
-            this.hotkeyTextBox.Name = "hotkeyTextBox";
-            this.hotkeyTextBox.ReadOnly = true;
-            this.hotkeyTextBox.Size = new System.Drawing.Size(88, 23);
-            this.hotkeyTextBox.TabIndex = 8;
-            this.hotkeyTextBox.TabStop = false;
-            this.hotkeyTextBox.Text = "无";
-            // 
             // MacroEditor_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -632,6 +622,5 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numericUpDown_MOUSE_WHELL_dis;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
     }
 }
