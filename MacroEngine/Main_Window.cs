@@ -66,7 +66,7 @@ namespace MacroEngine
         }
         //变量========================================================================================
         public static string RunPath = Directory.GetCurrentDirectory();
-        public static string Version = "Indev 1.1.0.0";
+        public static string Version = "Indev 1.2.2.5";
         public static string MacroDir = $"{RunPath}\\Macros";
         public static string ConfigPath = $"{RunPath}\\Config\\Global_Config.ini";
         string[] Macros;
@@ -152,6 +152,8 @@ namespace MacroEngine
 
         public async void _HotKey_Press(GlobalHotkey name)
         {
+            //===============================================================================================================
+
             try
             {
                 string CommandPath = Macros[int.Parse(name.Name)];
@@ -234,6 +236,24 @@ namespace MacroEngine
                         }
 
                     }
+                    else if (NowCmdType == "KBD_PRESS")
+                    {
+                        string temp_keytype = ReadConfig(CommandPath, $"{i + 1}", "keytype");
+                        string temp_key = ReadConfig(CommandPath, $"{i + 1}", "key");
+
+                        if (temp_keytype == "0")
+                        {
+                            kbd_KeyPress((Keys)Enum.Parse(typeof(Keys), temp_key));
+                        }
+                        else if (temp_keytype == "1")
+                        {
+                            kbd_KeyDown((Keys)Enum.Parse(typeof(Keys), temp_key));
+                        }
+                        else if (temp_keytype == "2")
+                        {
+                            kbd_KeyUp((Keys)Enum.Parse(typeof(Keys), temp_key));
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -241,7 +261,8 @@ namespace MacroEngine
                 MessageBox.Show($"在执行脚本时发生错误！\n\n错误原因：{ex.Message}", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 
             }
-            
+            //===============================================================================================================
+
         }
 
         protected override void WndProc(ref Message m)
@@ -390,6 +411,58 @@ namespace MacroEngine
             {
                 help_Window.ShowDialog();
             }
+        }
+
+        private void 导入ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (ReadConfig(openFileDialog.FileName, "info", "Title") != null && ReadConfig(openFileDialog.FileName, "info", "Step") != null && ReadConfig(openFileDialog.FileName, "info", "Key") != null && ReadConfig(openFileDialog.FileName, "info", "Text") != null) 
+                {
+                    try
+                    {
+                        File.WriteAllText($"{MacroDir}\\{Path.GetFileName(openFileDialog.FileName)}", File.ReadAllText(openFileDialog.FileName));
+                        LoadMacroList();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"在写入配置文件时发生错误！\n\n错误原因：{ex.Message}", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"目标文件不是一个有效的宏配置文件！", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void 导出ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listBox_Macros.SelectedIndex != -1)
+            {
+                if (MessageBox.Show($"是否导出\"{listBox_Macros.Text}\"?", "提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        try
+                        {
+                            File.WriteAllText(saveFileDialog.FileName, File.ReadAllText($"{MacroDir}\\{listBox_Macros.Text}.ini"));
+                            MessageBox.Show($"配置文件已导出至\"{saveFileDialog.FileName}\"", "成功导出", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"在写入文件时发生错误！\n\n错误原因：{ex.Message}", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show($"请先在下方列表中选中一个宏！", "无法导出", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
         }
     }
 }

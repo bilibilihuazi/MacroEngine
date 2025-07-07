@@ -72,6 +72,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.listBox_MacroList = new System.Windows.Forms.ListBox();
             this.label_HotKey = new System.Windows.Forms.Label();
+            this.tabPage_KBD_PRESS = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comboBox_KBD_PRESS_keytype = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.hotkeyTextBox_KBD_PRESS_key = new MacroEngine.Controls.HotkeyTextBox();
             this.groupBox_info.SuspendLayout();
             this.groupBox_edit.SuspendLayout();
             this.tabControl_Edit.SuspendLayout();
@@ -84,6 +90,7 @@
             this.tabPage_MOUSE_PRESS.SuspendLayout();
             this.tabPage_MOUSE_WHEEL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_MOUSE_WHELL_dis)).BeginInit();
+            this.tabPage_KBD_PRESS.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox_info
@@ -252,6 +259,7 @@
             this.tabControl_Edit.Controls.Add(this.tabPage_WAIT);
             this.tabControl_Edit.Controls.Add(this.tabPage_MOUSE_PRESS);
             this.tabControl_Edit.Controls.Add(this.tabPage_MOUSE_WHEEL);
+            this.tabControl_Edit.Controls.Add(this.tabPage_KBD_PRESS);
             this.tabControl_Edit.ItemSize = new System.Drawing.Size(20, 15);
             this.tabControl_Edit.Location = new System.Drawing.Point(206, 22);
             this.tabControl_Edit.Name = "tabControl_Edit";
@@ -420,7 +428,7 @@
             this.comboBox_MOUSE_PRESS_keytype.FormattingEnabled = true;
             this.comboBox_MOUSE_PRESS_keytype.Items.AddRange(new object[] {
             "单击",
-            "长按",
+            "按下",
             "抬起"});
             this.comboBox_MOUSE_PRESS_keytype.Location = new System.Drawing.Point(68, 57);
             this.comboBox_MOUSE_PRESS_keytype.Name = "comboBox_MOUSE_PRESS_keytype";
@@ -554,6 +562,73 @@
             this.label_HotKey.TabIndex = 9;
             this.label_HotKey.Text = "触发热键：";
             // 
+            // tabPage_KBD_PRESS
+            // 
+            this.tabPage_KBD_PRESS.Controls.Add(this.hotkeyTextBox_KBD_PRESS_key);
+            this.tabPage_KBD_PRESS.Controls.Add(this.label8);
+            this.tabPage_KBD_PRESS.Controls.Add(this.comboBox_KBD_PRESS_keytype);
+            this.tabPage_KBD_PRESS.Controls.Add(this.label9);
+            this.tabPage_KBD_PRESS.Controls.Add(this.label10);
+            this.tabPage_KBD_PRESS.Location = new System.Drawing.Point(4, 19);
+            this.tabPage_KBD_PRESS.Name = "tabPage_KBD_PRESS";
+            this.tabPage_KBD_PRESS.Size = new System.Drawing.Size(496, 183);
+            this.tabPage_KBD_PRESS.TabIndex = 5;
+            this.tabPage_KBD_PRESS.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(6, 57);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 23);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "按键：";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // comboBox_KBD_PRESS_keytype
+            // 
+            this.comboBox_KBD_PRESS_keytype.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_KBD_PRESS_keytype.FormattingEnabled = true;
+            this.comboBox_KBD_PRESS_keytype.Items.AddRange(new object[] {
+            "单击",
+            "按下",
+            "抬起"});
+            this.comboBox_KBD_PRESS_keytype.Location = new System.Drawing.Point(68, 26);
+            this.comboBox_KBD_PRESS_keytype.Name = "comboBox_KBD_PRESS_keytype";
+            this.comboBox_KBD_PRESS_keytype.Size = new System.Drawing.Size(425, 25);
+            this.comboBox_KBD_PRESS_keytype.TabIndex = 36;
+            this.comboBox_KBD_PRESS_keytype.SelectedIndexChanged += new System.EventHandler(this.comboBox_KBD_PRESS_keytype_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.Location = new System.Drawing.Point(6, 26);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(56, 23);
+            this.label9.TabIndex = 35;
+            this.label9.Text = "类型：";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(6, 3);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(487, 20);
+            this.label10.TabIndex = 34;
+            this.label10.Text = "操作键盘按键";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // hotkeyTextBox_KBD_PRESS_key
+            // 
+            this.hotkeyTextBox_KBD_PRESS_key.BackColor = System.Drawing.SystemColors.Window;
+            this.hotkeyTextBox_KBD_PRESS_key.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.hotkeyTextBox_KBD_PRESS_key.Hotkey = System.Windows.Forms.Keys.None;
+            this.hotkeyTextBox_KBD_PRESS_key.Location = new System.Drawing.Point(68, 57);
+            this.hotkeyTextBox_KBD_PRESS_key.Name = "hotkeyTextBox_KBD_PRESS_key";
+            this.hotkeyTextBox_KBD_PRESS_key.ReadOnly = true;
+            this.hotkeyTextBox_KBD_PRESS_key.Size = new System.Drawing.Size(425, 23);
+            this.hotkeyTextBox_KBD_PRESS_key.TabIndex = 38;
+            this.hotkeyTextBox_KBD_PRESS_key.TabStop = false;
+            this.hotkeyTextBox_KBD_PRESS_key.TextChanged += new System.EventHandler(this.hotkeyTextBox_KBD_PRESS_key_TextChanged);
+            // 
             // MacroEditor_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -586,6 +661,8 @@
             this.tabPage_MOUSE_PRESS.ResumeLayout(false);
             this.tabPage_MOUSE_WHEEL.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_MOUSE_WHELL_dis)).EndInit();
+            this.tabPage_KBD_PRESS.ResumeLayout(false);
+            this.tabPage_KBD_PRESS.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -635,5 +712,11 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_MOUSE_WHELL_dis;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button_MOUSE_POS_select;
+        private System.Windows.Forms.TabPage tabPage_KBD_PRESS;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboBox_KBD_PRESS_keytype;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private Controls.HotkeyTextBox hotkeyTextBox_KBD_PRESS_key;
     }
 }

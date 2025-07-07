@@ -39,13 +39,18 @@ namespace MacroEngine
             this.label_Info_Title = new System.Windows.Forms.Label();
             this.button_Create = new System.Windows.Forms.Button();
             this.button_Remove = new System.Windows.Forms.Button();
-            this.button_Refresh = new System.Windows.Forms.Button();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button_Refresh = new System.Windows.Forms.Button();
+            this.宏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.导出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.groupBox_Info.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -67,18 +72,18 @@ namespace MacroEngine
             this.groupBox_Info.Controls.Add(this.label_Info_Text);
             this.groupBox_Info.Controls.Add(this.label_Info_Title);
             this.groupBox_Info.Enabled = false;
-            this.groupBox_Info.Location = new System.Drawing.Point(342, 27);
+            this.groupBox_Info.Location = new System.Drawing.Point(240, 27);
             this.groupBox_Info.Name = "groupBox_Info";
-            this.groupBox_Info.Size = new System.Drawing.Size(265, 276);
+            this.groupBox_Info.Size = new System.Drawing.Size(392, 312);
             this.groupBox_Info.TabIndex = 1;
             this.groupBox_Info.TabStop = false;
             this.groupBox_Info.Text = "宏信息";
             // 
             // button_Edit
             // 
-            this.button_Edit.Location = new System.Drawing.Point(6, 177);
+            this.button_Edit.Location = new System.Drawing.Point(6, 249);
             this.button_Edit.Name = "button_Edit";
-            this.button_Edit.Size = new System.Drawing.Size(253, 30);
+            this.button_Edit.Size = new System.Drawing.Size(121, 57);
             this.button_Edit.TabIndex = 3;
             this.button_Edit.Text = "编辑";
             this.button_Edit.UseVisualStyleBackColor = true;
@@ -86,7 +91,7 @@ namespace MacroEngine
             // 
             // button_Enabled
             // 
-            this.button_Enabled.Location = new System.Drawing.Point(6, 213);
+            this.button_Enabled.Location = new System.Drawing.Point(133, 249);
             this.button_Enabled.Name = "button_Enabled";
             this.button_Enabled.Size = new System.Drawing.Size(253, 57);
             this.button_Enabled.TabIndex = 2;
@@ -98,7 +103,7 @@ namespace MacroEngine
             // 
             this.label_Info_Text.Location = new System.Drawing.Point(6, 42);
             this.label_Info_Text.Name = "label_Info_Text";
-            this.label_Info_Text.Size = new System.Drawing.Size(253, 132);
+            this.label_Info_Text.Size = new System.Drawing.Size(380, 132);
             this.label_Info_Text.TabIndex = 1;
             this.label_Info_Text.Text = "UNKNOWN";
             // 
@@ -106,7 +111,7 @@ namespace MacroEngine
             // 
             this.label_Info_Title.Location = new System.Drawing.Point(6, 19);
             this.label_Info_Title.Name = "label_Info_Title";
-            this.label_Info_Title.Size = new System.Drawing.Size(253, 20);
+            this.label_Info_Title.Size = new System.Drawing.Size(380, 20);
             this.label_Info_Title.TabIndex = 0;
             this.label_Info_Title.Text = "名称：UNKNOWN";
             this.label_Info_Title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -114,9 +119,9 @@ namespace MacroEngine
             // button_Create
             // 
             this.button_Create.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_Create.Location = new System.Drawing.Point(240, 267);
+            this.button_Create.Location = new System.Drawing.Point(103, 309);
             this.button_Create.Name = "button_Create";
-            this.button_Create.Size = new System.Drawing.Size(96, 37);
+            this.button_Create.Size = new System.Drawing.Size(85, 32);
             this.button_Create.TabIndex = 4;
             this.button_Create.Text = "新建";
             this.button_Create.UseVisualStyleBackColor = true;
@@ -125,32 +130,23 @@ namespace MacroEngine
             // button_Remove
             // 
             this.button_Remove.Enabled = false;
-            this.button_Remove.Location = new System.Drawing.Point(240, 224);
+            this.button_Remove.Location = new System.Drawing.Point(12, 309);
             this.button_Remove.Name = "button_Remove";
-            this.button_Remove.Size = new System.Drawing.Size(96, 37);
+            this.button_Remove.Size = new System.Drawing.Size(85, 32);
             this.button_Remove.TabIndex = 5;
             this.button_Remove.Text = "移除";
             this.button_Remove.UseVisualStyleBackColor = true;
             this.button_Remove.Click += new System.EventHandler(this.button_Remove_Click);
             // 
-            // button_Refresh
-            // 
-            this.button_Refresh.Location = new System.Drawing.Point(240, 27);
-            this.button_Refresh.Name = "button_Refresh";
-            this.button_Refresh.Size = new System.Drawing.Size(96, 37);
-            this.button_Refresh.TabIndex = 6;
-            this.button_Refresh.Text = "刷新列表";
-            this.button_Refresh.UseVisualStyleBackColor = true;
-            this.button_Refresh.Click += new System.EventHandler(this.button_Refresh_Click);
-            // 
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.宏ToolStripMenuItem,
             this.程序ToolStripMenuItem,
             this.关于ToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(619, 25);
+            this.menuStrip.Size = new System.Drawing.Size(644, 25);
             this.menuStrip.TabIndex = 7;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -192,11 +188,54 @@ namespace MacroEngine
             this.帮助ToolStripMenuItem.Text = "帮助";
             this.帮助ToolStripMenuItem.Click += new System.EventHandler(this.帮助ToolStripMenuItem_Click);
             // 
+            // button_Refresh
+            // 
+            this.button_Refresh.Location = new System.Drawing.Point(194, 309);
+            this.button_Refresh.Name = "button_Refresh";
+            this.button_Refresh.Size = new System.Drawing.Size(40, 32);
+            this.button_Refresh.TabIndex = 6;
+            this.button_Refresh.Text = "刷新";
+            this.button_Refresh.UseVisualStyleBackColor = true;
+            this.button_Refresh.Click += new System.EventHandler(this.button_Refresh_Click);
+            // 
+            // 宏ToolStripMenuItem
+            // 
+            this.宏ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.导入ToolStripMenuItem,
+            this.导出ToolStripMenuItem});
+            this.宏ToolStripMenuItem.Name = "宏ToolStripMenuItem";
+            this.宏ToolStripMenuItem.Size = new System.Drawing.Size(32, 21);
+            this.宏ToolStripMenuItem.Text = "宏";
+            // 
+            // 导入ToolStripMenuItem
+            // 
+            this.导入ToolStripMenuItem.Name = "导入ToolStripMenuItem";
+            this.导入ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.导入ToolStripMenuItem.Text = "导入";
+            this.导入ToolStripMenuItem.Click += new System.EventHandler(this.导入ToolStripMenuItem_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Filter = "宏配置文件|*.ini";
+            this.openFileDialog.Title = "请选择一个有效的宏配置文件";
+            // 
+            // 导出ToolStripMenuItem
+            // 
+            this.导出ToolStripMenuItem.Name = "导出ToolStripMenuItem";
+            this.导出ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.导出ToolStripMenuItem.Text = "导出";
+            this.导出ToolStripMenuItem.Click += new System.EventHandler(this.导出ToolStripMenuItem_Click);
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "宏配置文件|*.ini";
+            this.saveFileDialog.Title = "请选择保存的位置";
+            // 
             // Main_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 311);
+            this.ClientSize = new System.Drawing.Size(644, 351);
             this.Controls.Add(this.button_Refresh);
             this.Controls.Add(this.button_Remove);
             this.Controls.Add(this.button_Create);
@@ -208,7 +247,6 @@ namespace MacroEngine
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(635, 350);
             this.MinimumSize = new System.Drawing.Size(635, 350);
             this.Name = "Main_Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -239,6 +277,11 @@ namespace MacroEngine
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 关于程序ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 宏ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 导入ToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem 导出ToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 

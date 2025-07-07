@@ -30,71 +30,122 @@
         {
             this.components = new System.ComponentModel.Container();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.button_MOUSE_POS = new System.Windows.Forms.Button();
-            this.button_WAIT = new System.Windows.Forms.Button();
-            this.button_MOUSE_PRESS = new System.Windows.Forms.Button();
+            this.groupBox_MOUSE = new System.Windows.Forms.GroupBox();
             this.button_MOUSE_WHEEL = new System.Windows.Forms.Button();
+            this.button_MOUSE_PRESS = new System.Windows.Forms.Button();
+            this.button_MOUSE_POS = new System.Windows.Forms.Button();
+            this.groupBox_Mics = new System.Windows.Forms.GroupBox();
+            this.button_WAIT = new System.Windows.Forms.Button();
+            this.groupBox_Kbd = new System.Windows.Forms.GroupBox();
+            this.button_KBD_PRESS = new System.Windows.Forms.Button();
+            this.groupBox_MOUSE.SuspendLayout();
+            this.groupBox_Mics.SuspendLayout();
+            this.groupBox_Kbd.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button_MOUSE_POS
+            // groupBox_MOUSE
             // 
-            this.button_MOUSE_POS.Location = new System.Drawing.Point(12, 12);
-            this.button_MOUSE_POS.Name = "button_MOUSE_POS";
-            this.button_MOUSE_POS.Size = new System.Drawing.Size(164, 41);
-            this.button_MOUSE_POS.TabIndex = 0;
-            this.button_MOUSE_POS.Text = "鼠标_置坐标";
-            this.button_MOUSE_POS.UseVisualStyleBackColor = true;
-            this.button_MOUSE_POS.Click += new System.EventHandler(this.button_MOUSE_POS_Click);
+            this.groupBox_MOUSE.Controls.Add(this.button_MOUSE_WHEEL);
+            this.groupBox_MOUSE.Controls.Add(this.button_MOUSE_PRESS);
+            this.groupBox_MOUSE.Controls.Add(this.button_MOUSE_POS);
+            this.groupBox_MOUSE.Location = new System.Drawing.Point(12, 12);
+            this.groupBox_MOUSE.Name = "groupBox_MOUSE";
+            this.groupBox_MOUSE.Size = new System.Drawing.Size(484, 67);
+            this.groupBox_MOUSE.TabIndex = 4;
+            this.groupBox_MOUSE.TabStop = false;
+            this.groupBox_MOUSE.Text = "鼠标操作";
             // 
-            // button_WAIT
+            // button_MOUSE_WHEEL
             // 
-            this.button_WAIT.Location = new System.Drawing.Point(522, 11);
-            this.button_WAIT.Name = "button_WAIT";
-            this.button_WAIT.Size = new System.Drawing.Size(164, 41);
-            this.button_WAIT.TabIndex = 1;
-            this.button_WAIT.Text = "等待";
-            this.button_WAIT.UseVisualStyleBackColor = true;
-            this.button_WAIT.Click += new System.EventHandler(this.button_WAIT_Click);
+            this.button_MOUSE_WHEEL.Location = new System.Drawing.Point(320, 22);
+            this.button_MOUSE_WHEEL.Name = "button_MOUSE_WHEEL";
+            this.button_MOUSE_WHEEL.Size = new System.Drawing.Size(151, 31);
+            this.button_MOUSE_WHEEL.TabIndex = 6;
+            this.button_MOUSE_WHEEL.Text = "鼠标_滚轮";
+            this.button_MOUSE_WHEEL.UseVisualStyleBackColor = true;
+            this.button_MOUSE_WHEEL.Click += new System.EventHandler(this.button_MOUSE_WHEEL_Click);
             // 
             // button_MOUSE_PRESS
             // 
-            this.button_MOUSE_PRESS.Location = new System.Drawing.Point(182, 12);
+            this.button_MOUSE_PRESS.Location = new System.Drawing.Point(163, 22);
             this.button_MOUSE_PRESS.Name = "button_MOUSE_PRESS";
-            this.button_MOUSE_PRESS.Size = new System.Drawing.Size(164, 41);
-            this.button_MOUSE_PRESS.TabIndex = 2;
+            this.button_MOUSE_PRESS.Size = new System.Drawing.Size(151, 31);
+            this.button_MOUSE_PRESS.TabIndex = 5;
             this.button_MOUSE_PRESS.Text = "鼠标_按键";
             this.button_MOUSE_PRESS.UseVisualStyleBackColor = true;
             this.button_MOUSE_PRESS.Click += new System.EventHandler(this.button_MOUSE_PRESS_Click);
             // 
-            // button_MOUSE_WHEEL
+            // button_MOUSE_POS
             // 
-            this.button_MOUSE_WHEEL.Location = new System.Drawing.Point(352, 11);
-            this.button_MOUSE_WHEEL.Name = "button_MOUSE_WHEEL";
-            this.button_MOUSE_WHEEL.Size = new System.Drawing.Size(164, 41);
-            this.button_MOUSE_WHEEL.TabIndex = 3;
-            this.button_MOUSE_WHEEL.Text = "鼠标_滚轮";
-            this.button_MOUSE_WHEEL.UseVisualStyleBackColor = true;
-            this.button_MOUSE_WHEEL.Click += new System.EventHandler(this.button_MOUSE_WHEEL_Click);
+            this.button_MOUSE_POS.Location = new System.Drawing.Point(6, 22);
+            this.button_MOUSE_POS.Name = "button_MOUSE_POS";
+            this.button_MOUSE_POS.Size = new System.Drawing.Size(151, 31);
+            this.button_MOUSE_POS.TabIndex = 4;
+            this.button_MOUSE_POS.Text = "鼠标_置坐标";
+            this.button_MOUSE_POS.UseVisualStyleBackColor = true;
+            this.button_MOUSE_POS.Click += new System.EventHandler(this.button_MOUSE_POS_Click);
+            // 
+            // groupBox_Mics
+            // 
+            this.groupBox_Mics.Controls.Add(this.button_WAIT);
+            this.groupBox_Mics.Location = new System.Drawing.Point(12, 85);
+            this.groupBox_Mics.Name = "groupBox_Mics";
+            this.groupBox_Mics.Size = new System.Drawing.Size(171, 65);
+            this.groupBox_Mics.TabIndex = 5;
+            this.groupBox_Mics.TabStop = false;
+            this.groupBox_Mics.Text = "杂项";
+            // 
+            // button_WAIT
+            // 
+            this.button_WAIT.Location = new System.Drawing.Point(6, 22);
+            this.button_WAIT.Name = "button_WAIT";
+            this.button_WAIT.Size = new System.Drawing.Size(151, 31);
+            this.button_WAIT.TabIndex = 2;
+            this.button_WAIT.Text = "等待";
+            this.button_WAIT.UseVisualStyleBackColor = true;
+            this.button_WAIT.Click += new System.EventHandler(this.button_WAIT_Click);
+            // 
+            // groupBox_Kbd
+            // 
+            this.groupBox_Kbd.Controls.Add(this.button_KBD_PRESS);
+            this.groupBox_Kbd.Location = new System.Drawing.Point(189, 85);
+            this.groupBox_Kbd.Name = "groupBox_Kbd";
+            this.groupBox_Kbd.Size = new System.Drawing.Size(171, 65);
+            this.groupBox_Kbd.TabIndex = 6;
+            this.groupBox_Kbd.TabStop = false;
+            this.groupBox_Kbd.Text = "键盘操作";
+            // 
+            // button_KBD_PRESS
+            // 
+            this.button_KBD_PRESS.Location = new System.Drawing.Point(6, 22);
+            this.button_KBD_PRESS.Name = "button_KBD_PRESS";
+            this.button_KBD_PRESS.Size = new System.Drawing.Size(151, 31);
+            this.button_KBD_PRESS.TabIndex = 2;
+            this.button_KBD_PRESS.Text = "键盘_按键";
+            this.button_KBD_PRESS.UseVisualStyleBackColor = true;
+            this.button_KBD_PRESS.Click += new System.EventHandler(this.button_KBD_PRESS_Click);
             // 
             // AddCommand_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 64);
-            this.Controls.Add(this.button_MOUSE_WHEEL);
-            this.Controls.Add(this.button_MOUSE_PRESS);
-            this.Controls.Add(this.button_WAIT);
-            this.Controls.Add(this.button_MOUSE_POS);
+            this.ClientSize = new System.Drawing.Size(514, 162);
+            this.Controls.Add(this.groupBox_Kbd);
+            this.Controls.Add(this.groupBox_Mics);
+            this.Controls.Add(this.groupBox_MOUSE);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(709, 103);
+            this.MaximumSize = new System.Drawing.Size(530, 201);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(709, 103);
+            this.MinimumSize = new System.Drawing.Size(530, 201);
             this.Name = "AddCommand_Window";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "添加指令";
+            this.groupBox_MOUSE.ResumeLayout(false);
+            this.groupBox_Mics.ResumeLayout(false);
+            this.groupBox_Kbd.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -102,9 +153,13 @@
         #endregion
 
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.Button button_MOUSE_POS;
-        private System.Windows.Forms.Button button_WAIT;
-        private System.Windows.Forms.Button button_MOUSE_PRESS;
+        private System.Windows.Forms.GroupBox groupBox_MOUSE;
         private System.Windows.Forms.Button button_MOUSE_WHEEL;
+        private System.Windows.Forms.Button button_MOUSE_PRESS;
+        private System.Windows.Forms.Button button_MOUSE_POS;
+        private System.Windows.Forms.GroupBox groupBox_Mics;
+        private System.Windows.Forms.Button button_WAIT;
+        private System.Windows.Forms.GroupBox groupBox_Kbd;
+        private System.Windows.Forms.Button button_KBD_PRESS;
     }
 }

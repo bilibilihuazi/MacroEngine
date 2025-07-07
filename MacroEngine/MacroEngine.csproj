@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\Refresh.png" />
     <None Include="Resources\cross_p.png" />
     <None Include="Resources\cross_n.png" />
     <None Include="Resources\icon.png" />
