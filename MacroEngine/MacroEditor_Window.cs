@@ -111,6 +111,18 @@ namespace MacroEngine
                     {
                         listBox_MacroList.Items.Add("键盘_按键");
                     }
+                    else if (StepType == "KBD_TYPE")
+                    {
+                        listBox_MacroList.Items.Add("键盘_打字");
+                    }
+                    else if (StepType == "CB_SETTEXT")
+                    {
+                        listBox_MacroList.Items.Add("剪贴板_复制文本");
+                    }
+                    else if (StepType == "CB_GETOBJ")
+                    {
+                        listBox_MacroList.Items.Add("剪贴板_粘贴");
+                    }
 
                     else
                     {
@@ -196,7 +208,23 @@ namespace MacroEngine
                     comboBox_KBD_PRESS_pkey.SelectedIndex = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pkey"));
                     hotkeyTextBox_KBD_PRESS_key.Hotkey = (Keys)Enum.Parse(typeof(Keys), ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "key"));
                 }
+                else if (listBox_MacroList.Text == "键盘_打字")
+                {
+                    tabControl_Edit.SelectedIndex = 6;
 
+                    textBox_KBD_TYPE_text.Text = ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "text");
+                    numericUpDown_KBD_TYPE_delay.Value = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "delay"));
+                }
+                else if (listBox_MacroList.Text == "剪贴板_复制文本")
+                {
+                    tabControl_Edit.SelectedIndex = 7;
+
+                    textBox_CB_SETTEXT.Text = ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "text");
+                }
+                else if (listBox_MacroList.Text == "剪贴板_粘贴")
+                {
+                    tabControl_Edit.SelectedIndex = 8;
+                }
 
 
                 //===============================================================================================================
@@ -358,6 +386,24 @@ namespace MacroEngine
                 WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "key", "A");
                 listBox_MacroList.Items.Add("键盘_按键");
             }
+            else if (AddW_TYPE == "KBD_TYPE")
+            {
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "KBD_TYPE");
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "text", "Hello world!");
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "delay", "100");
+                listBox_MacroList.Items.Add("键盘_打字");
+            }
+            else if (AddW_TYPE == "CB_SETTEXT")
+            {
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "CB_SETTEXT");
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "text", "Hello world!");
+                listBox_MacroList.Items.Add("剪贴板_复制文本");
+            }
+            else if (AddW_TYPE == "CB_GETOBJ") 
+            {
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "CB_GETOBJ");
+                listBox_MacroList.Items.Add("剪贴板_粘贴");
+            }
 
 
 
@@ -386,7 +432,7 @@ namespace MacroEngine
                 string LastConfig = $"{listBox_MacroList.SelectedIndex}";
 
                 /*       <======================如有新项添加到此=============================>     */
-                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey" };
+                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay" };
 
 
                 WriteConfig(tempPath, "tempNow", "type", ReadConfig(tempPath, NowConfig, "type"));
@@ -462,7 +508,7 @@ namespace MacroEngine
                 string LastConfig = $"{listBox_MacroList.SelectedIndex + 2}";
 
                 /*       <======================如有新项添加到此=============================>     */
-                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey" };
+                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay" };
 
 
                 WriteConfig(tempPath, "tempNow", "type", ReadConfig(tempPath, NowConfig, "type"));
@@ -571,6 +617,19 @@ namespace MacroEngine
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "pkey", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "pkey"));
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "key", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "key"));
                     }
+                    else if (temp == "KBD_TYPE")
+                    {
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "text", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "text"));
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "delay", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "delay"));
+                    }
+                    else if (temp == "CB_SETTEXT")
+                    {
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "text", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "text"));
+                    }
+                    else if (temp == "CB_GETOBJ")
+                    {
+                        //None
+                    }
 
 
 
@@ -582,6 +641,7 @@ namespace MacroEngine
 
 
                 }
+
                 WriteConfig(tempPath, "info", "Step", $"{int.Parse(ReadConfig(tempPath, "info", "Step")) - 1}");
 
                 
@@ -604,11 +664,15 @@ namespace MacroEngine
 
         private void MacroEditor_Window_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (StringToSHA256(File.ReadAllText(Path)) != StringToSHA256(File.ReadAllText(tempPath)) && Main_Window.Editor_TYPE == "Edit") 
+
+            if (Main_Window.Editor_TYPE == "Edit") 
             {
-                if (MessageBox.Show($"检测到文件更改，是否保存该宏？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (StringToSHA256(File.ReadAllText(Path)) != StringToSHA256(File.ReadAllText(tempPath)))
                 {
-                    button_Save_Click(null, null);
+                    if (MessageBox.Show($"检测到文件更改，是否保存该宏？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        button_Save_Click(null, null);
+                    }
                 }
             }
         }
@@ -666,6 +730,21 @@ namespace MacroEngine
         private void comboBox_KBD_PRESS_pkey_SelectedIndexChanged(object sender, EventArgs e)
         {
             WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pkey", $"{comboBox_KBD_PRESS_pkey.SelectedIndex}");
+        }
+
+        private void textBox_KBD_TYPE_text_TextChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "text", textBox_KBD_TYPE_text.Text);
+        }
+
+        private void numericUpDown_KBD_TYPE_delay_ValueChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "delay", $"{numericUpDown_KBD_TYPE_delay.Value}");
+        }
+
+        private void textBox_CB_SETTEXT_TextChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "text", $"{textBox_CB_SETTEXT.Text}");
         }
     }
 }

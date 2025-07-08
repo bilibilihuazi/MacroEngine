@@ -66,7 +66,7 @@ namespace MacroEngine
         }
         //变量========================================================================================
         public static string RunPath = Directory.GetCurrentDirectory();
-        public static string Version = "Indev 1.3.4.9";
+        public static string Version = "Indev 1.4.2.4";
         public static string MacroDir = $"{RunPath}\\Macros";
         public static string ConfigPath = $"{RunPath}\\Config\\Global_Config.ini";
         string[] Macros;
@@ -277,6 +277,35 @@ namespace MacroEngine
                         kbd_KeyUp(Keys.ControlKey);
                         kbd_KeyUp(Keys.ShiftKey);
                         kbd_KeyUp(Keys.Alt);
+                    }
+                    else if (NowCmdType == "KBD_TYPE")
+                    {
+                        string temp_text = ReadConfig(CommandPath, $"{i + 1}", "text");
+                        string temp_delay = ReadConfig(CommandPath, $"{i + 1}", "delay");
+
+                        for (int j = 0; j < temp_text.Length; j++)
+                        {
+                            Clipboard.SetText(temp_text.Substring(j, 1));
+                            kbd_KeyDown(Keys.ControlKey);
+                            kbd_KeyPress(Keys.V);
+                            kbd_KeyUp(Keys.ControlKey);
+
+                            await Task.Delay(int.Parse(temp_delay));
+                        }
+
+                        
+                    }
+                    else if (NowCmdType == "CB_SETTEXT")
+                    {
+                        string temp_text = ReadConfig(CommandPath, $"{i + 1}", "text");
+
+                        Clipboard.SetText(temp_text);
+                    }
+                    else if (NowCmdType == "CB_GETOBJ")
+                    {
+                        kbd_KeyDown(Keys.ControlKey);
+                        kbd_KeyPress(Keys.V);
+                        kbd_KeyUp(Keys.ControlKey);
                     }
                 }
             }
