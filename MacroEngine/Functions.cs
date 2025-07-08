@@ -11,6 +11,7 @@ using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Security;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -1390,6 +1391,38 @@ namespace Funcitons
                 // 确保解锁资源
                 original.UnlockBits(bd1);
                 compare.UnlockBits(bd2);
+            }
+        }
+
+        /// <summary>
+        /// 字符串转哈希
+        /// </summary>
+        /// <param name="input">字符串</param>
+        /// <returns>哈希值</returns>
+        public static string StringToSHA256(string input)
+        {
+            // 检查输入是否为null或空
+            if (string.IsNullOrEmpty(input))
+            {
+                return string.Empty;
+            }
+
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                // 将字符串转换为字节数组
+                byte[] bytes = Encoding.UTF8.GetBytes(input);
+
+                // 计算哈希值
+                byte[] hashBytes = sha256.ComputeHash(bytes);
+
+                // 将字节数组转换为十六进制字符串
+                StringBuilder builder = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    builder.Append(hashBytes[i].ToString("x2")); // "x2" 表示两位小写十六进制
+                }
+
+                return builder.ToString();
             }
         }
         #endregion

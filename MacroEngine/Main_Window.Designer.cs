@@ -40,16 +40,16 @@ namespace MacroEngine
             this.button_Create = new System.Windows.Forms.Button();
             this.button_Remove = new System.Windows.Forms.Button();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.宏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.导出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_Refresh = new System.Windows.Forms.Button();
-            this.宏ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.导入ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.导出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.groupBox_Info.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -150,6 +150,29 @@ namespace MacroEngine
             this.menuStrip.TabIndex = 7;
             this.menuStrip.Text = "menuStrip1";
             // 
+            // 宏ToolStripMenuItem
+            // 
+            this.宏ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.导入ToolStripMenuItem,
+            this.导出ToolStripMenuItem});
+            this.宏ToolStripMenuItem.Name = "宏ToolStripMenuItem";
+            this.宏ToolStripMenuItem.Size = new System.Drawing.Size(32, 21);
+            this.宏ToolStripMenuItem.Text = "宏";
+            // 
+            // 导入ToolStripMenuItem
+            // 
+            this.导入ToolStripMenuItem.Name = "导入ToolStripMenuItem";
+            this.导入ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.导入ToolStripMenuItem.Text = "导入";
+            this.导入ToolStripMenuItem.Click += new System.EventHandler(this.导入ToolStripMenuItem_Click);
+            // 
+            // 导出ToolStripMenuItem
+            // 
+            this.导出ToolStripMenuItem.Name = "导出ToolStripMenuItem";
+            this.导出ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.导出ToolStripMenuItem.Text = "导出";
+            this.导出ToolStripMenuItem.Click += new System.EventHandler(this.导出ToolStripMenuItem_Click);
+            // 
             // 程序ToolStripMenuItem
             // 
             this.程序ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -198,33 +221,10 @@ namespace MacroEngine
             this.button_Refresh.UseVisualStyleBackColor = true;
             this.button_Refresh.Click += new System.EventHandler(this.button_Refresh_Click);
             // 
-            // 宏ToolStripMenuItem
-            // 
-            this.宏ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.导入ToolStripMenuItem,
-            this.导出ToolStripMenuItem});
-            this.宏ToolStripMenuItem.Name = "宏ToolStripMenuItem";
-            this.宏ToolStripMenuItem.Size = new System.Drawing.Size(32, 21);
-            this.宏ToolStripMenuItem.Text = "宏";
-            // 
-            // 导入ToolStripMenuItem
-            // 
-            this.导入ToolStripMenuItem.Name = "导入ToolStripMenuItem";
-            this.导入ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.导入ToolStripMenuItem.Text = "导入";
-            this.导入ToolStripMenuItem.Click += new System.EventHandler(this.导入ToolStripMenuItem_Click);
-            // 
             // openFileDialog
             // 
             this.openFileDialog.Filter = "宏配置文件|*.ini";
             this.openFileDialog.Title = "请选择一个有效的宏配置文件";
-            // 
-            // 导出ToolStripMenuItem
-            // 
-            this.导出ToolStripMenuItem.Name = "导出ToolStripMenuItem";
-            this.导出ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.导出ToolStripMenuItem.Text = "导出";
-            this.导出ToolStripMenuItem.Click += new System.EventHandler(this.导出ToolStripMenuItem_Click);
             // 
             // saveFileDialog
             // 
@@ -247,7 +247,8 @@ namespace MacroEngine
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(635, 350);
+            this.MaximumSize = new System.Drawing.Size(660, 390);
+            this.MinimumSize = new System.Drawing.Size(660, 390);
             this.Name = "Main_Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main_Window";

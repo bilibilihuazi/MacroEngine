@@ -22,11 +22,6 @@ namespace MacroEngine
             this.Width = Screen.PrimaryScreen.Bounds.Width;
             this.Height = Screen.PrimaryScreen.Bounds.Height;
 
-            label1.Left = 0;
-            label1.Top = 0;
-            label1.Width = this.Width;
-            label1.Height = this.Height;
-
             panel_X.Width = this.Width;
             panel_X.Left = 0;
             panel_Y.Height = this.Height;
@@ -54,6 +49,8 @@ namespace MacroEngine
         {
             panel_X.Top = m_GetPosition().Y;
             panel_Y.Left = m_GetPosition().X;
+
+
             label2.Text = $"坐标：{m_GetPosition().X},{m_GetPosition().Y}";
             label2.Left = m_GetPosition().X + 10;
             label2.Top = m_GetPosition().Y + 10;
