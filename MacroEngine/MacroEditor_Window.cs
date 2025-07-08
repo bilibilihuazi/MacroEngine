@@ -192,6 +192,7 @@ namespace MacroEngine
                 tabControl_Edit.SelectedIndex = 5;
 
                 comboBox_KBD_PRESS_keytype.SelectedIndex = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "keytype"));
+                comboBox_KBD_PRESS_pkey.SelectedIndex = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pkey"));
                 hotkeyTextBox_KBD_PRESS_key.Hotkey = (Keys)Enum.Parse(typeof(Keys), ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "key"));
             }
 
@@ -345,6 +346,7 @@ namespace MacroEngine
             else if (AddW_TYPE == "KBD_PRESS")
             {
                 WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "KBD_PRESS");
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "pkey", "0");
                 WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "keytype", "0");
                 WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "key", "A");
                 listBox_MacroList.Items.Add("键盘_按键");
@@ -403,6 +405,7 @@ namespace MacroEngine
                 else if (tempTYPE == "KBD_PRESS")
                 {
                     WriteConfig(tempPath, "temp", "keytype", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "keytype"));
+                    WriteConfig(tempPath, "temp", "pkey", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "pkey"));
                     WriteConfig(tempPath, "temp", "key", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "key"));
                 }
 
@@ -433,6 +436,7 @@ namespace MacroEngine
                 else if (tempNowTYPE == "KBD_PRESS")
                 {
                     WriteConfig(tempPath, "temp2", "keytype", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "keytype"));
+                    WriteConfig(tempPath, "temp2", "pkey", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pkey"));
                     WriteConfig(tempPath, "temp2", "key", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "key"));
                 }
 
@@ -465,6 +469,7 @@ namespace MacroEngine
                 else if (tempNowTYPE == "KBD_PRESS")
                 {
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "keytype", ReadConfig(tempPath, "temp2", "keytype"));
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "pkey", ReadConfig(tempPath, "temp2", "pkey"));
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex}", "key", ReadConfig(tempPath, "temp2", "key"));
                 }
 
@@ -497,6 +502,7 @@ namespace MacroEngine
                 else if (tempTYPE == "KBD_PRESS")
                 {
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "keytype", ReadConfig(tempPath, "temp", "keytype"));
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pkey", ReadConfig(tempPath, "temp", "pkey"));
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "key", ReadConfig(tempPath, "temp", "key"));
 
                 }
@@ -565,6 +571,12 @@ namespace MacroEngine
                     WriteConfig(tempPath, "temp", "dire", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "dire"));
                     WriteConfig(tempPath, "temp", "dis", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "dis"));
                 }
+                else if (tempTYPE == "KBD_PRESS")
+                {
+                    WriteConfig(tempPath, "temp", "keytype", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "keytype"));
+                    WriteConfig(tempPath, "temp", "pkey", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "pkey"));
+                    WriteConfig(tempPath, "temp", "key", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "key"));
+                }
 
                 //===============================================================================================================
 
@@ -591,7 +603,8 @@ namespace MacroEngine
                 }
                 else if (tempNowTYPE == "KBD_PRESS")
                 {
-                    WriteConfig(tempPath, "temp2", "keytype", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "type"));
+                    WriteConfig(tempPath, "temp2", "keytype", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "keytype"));
+                    WriteConfig(tempPath, "temp2", "pkey", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pkey"));
                     WriteConfig(tempPath, "temp2", "key", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "key"));
                 }
 
@@ -625,6 +638,7 @@ namespace MacroEngine
                 else if (tempNowTYPE == "KBD_PRESS")
                 {
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "keytype", ReadConfig(tempPath, "temp2", "keytype"));
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "pkey", ReadConfig(tempPath, "temp2", "pkey"));
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2}", "key", ReadConfig(tempPath, "temp2", "key"));
                 }
 
@@ -657,6 +671,7 @@ namespace MacroEngine
                 else if (tempTYPE == "KBD_PRESS")
                 {
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "keytype", ReadConfig(tempPath, "temp", "keytype"));
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pkey", ReadConfig(tempPath, "temp", "pkey"));
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "key", ReadConfig(tempPath, "temp", "key"));
 
                 }
@@ -730,6 +745,7 @@ namespace MacroEngine
                     else if (temp == "KBD_PRESS")
                     {
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "keytype", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "keytype"));
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "pkey", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "pkey"));
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "key", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "key"));
                     }
 
@@ -820,6 +836,11 @@ namespace MacroEngine
         private void hotkeyTextBox_KBD_PRESS_key_TextChanged(object sender, EventArgs e)
         {
             WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "key", $"{hotkeyTextBox_KBD_PRESS_key.Hotkey.ToString()}");
+        }
+
+        private void comboBox_KBD_PRESS_pkey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pkey", $"{comboBox_KBD_PRESS_pkey.SelectedIndex}");
         }
     }
 }

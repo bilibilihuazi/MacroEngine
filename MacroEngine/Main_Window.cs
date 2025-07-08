@@ -239,7 +239,25 @@ namespace MacroEngine
                     else if (NowCmdType == "KBD_PRESS")
                     {
                         string temp_keytype = ReadConfig(CommandPath, $"{i + 1}", "keytype");
+                        string temp_pkey = ReadConfig(CommandPath, $"{i + 1}", "pkey");
                         string temp_key = ReadConfig(CommandPath, $"{i + 1}", "key");
+
+                        if (temp_pkey == "1")
+                        {
+                            kbd_KeyDown(Keys.ControlKey);
+                        }
+                        else if (temp_pkey == "2")
+                        {
+                            kbd_KeyDown(Keys.ShiftKey);
+                        }
+                        else if (temp_pkey == "3")
+                        {
+                            kbd_KeyDown(Keys.Alt);
+                        }
+
+
+
+
 
                         if (temp_keytype == "0")
                         {
@@ -253,6 +271,12 @@ namespace MacroEngine
                         {
                             kbd_KeyUp((Keys)Enum.Parse(typeof(Keys), temp_key));
                         }
+
+
+
+                        kbd_KeyUp(Keys.ControlKey);
+                        kbd_KeyUp(Keys.ShiftKey);
+                        kbd_KeyUp(Keys.Alt);
                     }
                 }
             }
