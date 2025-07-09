@@ -96,6 +96,12 @@
     <Compile Include="AddCommand_Window.Designer.cs">
       <DependentUpon>AddCommand_Window.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddSubCommand_Window.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSubCommand_Window.Designer.cs">
+      <DependentUpon>AddSubCommand_Window.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\HotkeyBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddCommand_Window.resx">
       <DependentUpon>AddCommand_Window.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSubCommand_Window.resx">
+      <DependentUpon>AddSubCommand_Window.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Help_Window.resx">
       <DependentUpon>Help_Window.cs</DependentUpon>

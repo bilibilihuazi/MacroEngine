@@ -76,23 +76,31 @@
             this.comboBox_KBD_PRESS_keytype = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.listBox_MacroList = new System.Windows.Forms.ListBox();
-            this.label_HotKey = new System.Windows.Forms.Label();
             this.tabPage_KBD_TYPE = new System.Windows.Forms.TabPage();
+            this.numericUpDown_KBD_TYPE_delay = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBox_KBD_TYPE_text = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox_KBD_TYPE_text = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.numericUpDown_KBD_TYPE_delay = new System.Windows.Forms.NumericUpDown();
-            this.hotkeyTextBox = new MacroEngine.Controls.HotkeyTextBox();
-            this.hotkeyTextBox_KBD_PRESS_key = new MacroEngine.Controls.HotkeyTextBox();
             this.tabPage_CB_SETTEXT = new System.Windows.Forms.TabPage();
             this.textBox_CB_SETTEXT = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.tabPage_CB_GETOBJ = new System.Windows.Forms.TabPage();
-            this.label13 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.listBox_MacroList = new System.Windows.Forms.ListBox();
+            this.label_HotKey = new System.Windows.Forms.Label();
+            this.button_AddSub = new System.Windows.Forms.Button();
+            this.button_ToSubtypeEdit = new System.Windows.Forms.Button();
+            this.tabPage_SUB_FOR = new System.Windows.Forms.TabPage();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.numericUpDown_SUB_FOR_num = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_SUB_FOR_delay = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
+            this.hotkeyTextBox = new MacroEngine.Controls.HotkeyTextBox();
+            this.hotkeyTextBox_KBD_PRESS_key = new MacroEngine.Controls.HotkeyTextBox();
             this.groupBox_info.SuspendLayout();
             this.groupBox_edit.SuspendLayout();
             this.tabControl_Edit.SuspendLayout();
@@ -110,6 +118,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_KBD_TYPE_delay)).BeginInit();
             this.tabPage_CB_SETTEXT.SuspendLayout();
             this.tabPage_CB_GETOBJ.SuspendLayout();
+            this.tabPage_SUB_FOR.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SUB_FOR_num)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SUB_FOR_delay)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox_info
@@ -122,7 +133,7 @@
             this.groupBox_info.Controls.Add(this.label_Path);
             this.groupBox_info.Location = new System.Drawing.Point(12, 12);
             this.groupBox_info.Name = "groupBox_info";
-            this.groupBox_info.Size = new System.Drawing.Size(716, 79);
+            this.groupBox_info.Size = new System.Drawing.Size(771, 79);
             this.groupBox_info.TabIndex = 7;
             this.groupBox_info.TabStop = false;
             this.groupBox_info.Text = "基本信息";
@@ -131,7 +142,7 @@
             // 
             this.textBox_text.Location = new System.Drawing.Point(328, 48);
             this.textBox_text.Name = "textBox_text";
-            this.textBox_text.Size = new System.Drawing.Size(382, 23);
+            this.textBox_text.Size = new System.Drawing.Size(437, 23);
             this.textBox_text.TabIndex = 12;
             this.textBox_text.TextChanged += new System.EventHandler(this.textBox_text_TextChanged);
             // 
@@ -165,7 +176,7 @@
             // 
             this.textBox_Path.Location = new System.Drawing.Point(81, 19);
             this.textBox_Path.Name = "textBox_Path";
-            this.textBox_Path.Size = new System.Drawing.Size(629, 23);
+            this.textBox_Path.Size = new System.Drawing.Size(684, 23);
             this.textBox_Path.TabIndex = 8;
             // 
             // label_Path
@@ -179,6 +190,8 @@
             // 
             // groupBox_edit
             // 
+            this.groupBox_edit.Controls.Add(this.button_ToSubtypeEdit);
+            this.groupBox_edit.Controls.Add(this.button_AddSub);
             this.groupBox_edit.Controls.Add(this.button_Down);
             this.groupBox_edit.Controls.Add(this.button_Up);
             this.groupBox_edit.Controls.Add(this.button_Cancel);
@@ -191,7 +204,7 @@
             this.groupBox_edit.Controls.Add(this.label_HotKey);
             this.groupBox_edit.Location = new System.Drawing.Point(12, 97);
             this.groupBox_edit.Name = "groupBox_edit";
-            this.groupBox_edit.Size = new System.Drawing.Size(716, 276);
+            this.groupBox_edit.Size = new System.Drawing.Size(771, 276);
             this.groupBox_edit.TabIndex = 8;
             this.groupBox_edit.TabStop = false;
             this.groupBox_edit.Text = "脚本编辑";
@@ -199,9 +212,9 @@
             // button_Down
             // 
             this.button_Down.Enabled = false;
-            this.button_Down.Location = new System.Drawing.Point(159, 152);
+            this.button_Down.Location = new System.Drawing.Point(159, 61);
             this.button_Down.Name = "button_Down";
-            this.button_Down.Size = new System.Drawing.Size(41, 33);
+            this.button_Down.Size = new System.Drawing.Size(89, 33);
             this.button_Down.TabIndex = 12;
             this.button_Down.Text = "↓";
             this.button_Down.UseVisualStyleBackColor = true;
@@ -210,9 +223,9 @@
             // button_Up
             // 
             this.button_Up.Enabled = false;
-            this.button_Up.Location = new System.Drawing.Point(159, 59);
+            this.button_Up.Location = new System.Drawing.Point(159, 22);
             this.button_Up.Name = "button_Up";
-            this.button_Up.Size = new System.Drawing.Size(41, 33);
+            this.button_Up.Size = new System.Drawing.Size(89, 33);
             this.button_Up.TabIndex = 11;
             this.button_Up.Text = "↑";
             this.button_Up.UseVisualStyleBackColor = true;
@@ -220,7 +233,7 @@
             // 
             // button_Cancel
             // 
-            this.button_Cancel.Location = new System.Drawing.Point(517, 234);
+            this.button_Cancel.Location = new System.Drawing.Point(576, 240);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(67, 30);
             this.button_Cancel.TabIndex = 10;
@@ -230,7 +243,7 @@
             // 
             // button_Remove
             // 
-            this.button_Remove.Location = new System.Drawing.Point(254, 234);
+            this.button_Remove.Location = new System.Drawing.Point(159, 194);
             this.button_Remove.Name = "button_Remove";
             this.button_Remove.Size = new System.Drawing.Size(89, 30);
             this.button_Remove.TabIndex = 7;
@@ -240,7 +253,7 @@
             // 
             // button_Add
             // 
-            this.button_Add.Location = new System.Drawing.Point(159, 234);
+            this.button_Add.Location = new System.Drawing.Point(159, 122);
             this.button_Add.Name = "button_Add";
             this.button_Add.Size = new System.Drawing.Size(89, 30);
             this.button_Add.TabIndex = 6;
@@ -250,7 +263,7 @@
             // 
             // button_Save
             // 
-            this.button_Save.Location = new System.Drawing.Point(590, 234);
+            this.button_Save.Location = new System.Drawing.Point(649, 240);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(116, 30);
             this.button_Save.TabIndex = 5;
@@ -269,8 +282,9 @@
             this.tabControl_Edit.Controls.Add(this.tabPage_KBD_TYPE);
             this.tabControl_Edit.Controls.Add(this.tabPage_CB_SETTEXT);
             this.tabControl_Edit.Controls.Add(this.tabPage_CB_GETOBJ);
+            this.tabControl_Edit.Controls.Add(this.tabPage_SUB_FOR);
             this.tabControl_Edit.ItemSize = new System.Drawing.Size(20, 15);
-            this.tabControl_Edit.Location = new System.Drawing.Point(206, 22);
+            this.tabControl_Edit.Location = new System.Drawing.Point(254, 22);
             this.tabControl_Edit.Name = "tabControl_Edit";
             this.tabControl_Edit.SelectedIndex = 0;
             this.tabControl_Edit.Size = new System.Drawing.Size(504, 206);
@@ -632,25 +646,6 @@
             this.label10.Text = "操作键盘按键";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // listBox_MacroList
-            // 
-            this.listBox_MacroList.FormattingEnabled = true;
-            this.listBox_MacroList.ItemHeight = 17;
-            this.listBox_MacroList.Location = new System.Drawing.Point(6, 22);
-            this.listBox_MacroList.Name = "listBox_MacroList";
-            this.listBox_MacroList.Size = new System.Drawing.Size(147, 242);
-            this.listBox_MacroList.TabIndex = 3;
-            this.listBox_MacroList.SelectedIndexChanged += new System.EventHandler(this.listBox_MacroList_SelectedIndexChanged);
-            // 
-            // label_HotKey
-            // 
-            this.label_HotKey.AutoSize = true;
-            this.label_HotKey.Location = new System.Drawing.Point(349, 241);
-            this.label_HotKey.Name = "label_HotKey";
-            this.label_HotKey.Size = new System.Drawing.Size(68, 17);
-            this.label_HotKey.TabIndex = 9;
-            this.label_HotKey.Text = "触发热键：";
-            // 
             // tabPage_KBD_TYPE
             // 
             this.tabPage_KBD_TYPE.Controls.Add(this.numericUpDown_KBD_TYPE_delay);
@@ -663,6 +658,36 @@
             this.tabPage_KBD_TYPE.Size = new System.Drawing.Size(496, 183);
             this.tabPage_KBD_TYPE.TabIndex = 6;
             this.tabPage_KBD_TYPE.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown_KBD_TYPE_delay
+            // 
+            this.numericUpDown_KBD_TYPE_delay.Location = new System.Drawing.Point(139, 55);
+            this.numericUpDown_KBD_TYPE_delay.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.numericUpDown_KBD_TYPE_delay.Name = "numericUpDown_KBD_TYPE_delay";
+            this.numericUpDown_KBD_TYPE_delay.Size = new System.Drawing.Size(354, 23);
+            this.numericUpDown_KBD_TYPE_delay.TabIndex = 45;
+            this.numericUpDown_KBD_TYPE_delay.ValueChanged += new System.EventHandler(this.numericUpDown_KBD_TYPE_delay_ValueChanged);
+            // 
+            // label12
+            // 
+            this.label12.Location = new System.Drawing.Point(6, 55);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(127, 23);
+            this.label12.TabIndex = 44;
+            this.label12.Text = "输入延迟(单位:ms)：";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBox_KBD_TYPE_text
+            // 
+            this.textBox_KBD_TYPE_text.Location = new System.Drawing.Point(67, 26);
+            this.textBox_KBD_TYPE_text.Name = "textBox_KBD_TYPE_text";
+            this.textBox_KBD_TYPE_text.Size = new System.Drawing.Size(426, 23);
+            this.textBox_KBD_TYPE_text.TabIndex = 43;
+            this.textBox_KBD_TYPE_text.TextChanged += new System.EventHandler(this.textBox_KBD_TYPE_text_TextChanged);
             // 
             // label14
             // 
@@ -681,63 +706,6 @@
             this.label15.TabIndex = 41;
             this.label15.Text = "模拟键盘打字(实际上是逐字复制粘贴)；注意：需获得任意输入框焦点才可以输入";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textBox_KBD_TYPE_text
-            // 
-            this.textBox_KBD_TYPE_text.Location = new System.Drawing.Point(67, 26);
-            this.textBox_KBD_TYPE_text.Name = "textBox_KBD_TYPE_text";
-            this.textBox_KBD_TYPE_text.Size = new System.Drawing.Size(426, 23);
-            this.textBox_KBD_TYPE_text.TabIndex = 43;
-            this.textBox_KBD_TYPE_text.TextChanged += new System.EventHandler(this.textBox_KBD_TYPE_text_TextChanged);
-            // 
-            // label12
-            // 
-            this.label12.Location = new System.Drawing.Point(6, 55);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(127, 23);
-            this.label12.TabIndex = 44;
-            this.label12.Text = "输入延迟(单位:ms)：";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // numericUpDown_KBD_TYPE_delay
-            // 
-            this.numericUpDown_KBD_TYPE_delay.Location = new System.Drawing.Point(139, 55);
-            this.numericUpDown_KBD_TYPE_delay.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.numericUpDown_KBD_TYPE_delay.Name = "numericUpDown_KBD_TYPE_delay";
-            this.numericUpDown_KBD_TYPE_delay.Size = new System.Drawing.Size(354, 23);
-            this.numericUpDown_KBD_TYPE_delay.TabIndex = 45;
-            this.numericUpDown_KBD_TYPE_delay.ValueChanged += new System.EventHandler(this.numericUpDown_KBD_TYPE_delay_ValueChanged);
-            // 
-            // hotkeyTextBox
-            // 
-            this.hotkeyTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.hotkeyTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.hotkeyTextBox.Hotkey = System.Windows.Forms.Keys.None;
-            this.hotkeyTextBox.Location = new System.Drawing.Point(423, 238);
-            this.hotkeyTextBox.Name = "hotkeyTextBox";
-            this.hotkeyTextBox.ReadOnly = true;
-            this.hotkeyTextBox.Size = new System.Drawing.Size(88, 23);
-            this.hotkeyTextBox.TabIndex = 8;
-            this.hotkeyTextBox.TabStop = false;
-            this.hotkeyTextBox.Text = "无";
-            // 
-            // hotkeyTextBox_KBD_PRESS_key
-            // 
-            this.hotkeyTextBox_KBD_PRESS_key.BackColor = System.Drawing.SystemColors.Window;
-            this.hotkeyTextBox_KBD_PRESS_key.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.hotkeyTextBox_KBD_PRESS_key.Hotkey = System.Windows.Forms.Keys.None;
-            this.hotkeyTextBox_KBD_PRESS_key.Location = new System.Drawing.Point(68, 88);
-            this.hotkeyTextBox_KBD_PRESS_key.Name = "hotkeyTextBox_KBD_PRESS_key";
-            this.hotkeyTextBox_KBD_PRESS_key.ReadOnly = true;
-            this.hotkeyTextBox_KBD_PRESS_key.Size = new System.Drawing.Size(425, 23);
-            this.hotkeyTextBox_KBD_PRESS_key.TabIndex = 38;
-            this.hotkeyTextBox_KBD_PRESS_key.TabStop = false;
-            this.hotkeyTextBox_KBD_PRESS_key.Text = "无";
-            this.hotkeyTextBox_KBD_PRESS_key.TextChanged += new System.EventHandler(this.hotkeyTextBox_KBD_PRESS_key_TextChanged);
             // 
             // tabPage_CB_SETTEXT
             // 
@@ -786,15 +754,6 @@
             this.tabPage_CB_GETOBJ.TabIndex = 8;
             this.tabPage_CB_GETOBJ.UseVisualStyleBackColor = true;
             // 
-            // label13
-            // 
-            this.label13.Location = new System.Drawing.Point(6, 3);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(487, 20);
-            this.label13.TabIndex = 47;
-            this.label13.Text = "粘贴剪贴板内的东西(人话就是Ctrl+V)";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label18
             // 
             this.label18.Font = new System.Drawing.Font("微软雅黑", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -805,18 +764,160 @@
             this.label18.Text = "此指令暂无参数";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(6, 3);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(487, 20);
+            this.label13.TabIndex = 47;
+            this.label13.Text = "粘贴剪贴板内的东西(人话就是Ctrl+V)";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // listBox_MacroList
+            // 
+            this.listBox_MacroList.FormattingEnabled = true;
+            this.listBox_MacroList.ItemHeight = 17;
+            this.listBox_MacroList.Location = new System.Drawing.Point(6, 22);
+            this.listBox_MacroList.Name = "listBox_MacroList";
+            this.listBox_MacroList.Size = new System.Drawing.Size(147, 242);
+            this.listBox_MacroList.TabIndex = 3;
+            this.listBox_MacroList.SelectedIndexChanged += new System.EventHandler(this.listBox_MacroList_SelectedIndexChanged);
+            // 
+            // label_HotKey
+            // 
+            this.label_HotKey.AutoSize = true;
+            this.label_HotKey.Location = new System.Drawing.Point(160, 247);
+            this.label_HotKey.Name = "label_HotKey";
+            this.label_HotKey.Size = new System.Drawing.Size(68, 17);
+            this.label_HotKey.TabIndex = 9;
+            this.label_HotKey.Text = "触发热键：";
+            // 
+            // button_AddSub
+            // 
+            this.button_AddSub.Location = new System.Drawing.Point(159, 158);
+            this.button_AddSub.Name = "button_AddSub";
+            this.button_AddSub.Size = new System.Drawing.Size(89, 30);
+            this.button_AddSub.TabIndex = 13;
+            this.button_AddSub.Text = "添加附加指令";
+            this.button_AddSub.UseVisualStyleBackColor = true;
+            this.button_AddSub.Click += new System.EventHandler(this.button_AddSub_Click);
+            // 
+            // button_ToSubtypeEdit
+            // 
+            this.button_ToSubtypeEdit.Enabled = false;
+            this.button_ToSubtypeEdit.Location = new System.Drawing.Point(385, 240);
+            this.button_ToSubtypeEdit.Name = "button_ToSubtypeEdit";
+            this.button_ToSubtypeEdit.Size = new System.Drawing.Size(123, 30);
+            this.button_ToSubtypeEdit.TabIndex = 14;
+            this.button_ToSubtypeEdit.Text = "编辑附加指令";
+            this.button_ToSubtypeEdit.UseVisualStyleBackColor = true;
+            this.button_ToSubtypeEdit.Click += new System.EventHandler(this.button_ToSubtypeEdit_Click);
+            // 
+            // tabPage_SUB_FOR
+            // 
+            this.tabPage_SUB_FOR.Controls.Add(this.numericUpDown_SUB_FOR_delay);
+            this.tabPage_SUB_FOR.Controls.Add(this.label21);
+            this.tabPage_SUB_FOR.Controls.Add(this.numericUpDown_SUB_FOR_num);
+            this.tabPage_SUB_FOR.Controls.Add(this.label19);
+            this.tabPage_SUB_FOR.Controls.Add(this.label20);
+            this.tabPage_SUB_FOR.Location = new System.Drawing.Point(4, 19);
+            this.tabPage_SUB_FOR.Name = "tabPage_SUB_FOR";
+            this.tabPage_SUB_FOR.Size = new System.Drawing.Size(496, 183);
+            this.tabPage_SUB_FOR.TabIndex = 9;
+            this.tabPage_SUB_FOR.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.Location = new System.Drawing.Point(6, 26);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(55, 23);
+            this.label19.TabIndex = 50;
+            this.label19.Text = "次数：";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label20
+            // 
+            this.label20.Location = new System.Drawing.Point(6, 3);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(487, 20);
+            this.label20.TabIndex = 49;
+            this.label20.Text = "重复执行指定次数";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // numericUpDown_SUB_FOR_num
+            // 
+            this.numericUpDown_SUB_FOR_num.Location = new System.Drawing.Point(67, 26);
+            this.numericUpDown_SUB_FOR_num.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.numericUpDown_SUB_FOR_num.Name = "numericUpDown_SUB_FOR_num";
+            this.numericUpDown_SUB_FOR_num.Size = new System.Drawing.Size(426, 23);
+            this.numericUpDown_SUB_FOR_num.TabIndex = 51;
+            this.numericUpDown_SUB_FOR_num.ValueChanged += new System.EventHandler(this.numericUpDown_SUB_FOR_num_ValueChanged);
+            // 
+            // numericUpDown_SUB_FOR_delay
+            // 
+            this.numericUpDown_SUB_FOR_delay.Location = new System.Drawing.Point(67, 55);
+            this.numericUpDown_SUB_FOR_delay.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.numericUpDown_SUB_FOR_delay.Name = "numericUpDown_SUB_FOR_delay";
+            this.numericUpDown_SUB_FOR_delay.Size = new System.Drawing.Size(426, 23);
+            this.numericUpDown_SUB_FOR_delay.TabIndex = 53;
+            this.numericUpDown_SUB_FOR_delay.ValueChanged += new System.EventHandler(this.numericUpDown_SUB_FOR_delay_ValueChanged);
+            // 
+            // label21
+            // 
+            this.label21.Location = new System.Drawing.Point(6, 55);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(55, 23);
+            this.label21.TabIndex = 52;
+            this.label21.Text = "间隔：";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // hotkeyTextBox
+            // 
+            this.hotkeyTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.hotkeyTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.hotkeyTextBox.Hotkey = System.Windows.Forms.Keys.None;
+            this.hotkeyTextBox.Location = new System.Drawing.Point(234, 244);
+            this.hotkeyTextBox.Name = "hotkeyTextBox";
+            this.hotkeyTextBox.ReadOnly = true;
+            this.hotkeyTextBox.Size = new System.Drawing.Size(88, 23);
+            this.hotkeyTextBox.TabIndex = 8;
+            this.hotkeyTextBox.TabStop = false;
+            this.hotkeyTextBox.Text = "无";
+            // 
+            // hotkeyTextBox_KBD_PRESS_key
+            // 
+            this.hotkeyTextBox_KBD_PRESS_key.BackColor = System.Drawing.SystemColors.Window;
+            this.hotkeyTextBox_KBD_PRESS_key.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.hotkeyTextBox_KBD_PRESS_key.Hotkey = System.Windows.Forms.Keys.None;
+            this.hotkeyTextBox_KBD_PRESS_key.Location = new System.Drawing.Point(68, 88);
+            this.hotkeyTextBox_KBD_PRESS_key.Name = "hotkeyTextBox_KBD_PRESS_key";
+            this.hotkeyTextBox_KBD_PRESS_key.ReadOnly = true;
+            this.hotkeyTextBox_KBD_PRESS_key.Size = new System.Drawing.Size(425, 23);
+            this.hotkeyTextBox_KBD_PRESS_key.TabIndex = 38;
+            this.hotkeyTextBox_KBD_PRESS_key.TabStop = false;
+            this.hotkeyTextBox_KBD_PRESS_key.Text = "无";
+            this.hotkeyTextBox_KBD_PRESS_key.TextChanged += new System.EventHandler(this.hotkeyTextBox_KBD_PRESS_key_TextChanged);
+            // 
             // MacroEditor_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 385);
+            this.ClientSize = new System.Drawing.Size(790, 385);
             this.Controls.Add(this.groupBox_edit);
             this.Controls.Add(this.groupBox_info);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(756, 424);
-            this.MinimumSize = new System.Drawing.Size(756, 424);
+            this.MaximumSize = new System.Drawing.Size(806, 424);
+            this.MinimumSize = new System.Drawing.Size(806, 424);
             this.Name = "MacroEditor_Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "宏编辑器";
@@ -845,6 +946,9 @@
             this.tabPage_CB_SETTEXT.ResumeLayout(false);
             this.tabPage_CB_SETTEXT.PerformLayout();
             this.tabPage_CB_GETOBJ.ResumeLayout(false);
+            this.tabPage_SUB_FOR.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SUB_FOR_num)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SUB_FOR_delay)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -915,5 +1019,13 @@
         private System.Windows.Forms.TabPage tabPage_CB_GETOBJ;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button button_AddSub;
+        private System.Windows.Forms.Button button_ToSubtypeEdit;
+        private System.Windows.Forms.TabPage tabPage_SUB_FOR;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.NumericUpDown numericUpDown_SUB_FOR_delay;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.NumericUpDown numericUpDown_SUB_FOR_num;
     }
 }
