@@ -40,6 +40,13 @@ namespace MacroEngine
 
         public void RegHotkey()
         {
+            uint temp_MOD = GlobalHotkey.MOD_NONE;
+
+            
+
+
+
+
             for (int i = 0; i < _Hotkeys?.Length; i++)
             {
                 _Hotkeys[i].Unregister();
@@ -49,9 +56,27 @@ namespace MacroEngine
             globalHotkeys.Clear();
             for (int i = 0; i < Macros.Length; i++)
             {
+                if (ReadConfig($"{Macros[i]}", "info", "SubKey") == "NONE")
+                {
+                    temp_MOD = GlobalHotkey.MOD_NONE;
+                }
+                else if (ReadConfig($"{Macros[i]}", "info", "SubKey") == "CTRL")
+                {
+                    temp_MOD = GlobalHotkey.MOD_CONTROL;
+                }
+                else if (ReadConfig($"{Macros[i]}", "info", "SubKey") == "SHIFT")
+                {
+                    temp_MOD = GlobalHotkey.MOD_SHIFT;
+                }
+                else if (ReadConfig($"{Macros[i]}", "info", "SubKey") == "ALT")
+                {
+                    temp_MOD = GlobalHotkey.MOD_ALT;
+                }
+
+
                 if (ReadConfig($"{Macros[i]}", "info", "Enabled") == "true")
                 {
-                    globalHotkeys.Add(new GlobalHotkey(this.Handle, GlobalHotkey.MOD_NONE, (Keys)Enum.Parse(typeof(Keys), ReadConfig(Macros[i], "info", "Key")), $"{i}"));
+                    globalHotkeys.Add(new GlobalHotkey(this.Handle, temp_MOD, (Keys)Enum.Parse(typeof(Keys), ReadConfig(Macros[i], "info", "Key")), $"{i}"));
 
 
                 }
@@ -97,6 +122,7 @@ namespace MacroEngine
                 WriteConfig($"{MacroDir}\\Default.ini", "info", "Title", "默认宏");
                 WriteConfig($"{MacroDir}\\Default.ini", "info", "Text", "软件首次使用时自动创建的宏，作用只是将鼠标从屏幕左上角移至右下角...");
                 WriteConfig($"{MacroDir}\\Default.ini", "info", "Enabled", "false");
+                WriteConfig($"{MacroDir}\\Default.ini", "info", "SubKey", "NONE");
                 WriteConfig($"{MacroDir}\\Default.ini", "info", "Key", "F1");
                 WriteConfig($"{MacroDir}\\Default.ini", "info", "Step", "3");
 

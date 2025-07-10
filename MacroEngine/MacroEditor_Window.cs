@@ -32,6 +32,7 @@ namespace MacroEngine
                 WriteConfig(tempPath, "info", "Title", "新建宏");
                 WriteConfig(tempPath, "info", "Text", "新建宏，作用只是将鼠标从屏幕左上角移至右下角...");
                 WriteConfig(tempPath, "info", "Enabled", "false");
+                WriteConfig(tempPath, "info", "SubKey", "NONE");
                 WriteConfig(tempPath, "info", "Key", "F1");
                 WriteConfig(tempPath, "info", "Step", "3");
 
@@ -81,6 +82,22 @@ namespace MacroEngine
                 textBox_text.Text = ReadConfig(tempPath, "info", "Text");
 
                 hotkeyTextBox.Hotkey = (Keys)Enum.Parse(typeof(Keys), ReadConfig(tempPath, "info", "Key"));
+                if (ReadConfig(tempPath, "info", "SubKey") == "NONE")
+                {
+                    comboBox_SubHotkey.SelectedIndex = 0;
+                }
+                else if (ReadConfig(tempPath, "info", "SubKey") == "CTRL")
+                {
+                    comboBox_SubHotkey.SelectedIndex = 1;
+                }
+                else if (ReadConfig(tempPath, "info", "SubKey") == "SHIFT")
+                {
+                    comboBox_SubHotkey.SelectedIndex = 2;
+                }
+                else if (ReadConfig(tempPath, "info", "SubKey") == "ALT")
+                {
+                    comboBox_SubHotkey.SelectedIndex = 3;
+                }
 
 
 
@@ -718,8 +735,6 @@ namespace MacroEngine
                 else if(Main_Window.Editor_TYPE=="Edit")
                 {
                     File.WriteAllText(Path, File.ReadAllText(tempPath));
-                    WriteConfig(Path, "info", "Key", hotkeyTextBox.Hotkey.ToString());
-                    WriteConfig(Path, "info", "Step", $"{listBox_MacroList.Items.Count}");
 
                 }
 
@@ -857,6 +872,26 @@ namespace MacroEngine
         private void numericUpDown_SUB_FOR_delay_ValueChanged(object sender, EventArgs e)
         {
             WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_FOR_delay", $"{numericUpDown_SUB_FOR_delay.Value}");
+        }
+
+        private void comboBox_SubHotkey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_SubHotkey.SelectedIndex == 0)
+            {
+                WriteConfig(tempPath, "info", "SubKey", "NONE");
+            }
+            else if (comboBox_SubHotkey.SelectedIndex == 1)
+            {
+                WriteConfig(tempPath, "info", "SubKey", "CTRL");
+            }
+            else if (comboBox_SubHotkey.SelectedIndex == 2)
+            {
+                WriteConfig(tempPath, "info", "SubKey", "SHIFT");
+            }
+            else if (comboBox_SubHotkey.SelectedIndex == 3)
+            {
+                WriteConfig(tempPath, "info", "SubKey", "ALT");
+            }
         }
     }
 }
