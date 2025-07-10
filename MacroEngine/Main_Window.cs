@@ -91,7 +91,7 @@ namespace MacroEngine
         }
         //变量========================================================================================
         public static string RunPath = Directory.GetCurrentDirectory();
-        public static string Version = "Beta 1.0.1.2";
+        public static string Version = "Beta 1.1.1.2";
         public static string MacroDir = $"{RunPath}\\Macros";
         public static string ConfigPath = $"{RunPath}\\Config\\Global_Config.ini";
         string[] Macros;
