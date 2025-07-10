@@ -1,4 +1,5 @@
 # Mouse-wheel 鼠标-滚轮
+[返回wiki主页](/wiki/Home.md)
 
 ![示例](001.gif)
 

@@ -1,5 +1,5 @@
 # Mouse-pos 鼠标-置坐标
-[返回wiki主页](/MacroEngine/wiki/Home.md)
+[返回wiki主页](/wiki/Home.md)
 
 ![演示](001.gif)
 

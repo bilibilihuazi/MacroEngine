@@ -1,4 +1,5 @@
 # Kbd_type 键盘-打字
+[返回wiki主页](/wiki/Home.md)
 
 ![示例](001.gif)
 

@@ -1,4 +1,5 @@
 # Kbd-Press 键盘-按键
+[返回wiki主页](/wiki/Home.md)
 
 ![示例](001.gif)
 
