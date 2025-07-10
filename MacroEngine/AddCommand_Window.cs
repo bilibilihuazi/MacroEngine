@@ -24,6 +24,8 @@ namespace MacroEngine
             toolTip.SetToolTip(button_KBD_TYPE, "模拟打字，实际上是一个一个字复制并粘贴，看起来是在打字\n参数:  text:欲输入的文字  delay:每个字之间的输入延迟(单位:ms)");
             toolTip.SetToolTip(button_CB_SETTEXT, "向剪贴板内复制文本\n参数:  text:欲复制的文本");
             toolTip.SetToolTip(button_CB_GETOBJ, "粘贴剪贴板内的东西(人话就是Ctrl+V)\n参数:  无");
+            toolTip.SetToolTip(button_CB_SETIMG, "向剪贴板内复制图像\n参数:  image:欲复制的图像");
+            toolTip.SetToolTip(button_MSGBOX, "弹出一个信息框，可反馈是否执行完毕\n参数:  title:信息框的标题  text:信息框的内容");
         }
 
         private void button_MOUSE_POS_Click(object sender, EventArgs e)
@@ -71,6 +73,18 @@ namespace MacroEngine
         private void button_CB_GETOBJ_Click(object sender, EventArgs e)
         {
             MacroEditor_Window.AddW_TYPE = "CB_GETOBJ";
+            this.Close();
+        }
+
+        private void button_CB_SETIMG_Click(object sender, EventArgs e)
+        {
+            MacroEditor_Window.AddW_TYPE = "CB_SETIMG";
+            this.Close();
+        }
+
+        private void button_MSGBOX_Click(object sender, EventArgs e)
+        {
+            MacroEditor_Window.AddW_TYPE = "MSGBOX";
             this.Close();
         }
     }

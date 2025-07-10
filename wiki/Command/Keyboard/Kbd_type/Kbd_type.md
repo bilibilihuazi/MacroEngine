@@ -1,5 +1,7 @@
-# Kbd_type 键盘-打字
-[返回wiki主页](/wiki/Home.md)
+# Kbd-type 键盘-打字
+[主页](/wiki/Home.md) / [Macro Engine 指令百科](/wiki/Command.md) / [主指令](/wiki/Command.md) / **Kbd-type 键盘-打字**
+
+---
 
 ![示例](001.gif)
 

@@ -37,12 +37,12 @@
             this.textBox_Path = new System.Windows.Forms.TextBox();
             this.label_Path = new System.Windows.Forms.Label();
             this.groupBox_edit = new System.Windows.Forms.GroupBox();
+            this.comboBox_SubHotkey = new System.Windows.Forms.ComboBox();
             this.button_ToSubtypeEdit = new System.Windows.Forms.Button();
             this.button_AddSub = new System.Windows.Forms.Button();
             this.button_Down = new System.Windows.Forms.Button();
             this.button_Up = new System.Windows.Forms.Button();
             this.button_Cancel = new System.Windows.Forms.Button();
-            this.hotkeyTextBox = new MacroEngine.Controls.HotkeyTextBox();
             this.button_Remove = new System.Windows.Forms.Button();
             this.button_Add = new System.Windows.Forms.Button();
             this.button_Save = new System.Windows.Forms.Button();
@@ -79,7 +79,6 @@
             this.comboBox_KBD_PRESS_keytype = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.hotkeyTextBox_KBD_PRESS_key = new MacroEngine.Controls.HotkeyTextBox();
             this.tabPage_KBD_TYPE = new System.Windows.Forms.TabPage();
             this.numericUpDown_KBD_TYPE_delay = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
@@ -101,7 +100,21 @@
             this.label20 = new System.Windows.Forms.Label();
             this.listBox_MacroList = new System.Windows.Forms.ListBox();
             this.label_HotKey = new System.Windows.Forms.Label();
-            this.comboBox_SubHotkey = new System.Windows.Forms.ComboBox();
+            this.tabPage_CB_SETIMG = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.pictureBox_CB_SETIMG_image = new System.Windows.Forms.PictureBox();
+            this.textBox_CB_SETIMG_image = new System.Windows.Forms.TextBox();
+            this.button_CB_SETIMG_image_Browser = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.hotkeyTextBox = new MacroEngine.Controls.HotkeyTextBox();
+            this.hotkeyTextBox_KBD_PRESS_key = new MacroEngine.Controls.HotkeyTextBox();
+            this.tabPage_MSGBOX = new System.Windows.Forms.TabPage();
+            this.textBox_MSGBOX_title = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBox_MSGBOX_text = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.groupBox_info.SuspendLayout();
             this.groupBox_edit.SuspendLayout();
             this.tabControl_Edit.SuspendLayout();
@@ -122,6 +135,9 @@
             this.tabPage_SUB_FOR.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SUB_FOR_delay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SUB_FOR_num)).BeginInit();
+            this.tabPage_CB_SETIMG.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_CB_SETIMG_image)).BeginInit();
+            this.tabPage_MSGBOX.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox_info
@@ -211,6 +227,21 @@
             this.groupBox_edit.TabStop = false;
             this.groupBox_edit.Text = "脚本编辑";
             // 
+            // comboBox_SubHotkey
+            // 
+            this.comboBox_SubHotkey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_SubHotkey.FormattingEnabled = true;
+            this.comboBox_SubHotkey.Items.AddRange(new object[] {
+            "无",
+            "Ctrl",
+            "Shift",
+            "Alt"});
+            this.comboBox_SubHotkey.Location = new System.Drawing.Point(409, 242);
+            this.comboBox_SubHotkey.Name = "comboBox_SubHotkey";
+            this.comboBox_SubHotkey.Size = new System.Drawing.Size(67, 25);
+            this.comboBox_SubHotkey.TabIndex = 15;
+            this.comboBox_SubHotkey.SelectedIndexChanged += new System.EventHandler(this.comboBox_SubHotkey_SelectedIndexChanged);
+            // 
             // button_ToSubtypeEdit
             // 
             this.button_ToSubtypeEdit.Enabled = false;
@@ -264,19 +295,6 @@
             this.button_Cancel.UseVisualStyleBackColor = true;
             this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
             // 
-            // hotkeyTextBox
-            // 
-            this.hotkeyTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.hotkeyTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.hotkeyTextBox.Hotkey = System.Windows.Forms.Keys.None;
-            this.hotkeyTextBox.Location = new System.Drawing.Point(482, 244);
-            this.hotkeyTextBox.Name = "hotkeyTextBox";
-            this.hotkeyTextBox.ReadOnly = true;
-            this.hotkeyTextBox.Size = new System.Drawing.Size(88, 23);
-            this.hotkeyTextBox.TabIndex = 8;
-            this.hotkeyTextBox.TabStop = false;
-            this.hotkeyTextBox.Text = "无";
-            // 
             // button_Remove
             // 
             this.button_Remove.Location = new System.Drawing.Point(159, 194);
@@ -319,6 +337,8 @@
             this.tabControl_Edit.Controls.Add(this.tabPage_CB_SETTEXT);
             this.tabControl_Edit.Controls.Add(this.tabPage_CB_GETOBJ);
             this.tabControl_Edit.Controls.Add(this.tabPage_SUB_FOR);
+            this.tabControl_Edit.Controls.Add(this.tabPage_CB_SETIMG);
+            this.tabControl_Edit.Controls.Add(this.tabPage_MSGBOX);
             this.tabControl_Edit.ItemSize = new System.Drawing.Size(20, 15);
             this.tabControl_Edit.Location = new System.Drawing.Point(254, 22);
             this.tabControl_Edit.Name = "tabControl_Edit";
@@ -682,20 +702,6 @@
             this.label10.Text = "操作键盘按键";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // hotkeyTextBox_KBD_PRESS_key
-            // 
-            this.hotkeyTextBox_KBD_PRESS_key.BackColor = System.Drawing.SystemColors.Window;
-            this.hotkeyTextBox_KBD_PRESS_key.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.hotkeyTextBox_KBD_PRESS_key.Hotkey = System.Windows.Forms.Keys.None;
-            this.hotkeyTextBox_KBD_PRESS_key.Location = new System.Drawing.Point(68, 88);
-            this.hotkeyTextBox_KBD_PRESS_key.Name = "hotkeyTextBox_KBD_PRESS_key";
-            this.hotkeyTextBox_KBD_PRESS_key.ReadOnly = true;
-            this.hotkeyTextBox_KBD_PRESS_key.Size = new System.Drawing.Size(425, 23);
-            this.hotkeyTextBox_KBD_PRESS_key.TabIndex = 38;
-            this.hotkeyTextBox_KBD_PRESS_key.TabStop = false;
-            this.hotkeyTextBox_KBD_PRESS_key.Text = "无";
-            this.hotkeyTextBox_KBD_PRESS_key.TextChanged += new System.EventHandler(this.hotkeyTextBox_KBD_PRESS_key_TextChanged);
-            // 
             // tabPage_KBD_TYPE
             // 
             this.tabPage_KBD_TYPE.Controls.Add(this.numericUpDown_KBD_TYPE_delay);
@@ -908,20 +914,153 @@
             this.label_HotKey.TabIndex = 9;
             this.label_HotKey.Text = "触发热键：";
             // 
-            // comboBox_SubHotkey
+            // tabPage_CB_SETIMG
             // 
-            this.comboBox_SubHotkey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_SubHotkey.FormattingEnabled = true;
-            this.comboBox_SubHotkey.Items.AddRange(new object[] {
-            "无",
-            "Ctrl",
-            "Shift",
-            "Alt"});
-            this.comboBox_SubHotkey.Location = new System.Drawing.Point(409, 242);
-            this.comboBox_SubHotkey.Name = "comboBox_SubHotkey";
-            this.comboBox_SubHotkey.Size = new System.Drawing.Size(67, 25);
-            this.comboBox_SubHotkey.TabIndex = 15;
-            this.comboBox_SubHotkey.SelectedIndexChanged += new System.EventHandler(this.comboBox_SubHotkey_SelectedIndexChanged);
+            this.tabPage_CB_SETIMG.Controls.Add(this.button_CB_SETIMG_image_Browser);
+            this.tabPage_CB_SETIMG.Controls.Add(this.textBox_CB_SETIMG_image);
+            this.tabPage_CB_SETIMG.Controls.Add(this.pictureBox_CB_SETIMG_image);
+            this.tabPage_CB_SETIMG.Controls.Add(this.label23);
+            this.tabPage_CB_SETIMG.Controls.Add(this.label24);
+            this.tabPage_CB_SETIMG.Location = new System.Drawing.Point(4, 19);
+            this.tabPage_CB_SETIMG.Name = "tabPage_CB_SETIMG";
+            this.tabPage_CB_SETIMG.Size = new System.Drawing.Size(496, 183);
+            this.tabPage_CB_SETIMG.TabIndex = 10;
+            this.tabPage_CB_SETIMG.UseVisualStyleBackColor = true;
+            // 
+            // label23
+            // 
+            this.label23.Location = new System.Drawing.Point(6, 26);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(55, 23);
+            this.label23.TabIndex = 55;
+            this.label23.Text = "图像：";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label24
+            // 
+            this.label24.Location = new System.Drawing.Point(6, 3);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(487, 20);
+            this.label24.TabIndex = 54;
+            this.label24.Text = "向剪贴板内复制图像";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pictureBox_CB_SETIMG_image
+            // 
+            this.pictureBox_CB_SETIMG_image.Image = global::MacroEngine.Properties.Resources.icon;
+            this.pictureBox_CB_SETIMG_image.Location = new System.Drawing.Point(9, 55);
+            this.pictureBox_CB_SETIMG_image.Name = "pictureBox_CB_SETIMG_image";
+            this.pictureBox_CB_SETIMG_image.Size = new System.Drawing.Size(136, 125);
+            this.pictureBox_CB_SETIMG_image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_CB_SETIMG_image.TabIndex = 57;
+            this.pictureBox_CB_SETIMG_image.TabStop = false;
+            // 
+            // textBox_CB_SETIMG_image
+            // 
+            this.textBox_CB_SETIMG_image.Location = new System.Drawing.Point(67, 25);
+            this.textBox_CB_SETIMG_image.Name = "textBox_CB_SETIMG_image";
+            this.textBox_CB_SETIMG_image.ReadOnly = true;
+            this.textBox_CB_SETIMG_image.Size = new System.Drawing.Size(343, 23);
+            this.textBox_CB_SETIMG_image.TabIndex = 58;
+            // 
+            // button_CB_SETIMG_image_Browser
+            // 
+            this.button_CB_SETIMG_image_Browser.Location = new System.Drawing.Point(416, 25);
+            this.button_CB_SETIMG_image_Browser.Name = "button_CB_SETIMG_image_Browser";
+            this.button_CB_SETIMG_image_Browser.Size = new System.Drawing.Size(77, 23);
+            this.button_CB_SETIMG_image_Browser.TabIndex = 59;
+            this.button_CB_SETIMG_image_Browser.Text = "浏览...";
+            this.button_CB_SETIMG_image_Browser.UseVisualStyleBackColor = true;
+            this.button_CB_SETIMG_image_Browser.Click += new System.EventHandler(this.button_CB_SETIMG_image_Browser_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Filter = "PNG图像|*.png|JPG图像|*.jpg|位图|*.bmp";
+            this.openFileDialog.Title = "选择一个有效的图像文件";
+            // 
+            // hotkeyTextBox
+            // 
+            this.hotkeyTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.hotkeyTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.hotkeyTextBox.Hotkey = System.Windows.Forms.Keys.None;
+            this.hotkeyTextBox.Location = new System.Drawing.Point(482, 244);
+            this.hotkeyTextBox.Name = "hotkeyTextBox";
+            this.hotkeyTextBox.ReadOnly = true;
+            this.hotkeyTextBox.Size = new System.Drawing.Size(88, 23);
+            this.hotkeyTextBox.TabIndex = 8;
+            this.hotkeyTextBox.TabStop = false;
+            this.hotkeyTextBox.Text = "无";
+            this.hotkeyTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.hotkeyTextBox_KeyUp);
+            // 
+            // hotkeyTextBox_KBD_PRESS_key
+            // 
+            this.hotkeyTextBox_KBD_PRESS_key.BackColor = System.Drawing.SystemColors.Window;
+            this.hotkeyTextBox_KBD_PRESS_key.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.hotkeyTextBox_KBD_PRESS_key.Hotkey = System.Windows.Forms.Keys.None;
+            this.hotkeyTextBox_KBD_PRESS_key.Location = new System.Drawing.Point(68, 88);
+            this.hotkeyTextBox_KBD_PRESS_key.Name = "hotkeyTextBox_KBD_PRESS_key";
+            this.hotkeyTextBox_KBD_PRESS_key.ReadOnly = true;
+            this.hotkeyTextBox_KBD_PRESS_key.Size = new System.Drawing.Size(425, 23);
+            this.hotkeyTextBox_KBD_PRESS_key.TabIndex = 38;
+            this.hotkeyTextBox_KBD_PRESS_key.TabStop = false;
+            this.hotkeyTextBox_KBD_PRESS_key.Text = "无";
+            this.hotkeyTextBox_KBD_PRESS_key.TextChanged += new System.EventHandler(this.hotkeyTextBox_KBD_PRESS_key_TextChanged);
+            // 
+            // tabPage_MSGBOX
+            // 
+            this.tabPage_MSGBOX.Controls.Add(this.textBox_MSGBOX_text);
+            this.tabPage_MSGBOX.Controls.Add(this.label26);
+            this.tabPage_MSGBOX.Controls.Add(this.textBox_MSGBOX_title);
+            this.tabPage_MSGBOX.Controls.Add(this.label22);
+            this.tabPage_MSGBOX.Controls.Add(this.label25);
+            this.tabPage_MSGBOX.Location = new System.Drawing.Point(4, 19);
+            this.tabPage_MSGBOX.Name = "tabPage_MSGBOX";
+            this.tabPage_MSGBOX.Size = new System.Drawing.Size(496, 183);
+            this.tabPage_MSGBOX.TabIndex = 11;
+            this.tabPage_MSGBOX.UseVisualStyleBackColor = true;
+            // 
+            // textBox_MSGBOX_title
+            // 
+            this.textBox_MSGBOX_title.Location = new System.Drawing.Point(67, 25);
+            this.textBox_MSGBOX_title.Name = "textBox_MSGBOX_title";
+            this.textBox_MSGBOX_title.Size = new System.Drawing.Size(426, 23);
+            this.textBox_MSGBOX_title.TabIndex = 61;
+            this.textBox_MSGBOX_title.TextChanged += new System.EventHandler(this.textBox_MSGBOX_title_TextChanged);
+            // 
+            // label22
+            // 
+            this.label22.Location = new System.Drawing.Point(6, 26);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(55, 23);
+            this.label22.TabIndex = 60;
+            this.label22.Text = "标题：";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label25
+            // 
+            this.label25.Location = new System.Drawing.Point(6, 3);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(487, 20);
+            this.label25.TabIndex = 59;
+            this.label25.Text = "弹出一个信息框";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBox_MSGBOX_text
+            // 
+            this.textBox_MSGBOX_text.Location = new System.Drawing.Point(67, 54);
+            this.textBox_MSGBOX_text.Name = "textBox_MSGBOX_text";
+            this.textBox_MSGBOX_text.Size = new System.Drawing.Size(426, 23);
+            this.textBox_MSGBOX_text.TabIndex = 63;
+            this.textBox_MSGBOX_text.TextChanged += new System.EventHandler(this.textBox_MSGBOX_text_TextChanged);
+            // 
+            // label26
+            // 
+            this.label26.Location = new System.Drawing.Point(6, 55);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(55, 23);
+            this.label26.TabIndex = 62;
+            this.label26.Text = "内容：";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MacroEditor_Window
             // 
@@ -966,6 +1105,11 @@
             this.tabPage_SUB_FOR.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SUB_FOR_delay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SUB_FOR_num)).EndInit();
+            this.tabPage_CB_SETIMG.ResumeLayout(false);
+            this.tabPage_CB_SETIMG.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_CB_SETIMG_image)).EndInit();
+            this.tabPage_MSGBOX.ResumeLayout(false);
+            this.tabPage_MSGBOX.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1045,5 +1189,18 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.NumericUpDown numericUpDown_SUB_FOR_num;
         private System.Windows.Forms.ComboBox comboBox_SubHotkey;
+        private System.Windows.Forms.TabPage tabPage_CB_SETIMG;
+        private System.Windows.Forms.PictureBox pictureBox_CB_SETIMG_image;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button button_CB_SETIMG_image_Browser;
+        private System.Windows.Forms.TextBox textBox_CB_SETIMG_image;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.TabPage tabPage_MSGBOX;
+        private System.Windows.Forms.TextBox textBox_MSGBOX_title;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox textBox_MSGBOX_text;
+        private System.Windows.Forms.Label label26;
     }
 }

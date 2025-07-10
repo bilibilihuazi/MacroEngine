@@ -1,5 +1,7 @@
 # Mouse-pos 鼠标-置坐标
-[返回wiki主页](/wiki/Home.md)
+[主页](/wiki/Home.md) / [Macro Engine 指令百科](/wiki/Command.md) / [主指令](/wiki/Command.md) / **Mouse-pos 鼠标-置坐标**
+
+---
 
 ![演示](001.gif)
 

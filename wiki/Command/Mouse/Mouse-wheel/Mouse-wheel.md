@@ -1,5 +1,7 @@
 # Mouse-wheel 鼠标-滚轮
-[返回wiki主页](/wiki/Home.md)
+[主页](/wiki/Home.md) / [Macro Engine 指令百科](/wiki/Command.md) / [主指令](/wiki/Command.md) / **Mouse-wheel 鼠标-滚轮**
+
+---
 
 ![示例](001.gif)
 

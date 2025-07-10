@@ -141,6 +141,16 @@ namespace MacroEngine
                     {
                         listBox_MacroList.Items.Add("剪贴板_粘贴");
                     }
+                    else if (StepType == "CB_SETIMG")
+                    {
+                        listBox_MacroList.Items.Add("剪贴板_复制图像");
+                    }
+                    else if (StepType == "MSGBOX")
+                    {
+                        listBox_MacroList.Items.Add("弹出信息框");
+                    }
+
+
 
                     else
                     {
@@ -250,6 +260,28 @@ namespace MacroEngine
                 else if (temp_type == "CB_GETOBJ") 
                 {
                     tabControl_Edit.SelectedIndex = 8;
+                }
+                else if (temp_type == "CB_SETIMG")
+                {
+                    tabControl_Edit.SelectedIndex = 10;
+
+                    textBox_CB_SETIMG_image.Text = ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "image");
+                    if (File.Exists(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "image")))
+                    {
+                        pictureBox_CB_SETIMG_image.Image = Image.FromFile(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "image"));
+                    }
+                    else
+                    {
+                        pictureBox_CB_SETIMG_image.Image = Properties.Resources.icon;
+                    }
+
+                }
+                else if (temp_type == "MSGBOX")
+                {
+                    tabControl_Edit.SelectedIndex = 11;
+
+                    textBox_MSGBOX_title.Text = ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "title");
+                    textBox_MSGBOX_text.Text = ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "text");                    
                 }
 
 
@@ -384,8 +416,21 @@ namespace MacroEngine
                 WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "CB_GETOBJ");
                 listBox_MacroList.Items.Add("剪贴板_粘贴");
             }
+            else if (AddW_TYPE == "CB_SETIMG")
+            {
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "CB_SETIMG");
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "image", "请选择图片");
+                listBox_MacroList.Items.Add("剪贴板_复制图像");
+            }
+            else if (AddW_TYPE == "MSGBOX")
+            {
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "MSGBOX");
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "title", "Hello title!");
+                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "text", "Hello world!");
+                listBox_MacroList.Items.Add("弹出信息框");
+            }
 
-            
+
 
 
             //===============================================================================================================
@@ -413,7 +458,7 @@ namespace MacroEngine
                 string LastConfig = $"{listBox_MacroList.SelectedIndex}";
 
                 /*       <======================如有新项添加到此=============================>     */
-                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay", "SUB_FOR_num", "SUB_FOR_delay" };
+                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay", "SUB_FOR_num", "SUB_FOR_delay", "image", "title" };
 
 
                 WriteConfig(tempPath, "tempNow", "type", ReadConfig(tempPath, NowConfig, "type"));
@@ -493,7 +538,7 @@ namespace MacroEngine
                 string LastConfig = $"{listBox_MacroList.SelectedIndex + 2}";
 
                 /*       <======================如有新项添加到此=============================>     */
-                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay", "SUB_FOR_num", "SUB_FOR_delay" };
+                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay", "SUB_FOR_num", "SUB_FOR_delay", "image", "title" };
 
 
                 WriteConfig(tempPath, "tempNow", "type", ReadConfig(tempPath, NowConfig, "type"));
@@ -626,6 +671,15 @@ namespace MacroEngine
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "SUB_FOR_num", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "SUB_FOR_num"));
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "SUB_FOR_delay", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "SUB_FOR_delay"));
                     }
+                    else if (temp == "CB_SETIMG")
+                    {
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "image", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "image"));
+                    }
+                    else if (temp == "MSGBOX")
+                    {
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "title", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "title"));
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "text", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "text"));
+                    }
 
 
                     //===============================================================================================================
@@ -735,7 +789,7 @@ namespace MacroEngine
                 else if(Main_Window.Editor_TYPE=="Edit")
                 {
                     File.WriteAllText(Path, File.ReadAllText(tempPath));
-
+                    WriteConfig(Path, "info", "Step", $"{listBox_MacroList.Items.Count}");
                 }
 
                 this.Close();
@@ -892,6 +946,31 @@ namespace MacroEngine
             {
                 WriteConfig(tempPath, "info", "SubKey", "ALT");
             }
+        }
+
+        private void hotkeyTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            WriteConfig(tempPath, "info", "Key", $"{hotkeyTextBox.Hotkey.ToString()}");
+        }
+
+        private void button_CB_SETIMG_image_Browser_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "image", openFileDialog.FileName);
+                textBox_CB_SETIMG_image.Text = openFileDialog.FileName;
+                pictureBox_CB_SETIMG_image.Image = Image.FromFile(openFileDialog.FileName);
+            }
+        }
+
+        private void textBox_MSGBOX_title_TextChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "title", $"{textBox_MSGBOX_text.Text}");
+        }
+
+        private void textBox_MSGBOX_text_TextChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "text", $"{textBox_MSGBOX_text.Text}");
         }
     }
 }

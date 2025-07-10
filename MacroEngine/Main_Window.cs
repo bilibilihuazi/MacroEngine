@@ -91,7 +91,7 @@ namespace MacroEngine
         }
         //变量========================================================================================
         public static string RunPath = Directory.GetCurrentDirectory();
-        public static string Version = "Beta 1.1.1.2";
+        public static string Version = "Beta 1.2.2.4";
         public static string MacroDir = $"{RunPath}\\Macros";
         public static string ConfigPath = $"{RunPath}\\Config\\Global_Config.ini";
         string[] Macros;
@@ -344,6 +344,21 @@ namespace MacroEngine
                             kbd_KeyPress(Keys.V);
                             kbd_KeyUp(Keys.ControlKey);
                         }
+                        else if (NowCmdType == "CB_SETIMG")
+                        {
+                            string temp_image = ReadConfig(CommandPath, $"{i + 1}", "image");
+
+                            Clipboard.SetImage(Image.FromFile(temp_image));
+                            
+                        }
+                        else if (NowCmdType == "MSGBOX")
+                        {
+                            string temp_title = ReadConfig(CommandPath, $"{i + 1}", "title");
+                            string temp_text = ReadConfig(CommandPath, $"{i + 1}", "text");
+
+                            MessageBox.Show(temp_text, temp_title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
 
 
 
@@ -352,8 +367,7 @@ namespace MacroEngine
 
 
 
-
-                        await Task.Delay(temp_fordelay);
+                            await Task.Delay(temp_fordelay);
                     }
 
 
