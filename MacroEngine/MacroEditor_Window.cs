@@ -166,6 +166,14 @@ namespace MacroEngine
                     //===============================================================================================================
 
                 }
+
+                listBox_MacroList.SelectedIndex = -1;
+
+                button_AddSub.Enabled = false;
+                button_Down.Enabled = false;
+                button_Up.Enabled = false;
+                button_Remove.Enabled = false;
+                
             }
             catch (Exception ex)
             {
@@ -965,7 +973,7 @@ namespace MacroEngine
 
         private void textBox_MSGBOX_title_TextChanged(object sender, EventArgs e)
         {
-            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "title", $"{textBox_MSGBOX_text.Text}");
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "title", $"{textBox_MSGBOX_title.Text}");
         }
 
         private void textBox_MSGBOX_text_TextChanged(object sender, EventArgs e)
