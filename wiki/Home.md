@@ -4,6 +4,7 @@
 
 
 索引: 
-  1. [指令](Command.md)
-  2. [数据类型](DataType/Home.md)
-  3. [疑难解答](Help/Home.md)
+  - [快速入门](QuickUse/Home.md)
+  - [指令](Command.md)
+  - [数据类型](DataType/Home.md)
+  - [疑难解答](Help/Home.md)

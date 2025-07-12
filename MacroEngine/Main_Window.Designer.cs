@@ -48,11 +48,14 @@ namespace MacroEngine
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于程序ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button_Refresh = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.pictureBox_Icon = new System.Windows.Forms.PictureBox();
+            this.label_info_Key = new System.Windows.Forms.Label();
+            this.label_info_Step = new System.Windows.Forms.Label();
             this.groupBox_Info.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Icon)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox_Macros
@@ -61,29 +64,31 @@ namespace MacroEngine
             this.listBox_Macros.ItemHeight = 17;
             this.listBox_Macros.Location = new System.Drawing.Point(12, 27);
             this.listBox_Macros.Name = "listBox_Macros";
-            this.listBox_Macros.Size = new System.Drawing.Size(222, 276);
+            this.listBox_Macros.Size = new System.Drawing.Size(222, 310);
             this.listBox_Macros.TabIndex = 0;
             this.listBox_Macros.SelectedIndexChanged += new System.EventHandler(this.listBox_Macros_SelectedIndexChanged);
             // 
             // groupBox_Info
             // 
+            this.groupBox_Info.Controls.Add(this.label_info_Step);
+            this.groupBox_Info.Controls.Add(this.label_info_Key);
             this.groupBox_Info.Controls.Add(this.button_Edit);
             this.groupBox_Info.Controls.Add(this.button_Enabled);
             this.groupBox_Info.Controls.Add(this.label_Info_Text);
             this.groupBox_Info.Controls.Add(this.label_Info_Title);
             this.groupBox_Info.Enabled = false;
-            this.groupBox_Info.Location = new System.Drawing.Point(240, 27);
+            this.groupBox_Info.Location = new System.Drawing.Point(346, 27);
             this.groupBox_Info.Name = "groupBox_Info";
-            this.groupBox_Info.Size = new System.Drawing.Size(392, 312);
+            this.groupBox_Info.Size = new System.Drawing.Size(286, 312);
             this.groupBox_Info.TabIndex = 1;
             this.groupBox_Info.TabStop = false;
             this.groupBox_Info.Text = "宏信息";
             // 
             // button_Edit
             // 
-            this.button_Edit.Location = new System.Drawing.Point(6, 249);
+            this.button_Edit.Location = new System.Drawing.Point(6, 204);
             this.button_Edit.Name = "button_Edit";
-            this.button_Edit.Size = new System.Drawing.Size(121, 57);
+            this.button_Edit.Size = new System.Drawing.Size(274, 39);
             this.button_Edit.TabIndex = 3;
             this.button_Edit.Text = "编辑";
             this.button_Edit.UseVisualStyleBackColor = true;
@@ -91,9 +96,9 @@ namespace MacroEngine
             // 
             // button_Enabled
             // 
-            this.button_Enabled.Location = new System.Drawing.Point(133, 249);
+            this.button_Enabled.Location = new System.Drawing.Point(6, 249);
             this.button_Enabled.Name = "button_Enabled";
-            this.button_Enabled.Size = new System.Drawing.Size(253, 57);
+            this.button_Enabled.Size = new System.Drawing.Size(274, 57);
             this.button_Enabled.TabIndex = 2;
             this.button_Enabled.Text = "启用";
             this.button_Enabled.UseVisualStyleBackColor = true;
@@ -101,27 +106,27 @@ namespace MacroEngine
             // 
             // label_Info_Text
             // 
-            this.label_Info_Text.Location = new System.Drawing.Point(6, 42);
+            this.label_Info_Text.Location = new System.Drawing.Point(6, 148);
             this.label_Info_Text.Name = "label_Info_Text";
-            this.label_Info_Text.Size = new System.Drawing.Size(380, 132);
+            this.label_Info_Text.Size = new System.Drawing.Size(274, 53);
             this.label_Info_Text.TabIndex = 1;
-            this.label_Info_Text.Text = "UNKNOWN";
+            this.label_Info_Text.Text = "Unknown";
             // 
             // label_Info_Title
             // 
             this.label_Info_Title.Location = new System.Drawing.Point(6, 19);
             this.label_Info_Title.Name = "label_Info_Title";
-            this.label_Info_Title.Size = new System.Drawing.Size(380, 20);
+            this.label_Info_Title.Size = new System.Drawing.Size(274, 20);
             this.label_Info_Title.TabIndex = 0;
-            this.label_Info_Title.Text = "名称：UNKNOWN";
+            this.label_Info_Title.Text = "名称：Unknown";
             this.label_Info_Title.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button_Create
             // 
             this.button_Create.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button_Create.Location = new System.Drawing.Point(103, 309);
+            this.button_Create.Location = new System.Drawing.Point(240, 267);
             this.button_Create.Name = "button_Create";
-            this.button_Create.Size = new System.Drawing.Size(85, 32);
+            this.button_Create.Size = new System.Drawing.Size(100, 32);
             this.button_Create.TabIndex = 4;
             this.button_Create.Text = "新建";
             this.button_Create.UseVisualStyleBackColor = true;
@@ -130,9 +135,9 @@ namespace MacroEngine
             // button_Remove
             // 
             this.button_Remove.Enabled = false;
-            this.button_Remove.Location = new System.Drawing.Point(12, 309);
+            this.button_Remove.Location = new System.Drawing.Point(240, 305);
             this.button_Remove.Name = "button_Remove";
-            this.button_Remove.Size = new System.Drawing.Size(85, 32);
+            this.button_Remove.Size = new System.Drawing.Size(100, 32);
             this.button_Remove.TabIndex = 5;
             this.button_Remove.Text = "移除";
             this.button_Remove.UseVisualStyleBackColor = true;
@@ -211,16 +216,6 @@ namespace MacroEngine
             this.帮助ToolStripMenuItem.Text = "帮助";
             this.帮助ToolStripMenuItem.Click += new System.EventHandler(this.帮助ToolStripMenuItem_Click);
             // 
-            // button_Refresh
-            // 
-            this.button_Refresh.Location = new System.Drawing.Point(194, 309);
-            this.button_Refresh.Name = "button_Refresh";
-            this.button_Refresh.Size = new System.Drawing.Size(40, 32);
-            this.button_Refresh.TabIndex = 6;
-            this.button_Refresh.Text = "刷新";
-            this.button_Refresh.UseVisualStyleBackColor = true;
-            this.button_Refresh.Click += new System.EventHandler(this.button_Refresh_Click);
-            // 
             // openFileDialog
             // 
             this.openFileDialog.Filter = "宏配置文件|*.ini";
@@ -231,12 +226,40 @@ namespace MacroEngine
             this.saveFileDialog.Filter = "宏配置文件|*.ini";
             this.saveFileDialog.Title = "请选择保存的位置";
             // 
+            // pictureBox_Icon
+            // 
+            this.pictureBox_Icon.Image = global::MacroEngine.Properties.Resources.icon;
+            this.pictureBox_Icon.Location = new System.Drawing.Point(258, 110);
+            this.pictureBox_Icon.Name = "pictureBox_Icon";
+            this.pictureBox_Icon.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox_Icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_Icon.TabIndex = 8;
+            this.pictureBox_Icon.TabStop = false;
+            // 
+            // label_info_Key
+            // 
+            this.label_info_Key.Location = new System.Drawing.Point(6, 39);
+            this.label_info_Key.Name = "label_info_Key";
+            this.label_info_Key.Size = new System.Drawing.Size(274, 20);
+            this.label_info_Key.TabIndex = 4;
+            this.label_info_Key.Text = "触发热键：Unknown";
+            this.label_info_Key.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label_info_Step
+            // 
+            this.label_info_Step.Location = new System.Drawing.Point(6, 59);
+            this.label_info_Step.Name = "label_info_Step";
+            this.label_info_Step.Size = new System.Drawing.Size(274, 20);
+            this.label_info_Step.TabIndex = 5;
+            this.label_info_Step.Text = "指令数：Unknown";
+            this.label_info_Step.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Main_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 351);
-            this.Controls.Add(this.button_Refresh);
+            this.Controls.Add(this.pictureBox_Icon);
             this.Controls.Add(this.button_Remove);
             this.Controls.Add(this.button_Create);
             this.Controls.Add(this.groupBox_Info);
@@ -256,6 +279,7 @@ namespace MacroEngine
             this.groupBox_Info.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Icon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,7 +295,6 @@ namespace MacroEngine
         private System.Windows.Forms.Button button_Enabled;
         private System.Windows.Forms.Button button_Create;
         private System.Windows.Forms.Button button_Remove;
-        private System.Windows.Forms.Button button_Refresh;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem 程序ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
@@ -283,6 +306,9 @@ namespace MacroEngine
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.ToolStripMenuItem 导出ToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.PictureBox pictureBox_Icon;
+        private System.Windows.Forms.Label label_info_Key;
+        private System.Windows.Forms.Label label_info_Step;
     }
 }
 

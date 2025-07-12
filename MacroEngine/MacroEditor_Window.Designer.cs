@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MacroEditor_Window));
             this.groupBox_info = new System.Windows.Forms.GroupBox();
             this.textBox_text = new System.Windows.Forms.TextBox();
             this.label_Text = new System.Windows.Forms.Label();
@@ -43,6 +44,7 @@
             this.button_Down = new System.Windows.Forms.Button();
             this.button_Up = new System.Windows.Forms.Button();
             this.button_Cancel = new System.Windows.Forms.Button();
+            this.hotkeyTextBox = new MacroEngine.Controls.HotkeyTextBox();
             this.button_Remove = new System.Windows.Forms.Button();
             this.button_Add = new System.Windows.Forms.Button();
             this.button_Save = new System.Windows.Forms.Button();
@@ -79,6 +81,7 @@
             this.comboBox_KBD_PRESS_keytype = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.hotkeyTextBox_KBD_PRESS_key = new MacroEngine.Controls.HotkeyTextBox();
             this.tabPage_KBD_TYPE = new System.Windows.Forms.TabPage();
             this.numericUpDown_KBD_TYPE_delay = new System.Windows.Forms.NumericUpDown();
             this.label12 = new System.Windows.Forms.Label();
@@ -98,23 +101,21 @@
             this.numericUpDown_SUB_FOR_num = new System.Windows.Forms.NumericUpDown();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.listBox_MacroList = new System.Windows.Forms.ListBox();
-            this.label_HotKey = new System.Windows.Forms.Label();
             this.tabPage_CB_SETIMG = new System.Windows.Forms.TabPage();
+            this.button_CB_SETIMG_image_Browser = new System.Windows.Forms.Button();
+            this.textBox_CB_SETIMG_image = new System.Windows.Forms.TextBox();
+            this.pictureBox_CB_SETIMG_image = new System.Windows.Forms.PictureBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.pictureBox_CB_SETIMG_image = new System.Windows.Forms.PictureBox();
-            this.textBox_CB_SETIMG_image = new System.Windows.Forms.TextBox();
-            this.button_CB_SETIMG_image_Browser = new System.Windows.Forms.Button();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.hotkeyTextBox = new MacroEngine.Controls.HotkeyTextBox();
-            this.hotkeyTextBox_KBD_PRESS_key = new MacroEngine.Controls.HotkeyTextBox();
             this.tabPage_MSGBOX = new System.Windows.Forms.TabPage();
+            this.textBox_MSGBOX_text = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.textBox_MSGBOX_title = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.textBox_MSGBOX_text = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
+            this.listBox_MacroList = new System.Windows.Forms.ListBox();
+            this.label_HotKey = new System.Windows.Forms.Label();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox_info.SuspendLayout();
             this.groupBox_edit.SuspendLayout();
             this.tabControl_Edit.SuspendLayout();
@@ -294,6 +295,20 @@
             this.button_Cancel.Text = "取消";
             this.button_Cancel.UseVisualStyleBackColor = true;
             this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
+            // 
+            // hotkeyTextBox
+            // 
+            this.hotkeyTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.hotkeyTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.hotkeyTextBox.Hotkey = System.Windows.Forms.Keys.None;
+            this.hotkeyTextBox.Location = new System.Drawing.Point(482, 244);
+            this.hotkeyTextBox.Name = "hotkeyTextBox";
+            this.hotkeyTextBox.ReadOnly = true;
+            this.hotkeyTextBox.Size = new System.Drawing.Size(88, 23);
+            this.hotkeyTextBox.TabIndex = 8;
+            this.hotkeyTextBox.TabStop = false;
+            this.hotkeyTextBox.Text = "无";
+            this.hotkeyTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.hotkeyTextBox_KeyUp);
             // 
             // button_Remove
             // 
@@ -702,6 +717,20 @@
             this.label10.Text = "操作键盘按键";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // hotkeyTextBox_KBD_PRESS_key
+            // 
+            this.hotkeyTextBox_KBD_PRESS_key.BackColor = System.Drawing.SystemColors.Window;
+            this.hotkeyTextBox_KBD_PRESS_key.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.hotkeyTextBox_KBD_PRESS_key.Hotkey = System.Windows.Forms.Keys.None;
+            this.hotkeyTextBox_KBD_PRESS_key.Location = new System.Drawing.Point(68, 88);
+            this.hotkeyTextBox_KBD_PRESS_key.Name = "hotkeyTextBox_KBD_PRESS_key";
+            this.hotkeyTextBox_KBD_PRESS_key.ReadOnly = true;
+            this.hotkeyTextBox_KBD_PRESS_key.Size = new System.Drawing.Size(425, 23);
+            this.hotkeyTextBox_KBD_PRESS_key.TabIndex = 38;
+            this.hotkeyTextBox_KBD_PRESS_key.TabStop = false;
+            this.hotkeyTextBox_KBD_PRESS_key.Text = "无";
+            this.hotkeyTextBox_KBD_PRESS_key.TextChanged += new System.EventHandler(this.hotkeyTextBox_KBD_PRESS_key_TextChanged);
+            // 
             // tabPage_KBD_TYPE
             // 
             this.tabPage_KBD_TYPE.Controls.Add(this.numericUpDown_KBD_TYPE_delay);
@@ -895,25 +924,6 @@
             this.label20.Text = "重复执行指定次数";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // listBox_MacroList
-            // 
-            this.listBox_MacroList.FormattingEnabled = true;
-            this.listBox_MacroList.ItemHeight = 17;
-            this.listBox_MacroList.Location = new System.Drawing.Point(6, 22);
-            this.listBox_MacroList.Name = "listBox_MacroList";
-            this.listBox_MacroList.Size = new System.Drawing.Size(147, 242);
-            this.listBox_MacroList.TabIndex = 3;
-            this.listBox_MacroList.SelectedIndexChanged += new System.EventHandler(this.listBox_MacroList_SelectedIndexChanged);
-            // 
-            // label_HotKey
-            // 
-            this.label_HotKey.AutoSize = true;
-            this.label_HotKey.Location = new System.Drawing.Point(335, 247);
-            this.label_HotKey.Name = "label_HotKey";
-            this.label_HotKey.Size = new System.Drawing.Size(68, 17);
-            this.label_HotKey.TabIndex = 9;
-            this.label_HotKey.Text = "触发热键：";
-            // 
             // tabPage_CB_SETIMG
             // 
             this.tabPage_CB_SETIMG.Controls.Add(this.button_CB_SETIMG_image_Browser);
@@ -926,6 +936,34 @@
             this.tabPage_CB_SETIMG.Size = new System.Drawing.Size(496, 183);
             this.tabPage_CB_SETIMG.TabIndex = 10;
             this.tabPage_CB_SETIMG.UseVisualStyleBackColor = true;
+            // 
+            // button_CB_SETIMG_image_Browser
+            // 
+            this.button_CB_SETIMG_image_Browser.Location = new System.Drawing.Point(416, 25);
+            this.button_CB_SETIMG_image_Browser.Name = "button_CB_SETIMG_image_Browser";
+            this.button_CB_SETIMG_image_Browser.Size = new System.Drawing.Size(77, 23);
+            this.button_CB_SETIMG_image_Browser.TabIndex = 59;
+            this.button_CB_SETIMG_image_Browser.Text = "浏览...";
+            this.button_CB_SETIMG_image_Browser.UseVisualStyleBackColor = true;
+            this.button_CB_SETIMG_image_Browser.Click += new System.EventHandler(this.button_CB_SETIMG_image_Browser_Click);
+            // 
+            // textBox_CB_SETIMG_image
+            // 
+            this.textBox_CB_SETIMG_image.Location = new System.Drawing.Point(67, 25);
+            this.textBox_CB_SETIMG_image.Name = "textBox_CB_SETIMG_image";
+            this.textBox_CB_SETIMG_image.ReadOnly = true;
+            this.textBox_CB_SETIMG_image.Size = new System.Drawing.Size(343, 23);
+            this.textBox_CB_SETIMG_image.TabIndex = 58;
+            // 
+            // pictureBox_CB_SETIMG_image
+            // 
+            this.pictureBox_CB_SETIMG_image.Image = global::MacroEngine.Properties.Resources.icon;
+            this.pictureBox_CB_SETIMG_image.Location = new System.Drawing.Point(9, 55);
+            this.pictureBox_CB_SETIMG_image.Name = "pictureBox_CB_SETIMG_image";
+            this.pictureBox_CB_SETIMG_image.Size = new System.Drawing.Size(136, 125);
+            this.pictureBox_CB_SETIMG_image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_CB_SETIMG_image.TabIndex = 57;
+            this.pictureBox_CB_SETIMG_image.TabStop = false;
             // 
             // label23
             // 
@@ -945,67 +983,6 @@
             this.label24.Text = "向剪贴板内复制图像";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pictureBox_CB_SETIMG_image
-            // 
-            this.pictureBox_CB_SETIMG_image.Image = global::MacroEngine.Properties.Resources.icon;
-            this.pictureBox_CB_SETIMG_image.Location = new System.Drawing.Point(9, 55);
-            this.pictureBox_CB_SETIMG_image.Name = "pictureBox_CB_SETIMG_image";
-            this.pictureBox_CB_SETIMG_image.Size = new System.Drawing.Size(136, 125);
-            this.pictureBox_CB_SETIMG_image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox_CB_SETIMG_image.TabIndex = 57;
-            this.pictureBox_CB_SETIMG_image.TabStop = false;
-            // 
-            // textBox_CB_SETIMG_image
-            // 
-            this.textBox_CB_SETIMG_image.Location = new System.Drawing.Point(67, 25);
-            this.textBox_CB_SETIMG_image.Name = "textBox_CB_SETIMG_image";
-            this.textBox_CB_SETIMG_image.ReadOnly = true;
-            this.textBox_CB_SETIMG_image.Size = new System.Drawing.Size(343, 23);
-            this.textBox_CB_SETIMG_image.TabIndex = 58;
-            // 
-            // button_CB_SETIMG_image_Browser
-            // 
-            this.button_CB_SETIMG_image_Browser.Location = new System.Drawing.Point(416, 25);
-            this.button_CB_SETIMG_image_Browser.Name = "button_CB_SETIMG_image_Browser";
-            this.button_CB_SETIMG_image_Browser.Size = new System.Drawing.Size(77, 23);
-            this.button_CB_SETIMG_image_Browser.TabIndex = 59;
-            this.button_CB_SETIMG_image_Browser.Text = "浏览...";
-            this.button_CB_SETIMG_image_Browser.UseVisualStyleBackColor = true;
-            this.button_CB_SETIMG_image_Browser.Click += new System.EventHandler(this.button_CB_SETIMG_image_Browser_Click);
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.Filter = "PNG图像|*.png|JPG图像|*.jpg|位图|*.bmp";
-            this.openFileDialog.Title = "选择一个有效的图像文件";
-            // 
-            // hotkeyTextBox
-            // 
-            this.hotkeyTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.hotkeyTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.hotkeyTextBox.Hotkey = System.Windows.Forms.Keys.None;
-            this.hotkeyTextBox.Location = new System.Drawing.Point(482, 244);
-            this.hotkeyTextBox.Name = "hotkeyTextBox";
-            this.hotkeyTextBox.ReadOnly = true;
-            this.hotkeyTextBox.Size = new System.Drawing.Size(88, 23);
-            this.hotkeyTextBox.TabIndex = 8;
-            this.hotkeyTextBox.TabStop = false;
-            this.hotkeyTextBox.Text = "无";
-            this.hotkeyTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.hotkeyTextBox_KeyUp);
-            // 
-            // hotkeyTextBox_KBD_PRESS_key
-            // 
-            this.hotkeyTextBox_KBD_PRESS_key.BackColor = System.Drawing.SystemColors.Window;
-            this.hotkeyTextBox_KBD_PRESS_key.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.hotkeyTextBox_KBD_PRESS_key.Hotkey = System.Windows.Forms.Keys.None;
-            this.hotkeyTextBox_KBD_PRESS_key.Location = new System.Drawing.Point(68, 88);
-            this.hotkeyTextBox_KBD_PRESS_key.Name = "hotkeyTextBox_KBD_PRESS_key";
-            this.hotkeyTextBox_KBD_PRESS_key.ReadOnly = true;
-            this.hotkeyTextBox_KBD_PRESS_key.Size = new System.Drawing.Size(425, 23);
-            this.hotkeyTextBox_KBD_PRESS_key.TabIndex = 38;
-            this.hotkeyTextBox_KBD_PRESS_key.TabStop = false;
-            this.hotkeyTextBox_KBD_PRESS_key.Text = "无";
-            this.hotkeyTextBox_KBD_PRESS_key.TextChanged += new System.EventHandler(this.hotkeyTextBox_KBD_PRESS_key_TextChanged);
-            // 
             // tabPage_MSGBOX
             // 
             this.tabPage_MSGBOX.Controls.Add(this.textBox_MSGBOX_text);
@@ -1018,6 +995,23 @@
             this.tabPage_MSGBOX.Size = new System.Drawing.Size(496, 183);
             this.tabPage_MSGBOX.TabIndex = 11;
             this.tabPage_MSGBOX.UseVisualStyleBackColor = true;
+            // 
+            // textBox_MSGBOX_text
+            // 
+            this.textBox_MSGBOX_text.Location = new System.Drawing.Point(67, 54);
+            this.textBox_MSGBOX_text.Name = "textBox_MSGBOX_text";
+            this.textBox_MSGBOX_text.Size = new System.Drawing.Size(426, 23);
+            this.textBox_MSGBOX_text.TabIndex = 63;
+            this.textBox_MSGBOX_text.TextChanged += new System.EventHandler(this.textBox_MSGBOX_text_TextChanged);
+            // 
+            // label26
+            // 
+            this.label26.Location = new System.Drawing.Point(6, 55);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(55, 23);
+            this.label26.TabIndex = 62;
+            this.label26.Text = "内容：";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBox_MSGBOX_title
             // 
@@ -1045,22 +1039,29 @@
             this.label25.Text = "弹出一个信息框";
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox_MSGBOX_text
+            // listBox_MacroList
             // 
-            this.textBox_MSGBOX_text.Location = new System.Drawing.Point(67, 54);
-            this.textBox_MSGBOX_text.Name = "textBox_MSGBOX_text";
-            this.textBox_MSGBOX_text.Size = new System.Drawing.Size(426, 23);
-            this.textBox_MSGBOX_text.TabIndex = 63;
-            this.textBox_MSGBOX_text.TextChanged += new System.EventHandler(this.textBox_MSGBOX_text_TextChanged);
+            this.listBox_MacroList.FormattingEnabled = true;
+            this.listBox_MacroList.ItemHeight = 17;
+            this.listBox_MacroList.Location = new System.Drawing.Point(6, 22);
+            this.listBox_MacroList.Name = "listBox_MacroList";
+            this.listBox_MacroList.Size = new System.Drawing.Size(147, 242);
+            this.listBox_MacroList.TabIndex = 3;
+            this.listBox_MacroList.SelectedIndexChanged += new System.EventHandler(this.listBox_MacroList_SelectedIndexChanged);
             // 
-            // label26
+            // label_HotKey
             // 
-            this.label26.Location = new System.Drawing.Point(6, 55);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(55, 23);
-            this.label26.TabIndex = 62;
-            this.label26.Text = "内容：";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label_HotKey.AutoSize = true;
+            this.label_HotKey.Location = new System.Drawing.Point(335, 247);
+            this.label_HotKey.Name = "label_HotKey";
+            this.label_HotKey.Size = new System.Drawing.Size(68, 17);
+            this.label_HotKey.TabIndex = 9;
+            this.label_HotKey.Text = "触发热键：";
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Filter = "PNG图像|*.png|JPG图像|*.jpg|位图|*.bmp";
+            this.openFileDialog.Title = "选择一个有效的图像文件";
             // 
             // MacroEditor_Window
             // 
@@ -1070,6 +1071,7 @@
             this.Controls.Add(this.groupBox_edit);
             this.Controls.Add(this.groupBox_info);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(806, 424);

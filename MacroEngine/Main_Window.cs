@@ -29,6 +29,9 @@ namespace MacroEngine
                     listBox_Macros.Items.Add(Path.GetFileNameWithoutExtension(temp[i]));
 
                 }
+
+
+                listBox_Macros.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
@@ -91,7 +94,7 @@ namespace MacroEngine
         }
         //变量========================================================================================
         public static string RunPath = Directory.GetCurrentDirectory();
-        public static string Version = "Beta 1.3.2.3";
+        public static string Version = "Pre-Release 1.0.1.9";
         public static string MacroDir = $"{RunPath}\\Macros";
         public static string ConfigPath = $"{RunPath}\\Config\\Global_Config.ini";
         string[] Macros;
@@ -183,6 +186,9 @@ namespace MacroEngine
             try
             {
                 string CommandPath = Macros[int.Parse(name.Name)];
+
+                pictureBox_Icon.Image = Properties.Resources._icon;
+
 
                 for (int i = 0; i < int.Parse(ReadConfig(CommandPath, "info", "Step")); i++)
                 {
@@ -373,11 +379,13 @@ namespace MacroEngine
 
                     
                 }
+
+                pictureBox_Icon.Image = Properties.Resources.icon;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"在执行脚本时发生错误！\n\n错误原因：{ex.Message}", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
+                pictureBox_Icon.Image = Properties.Resources.icon;
             }
             //===============================================================================================================
 
@@ -422,6 +430,21 @@ namespace MacroEngine
                     }
 
                     label_Info_Text.Text = ReadConfig($"{MacroDir}\\{listBox_Macros.Text}.ini", "info", "Text");
+                    
+
+                    if (ReadConfig($"{MacroDir}\\{listBox_Macros.Text}.ini", "info", "SubKey") != "NONE")
+                    {
+                        label_info_Key.Text = $"触发热键：{ReadConfig($"{MacroDir}\\{listBox_Macros.Text}.ini", "info", "SubKey")} + {ReadConfig($"{MacroDir}\\{listBox_Macros.Text}.ini", "info", "Key")}";
+
+                    }
+                    else
+                    {
+                        label_info_Key.Text = $"触发热键：{ReadConfig($"{MacroDir}\\{listBox_Macros.Text}.ini", "info", "Key")}";
+
+                    }
+
+                    label_info_Step.Text = $"指令数：{ReadConfig($"{MacroDir}\\{listBox_Macros.Text}.ini", "info", "Step")}";
+
 
                     if (ReadConfig($"{MacroDir}\\{listBox_Macros.Text}.ini", "info", "Enabled") == "true")
                     {
@@ -465,6 +488,8 @@ namespace MacroEngine
                 File.Delete($"{MacroDir}\\{listBox_Macros.Text}.ini");
             }
             LoadMacroList();
+            groupBox_Info.Enabled = false;
+            button_Remove.Enabled = false;
         }
 
         private void button_Create_Click(object sender, EventArgs e)
@@ -525,10 +550,7 @@ namespace MacroEngine
 
         private void 帮助ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using(Help_Window help_Window=new Help_Window())
-            {
-                help_Window.ShowDialog();
-            }
+            Process.Start("https://github.com/bilibilihuazi/MacroEngine");
         }
 
         private void 导入ToolStripMenuItem_Click(object sender, EventArgs e)
