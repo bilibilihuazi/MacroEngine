@@ -41,37 +41,21 @@ namespace MacroEngine.Controls
             base.OnKeyDown(e);
             e.SuppressKeyPress = true;
 
+            // ESC键清除热键
             if (e.KeyCode == Keys.Escape)
             {
                 ClearHotkey();
                 return;
             }
 
-            Keys pressedKey = e.KeyCode;
-
-            // 处理功能键
-            if (pressedKey >= Keys.F1 && pressedKey <= Keys.F24)
-            {
-                SetHotkey(pressedKey | e.Modifiers);
-                return;
-            }
-
-            // 忽略单独的修饰键
-            if (IsModifierKey(pressedKey))
+            // 忽略所有修饰键
+            if (IsModifierKey(e.KeyCode))
             {
                 return;
             }
 
-            // 处理组合键
-            if (e.Modifiers != Keys.None)
-            {
-                SetHotkey(pressedKey | e.Modifiers);
-            }
-            // 处理普通键
-            else if (!IsSpecialKey(pressedKey))
-            {
-                SetHotkey(pressedKey);
-            }
+            // 设置单个按键（支持功能键F1-F24）
+            SetHotkey(e.KeyCode);
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
@@ -99,6 +83,7 @@ namespace MacroEngine.Controls
                 : _keysConverter.ConvertToString(_hotkey);
         }
 
+        // 增强修饰键检测（包含Win键）
         private static bool IsModifierKey(Keys key)
         {
             return key == Keys.ControlKey ||
@@ -109,14 +94,7 @@ namespace MacroEngine.Controls
                    key == Keys.RShiftKey ||
                    key == Keys.Alt ||
                    key == Keys.LMenu ||
-                   key == Keys.RMenu;
-        }
-
-        private static bool IsSpecialKey(Keys key)
-        {
-            return key == Keys.Control ||
-                   key == Keys.Shift ||
-                   key == Keys.Alt ||
+                   key == Keys.RMenu ||
                    key == Keys.LWin ||
                    key == Keys.RWin;
         }

@@ -10,7 +10,7 @@
 
 ## 刚入门不会使用？
 
-**Github仓库**与**Gitee镜像库**提供了配套的**wiki百科**，里面详细记载了工具的使用方法
+**Github仓库**与[Gitee镜像库](https://gitee.com/huamouren110/MacroEngine)提供了配套的**wiki百科**，里面详细记载了工具的使用方法
 
 [点我跳转到wiki主页](wiki/Home.md)
 

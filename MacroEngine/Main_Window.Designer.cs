@@ -33,6 +33,8 @@ namespace MacroEngine
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Window));
             this.listBox_Macros = new System.Windows.Forms.ListBox();
             this.groupBox_Info = new System.Windows.Forms.GroupBox();
+            this.label_info_Step = new System.Windows.Forms.Label();
+            this.label_info_Key = new System.Windows.Forms.Label();
             this.button_Edit = new System.Windows.Forms.Button();
             this.button_Enabled = new System.Windows.Forms.Button();
             this.label_Info_Text = new System.Windows.Forms.Label();
@@ -51,8 +53,6 @@ namespace MacroEngine
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.pictureBox_Icon = new System.Windows.Forms.PictureBox();
-            this.label_info_Key = new System.Windows.Forms.Label();
-            this.label_info_Step = new System.Windows.Forms.Label();
             this.groupBox_Info.SuspendLayout();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Icon)).BeginInit();
@@ -83,6 +83,24 @@ namespace MacroEngine
             this.groupBox_Info.TabIndex = 1;
             this.groupBox_Info.TabStop = false;
             this.groupBox_Info.Text = "宏信息";
+            // 
+            // label_info_Step
+            // 
+            this.label_info_Step.Location = new System.Drawing.Point(6, 59);
+            this.label_info_Step.Name = "label_info_Step";
+            this.label_info_Step.Size = new System.Drawing.Size(274, 20);
+            this.label_info_Step.TabIndex = 5;
+            this.label_info_Step.Text = "指令数：Unknown";
+            this.label_info_Step.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label_info_Key
+            // 
+            this.label_info_Key.Location = new System.Drawing.Point(6, 39);
+            this.label_info_Key.Name = "label_info_Key";
+            this.label_info_Key.Size = new System.Drawing.Size(274, 20);
+            this.label_info_Key.TabIndex = 4;
+            this.label_info_Key.Text = "触发热键：Unknown";
+            this.label_info_Key.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // button_Edit
             // 
@@ -205,15 +223,15 @@ namespace MacroEngine
             // 关于程序ToolStripMenuItem
             // 
             this.关于程序ToolStripMenuItem.Name = "关于程序ToolStripMenuItem";
-            this.关于程序ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.关于程序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.关于程序ToolStripMenuItem.Text = "关于程序";
             this.关于程序ToolStripMenuItem.Click += new System.EventHandler(this.关于程序ToolStripMenuItem_Click);
             // 
             // 帮助ToolStripMenuItem
             // 
             this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.帮助ToolStripMenuItem.Text = "帮助";
+            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.帮助ToolStripMenuItem.Text = "项目主页*";
             this.帮助ToolStripMenuItem.Click += new System.EventHandler(this.帮助ToolStripMenuItem_Click);
             // 
             // openFileDialog
@@ -235,24 +253,6 @@ namespace MacroEngine
             this.pictureBox_Icon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Icon.TabIndex = 8;
             this.pictureBox_Icon.TabStop = false;
-            // 
-            // label_info_Key
-            // 
-            this.label_info_Key.Location = new System.Drawing.Point(6, 39);
-            this.label_info_Key.Name = "label_info_Key";
-            this.label_info_Key.Size = new System.Drawing.Size(274, 20);
-            this.label_info_Key.TabIndex = 4;
-            this.label_info_Key.Text = "触发热键：Unknown";
-            this.label_info_Key.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label_info_Step
-            // 
-            this.label_info_Step.Location = new System.Drawing.Point(6, 59);
-            this.label_info_Step.Name = "label_info_Step";
-            this.label_info_Step.Size = new System.Drawing.Size(274, 20);
-            this.label_info_Step.TabIndex = 5;
-            this.label_info_Step.Text = "指令数：Unknown";
-            this.label_info_Step.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Main_Window
             // 

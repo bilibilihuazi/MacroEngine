@@ -94,7 +94,7 @@ namespace MacroEngine
         }
         //变量========================================================================================
         public static string RunPath = Directory.GetCurrentDirectory();
-        public static string Version = "Pre-Release 1.0.1.9";
+        public static string Version = "Pre-Release 1.0.2.6";
         public static string MacroDir = $"{RunPath}\\Macros";
         public static string ConfigPath = $"{RunPath}\\Config\\Global_Config.ini";
         string[] Macros;
@@ -550,7 +550,19 @@ namespace MacroEngine
 
         private void 帮助ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/bilibilihuazi/MacroEngine");
+            DialogResult temp = MessageBox.Show($"前往哪个平台的代码仓库？\n\n [点击\"是\" 前往Github仓库]  [点击\"否\" 前往Gitee仓库]", "请选择仓库", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+            if (temp == DialogResult.Yes)
+            {
+                Process.Start("https://github.com/bilibilihuazi/MacroEngine");
+
+            }
+            else if (temp == DialogResult.No) 
+            {
+                Process.Start($"https://gitee.com/huamouren110/MacroEngine");
+            }
+
+
         }
 
         private void 导入ToolStripMenuItem_Click(object sender, EventArgs e)

@@ -18,63 +18,72 @@ namespace MacroEngine
     {
         public void LoadCommandList()
         {
-
-            Path = $"{Main_Window.RunPath}\\Macros\\{Main_Window.Editor_NOWMACRO}.ini";
-            
-
-            if (Main_Window.Editor_TYPE == "Create")
+            try
             {
-                if (File.Exists(tempPath))
+                Path = $"{Main_Window.RunPath}\\Macros\\{Main_Window.Editor_NOWMACRO}.ini";
+
+
+                if (Main_Window.Editor_TYPE == "Create")
                 {
-                    File.Delete(tempPath);
-                }
-
-                WriteConfig(tempPath, "info", "Title", "新建宏");
-                WriteConfig(tempPath, "info", "Text", "新建宏，作用只是将鼠标从屏幕左上角移至右下角...");
-                WriteConfig(tempPath, "info", "Enabled", "false");
-                WriteConfig(tempPath, "info", "SubKey", "NONE");
-                WriteConfig(tempPath, "info", "Key", "F1");
-                WriteConfig(tempPath, "info", "Step", "3");
-
-                WriteConfig(tempPath, "1", "type", "MOUSE_POS");
-                WriteConfig(tempPath, "1", "pos-x", "0");
-                WriteConfig(tempPath, "1", "pos-y", "0");
-
-                WriteConfig(tempPath, "2", "type", "WAIT");
-                WriteConfig(tempPath, "2", "time", "2000");
-
-                WriteConfig(tempPath, "3", "type", "MOUSE_POS");
-                WriteConfig(tempPath, "3", "pos-x", $"{Screen.PrimaryScreen.Bounds.Width}");
-                WriteConfig(tempPath, "3", "pos-y", $"{Screen.PrimaryScreen.Bounds.Height}");
-
-                textBox_Path.Enabled = true;
-                textBox_Path.Text = $"{Main_Window.MacroDir}\\NewMacro.ini";
-
-            }
-            else if (Main_Window.Editor_TYPE == "Edit") 
-            {
-                try
-                {
-                    if(File.Exists(tempPath))
+                    if (File.Exists(tempPath))
                     {
-                        
                         File.Delete(tempPath);
                     }
-                    File.WriteAllText(tempPath, File.ReadAllText(Path));
 
+                    WriteConfig(tempPath, "info", "Title", "新建宏");
+                    WriteConfig(tempPath, "info", "Text", "新建宏，作用只是将鼠标从屏幕左上角移至右下角...");
+                    WriteConfig(tempPath, "info", "Enabled", "false");
+                    WriteConfig(tempPath, "info", "SubKey", "NONE");
+                    WriteConfig(tempPath, "info", "Key", "F1");
+                    WriteConfig(tempPath, "info", "Step", "3");
 
-                    textBox_Path.Enabled = false;
-                    textBox_Path.Text = Path;
+                    WriteConfig(tempPath, "1", "type", "MOUSE_POS");
+                    WriteConfig(tempPath, "1", "pos-x", "0");
+                    WriteConfig(tempPath, "1", "pos-y", "0");
 
+                    WriteConfig(tempPath, "2", "type", "WAIT");
+                    WriteConfig(tempPath, "2", "time", "2000");
 
+                    WriteConfig(tempPath, "3", "type", "MOUSE_POS");
+                    WriteConfig(tempPath, "3", "pos-x", $"{Screen.PrimaryScreen.Bounds.Width}");
+                    WriteConfig(tempPath, "3", "pos-y", $"{Screen.PrimaryScreen.Bounds.Height}");
+
+                    textBox_Path.Enabled = true;
+                    textBox_Path.Text = $"{Main_Window.MacroDir}\\NewMacro.ini";
 
                 }
-                catch (Exception ex)
+                else if (Main_Window.Editor_TYPE == "Edit")
                 {
-                    MessageBox.Show($"在读取脚本信息时发生错误！\n\n错误原因：{ex.Message}", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    try
+                    {
+                        if (File.Exists(tempPath))
+                        {
 
+                            File.Delete(tempPath);
+                        }
+                        File.WriteAllText(tempPath, File.ReadAllText(Path));
+
+
+                        textBox_Path.Enabled = false;
+                        textBox_Path.Text = Path;
+
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"在读取脚本信息时发生错误！\n\n错误原因：{ex.Message}", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"在读取脚本列表时发生错误！\n\n错误原因：{ex.Message}\n\n此错误可能并不是你引起的，如果您非法的操作了配置文件导致此错误的发生那么请不要反馈给开发者", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
+
+            
 
             try
             {
@@ -200,10 +209,19 @@ namespace MacroEngine
         public MacroEditor_Window()
         {
             InitializeComponent();
-            tabControl_Edit.ItemSize = new Size(0, 1);
+            try
+            {
+                tabControl_Edit.ItemSize = new Size(0, 1);
 
-            Path = $"{Main_Window.RunPath}\\Macros\\{Main_Window.Editor_NOWMACRO}.ini";
-            LoadCommandList();
+                Path = $"{Main_Window.RunPath}\\Macros\\{Main_Window.Editor_NOWMACRO}.ini";
+                LoadCommandList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"在初始化编辑器时发生错误！\n\n错误原因：{ex.Message}", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
+            
 
 
 
@@ -361,101 +379,110 @@ namespace MacroEngine
 
         private void button_Add_Click(object sender, EventArgs e)
         {
-            using (AddCommand_Window addCommand_Window = new AddCommand_Window())
+            try
             {
-                addCommand_Window.ShowDialog();
+                using (AddCommand_Window addCommand_Window = new AddCommand_Window())
+                {
+                    addCommand_Window.ShowDialog();
+                }
+
+                //===============================================================================================================
+
+
+
+                if (AddW_TYPE == "MOUSE_POS")                  //             <========此处修改==========================================================
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "MOUSE_POS");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "pos-x", "0");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "pos-y", "0");
+                    listBox_MacroList.Items.Add("鼠标_置坐标");
+
+                }
+                else if (AddW_TYPE == "WAIT")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "WAIT");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "time", "100");
+                    listBox_MacroList.Items.Add("等待");
+                }
+                else if (AddW_TYPE == "MOUSE_PRESS")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "MOUSE_PRESS");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "key", "0");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "keytype", "0");
+                    listBox_MacroList.Items.Add("鼠标_按键");
+                }
+                else if (AddW_TYPE == "MOUSE_WHEEL")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "MOUSE_WHEEL");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "dire", "0");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "dis", "10");
+                    listBox_MacroList.Items.Add("鼠标_滚轮");
+                }
+                else if (AddW_TYPE == "KBD_PRESS")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "KBD_PRESS");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "pkey", "0");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "keytype", "0");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "key", "A");
+                    listBox_MacroList.Items.Add("键盘_按键");
+                }
+                else if (AddW_TYPE == "KBD_TYPE")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "KBD_TYPE");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "text", "Hello world!");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "delay", "100");
+                    listBox_MacroList.Items.Add("键盘_打字");
+                }
+                else if (AddW_TYPE == "CB_SETTEXT")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "CB_SETTEXT");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "text", "Hello world!");
+                    listBox_MacroList.Items.Add("剪贴板_复制文本");
+                }
+                else if (AddW_TYPE == "CB_GETOBJ")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "CB_GETOBJ");
+                    listBox_MacroList.Items.Add("剪贴板_粘贴");
+                }
+                else if (AddW_TYPE == "CB_SETIMG")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "CB_SETIMG");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "image", "请选择图片");
+                    listBox_MacroList.Items.Add("剪贴板_复制图像");
+                }
+                else if (AddW_TYPE == "MSGBOX")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "MSGBOX");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "title", "Hello title!");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "text", "Hello world!");
+                    listBox_MacroList.Items.Add("弹出信息框");
+                }
+
+
+
+
+                //===============================================================================================================
+
+
+
+
+
+
+                if (AddW_TYPE != "UNKNOWN")
+                {
+                    WriteConfig(tempPath, "info", "Step", $"{int.Parse(ReadConfig(tempPath, "info", "Step")) + 1}");
+                }
+
+                listBox_MacroList.SelectedIndex = listBox_MacroList.Items.Count - 1;
+                WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "subtype", "NONE");
+                AddW_TYPE = "UNKNOWN";
             }
-
-            //===============================================================================================================
-
-
-
-            if (AddW_TYPE == "MOUSE_POS")                  //             <========此处修改==========================================================
+            catch (Exception ex)
             {
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "MOUSE_POS");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "pos-x", "0");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "pos-y", "0");
-                listBox_MacroList.Items.Add("鼠标_置坐标");
-
+                MessageBox.Show($"在添加指令时发生错误！\n\n错误原因：{ex.Message}", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
-            else if (AddW_TYPE == "WAIT")
-            {
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "WAIT");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "time", "100");
-                listBox_MacroList.Items.Add("等待");
-            }
-            else if (AddW_TYPE == "MOUSE_PRESS")
-            {
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "MOUSE_PRESS");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "key", "0");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "keytype", "0");
-                listBox_MacroList.Items.Add("鼠标_按键");
-            }
-            else if (AddW_TYPE == "MOUSE_WHEEL")
-            {
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "MOUSE_WHEEL");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "dire", "0");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "dis", "10");
-                listBox_MacroList.Items.Add("鼠标_滚轮");
-            }
-            else if (AddW_TYPE == "KBD_PRESS")
-            {
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "KBD_PRESS");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "pkey", "0");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "keytype", "0");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "key", "A");
-                listBox_MacroList.Items.Add("键盘_按键");
-            }
-            else if (AddW_TYPE == "KBD_TYPE")
-            {
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "KBD_TYPE");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "text", "Hello world!");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "delay", "100");
-                listBox_MacroList.Items.Add("键盘_打字");
-            }
-            else if (AddW_TYPE == "CB_SETTEXT")
-            {
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "CB_SETTEXT");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "text", "Hello world!");
-                listBox_MacroList.Items.Add("剪贴板_复制文本");
-            }
-            else if (AddW_TYPE == "CB_GETOBJ")
-            {
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "CB_GETOBJ");
-                listBox_MacroList.Items.Add("剪贴板_粘贴");
-            }
-            else if (AddW_TYPE == "CB_SETIMG")
-            {
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "CB_SETIMG");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "image", "请选择图片");
-                listBox_MacroList.Items.Add("剪贴板_复制图像");
-            }
-            else if (AddW_TYPE == "MSGBOX")
-            {
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "MSGBOX");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "title", "Hello title!");
-                WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "text", "Hello world!");
-                listBox_MacroList.Items.Add("弹出信息框");
-            }
-
-
-
-
-            //===============================================================================================================
-
-
-
-
-
-
-            if (AddW_TYPE != "UNKNOWN")
-            {
-                WriteConfig(tempPath, "info", "Step", $"{int.Parse(ReadConfig(tempPath, "info", "Step")) + 1}");
-            }
-
-            listBox_MacroList.SelectedIndex = listBox_MacroList.Items.Count - 1;
-            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "subtype", "NONE");
-            AddW_TYPE = "UNKNOWN";
+            
         }
 
         private void button_Up_Click(object sender, EventArgs e)
@@ -722,19 +749,28 @@ namespace MacroEngine
 
         private void button_AddSub_Click(object sender, EventArgs e)
         {
-            using (AddSubCommand_Window addSubCommand_Window = new AddSubCommand_Window())
+            try
             {
-                addSubCommand_Window.ShowDialog();
-            }
+                using (AddSubCommand_Window addSubCommand_Window = new AddSubCommand_Window())
+                {
+                    addSubCommand_Window.ShowDialog();
+                }
 
-            //    <===============================修改此处=========================================>
-            if (AddSubW_TYPE == "SUB_FOR")
-            {
-                WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "subtype", "SUB_FOR");
-                WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_FOR_num", "5");
-                WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_FOR_delay", "100");
-                listBox_MacroList.Items[listBox_MacroList.SelectedIndex] = $"{listBox_MacroList.Items[listBox_MacroList.SelectedIndex]} [重复执行]";
+                //    <===============================修改此处=========================================>
+                if (AddSubW_TYPE == "SUB_FOR")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "subtype", "SUB_FOR");
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_FOR_num", "5");
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_FOR_delay", "100");
+                    listBox_MacroList.Items[listBox_MacroList.SelectedIndex] = $"{listBox_MacroList.Items[listBox_MacroList.SelectedIndex]} [重复执行]";
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"在添加附加指令时发生错误！\n\n错误原因：{ex.Message}", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
+            
 
 
 
@@ -843,17 +879,25 @@ namespace MacroEngine
 
         private void MacroEditor_Window_FormClosing(object sender, FormClosingEventArgs e)
         {
-
-            if (Main_Window.Editor_TYPE == "Edit") 
+            try
             {
-                if (StringToSHA256(File.ReadAllText(Path)) != StringToSHA256(File.ReadAllText(tempPath)))
+                if (Main_Window.Editor_TYPE == "Edit")
                 {
-                    if (MessageBox.Show($"检测到文件更改，是否保存该宏？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (StringToSHA256(File.ReadAllText(Path)) != StringToSHA256(File.ReadAllText(tempPath)))
                     {
-                        button_Save_Click(null, null);
+                        if (MessageBox.Show($"检测到文件更改，是否保存该宏？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+                            button_Save_Click(null, null);
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"在尝试保存文件时发生错误！\n\n错误原因：{ex.Message}", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            }
+            
         }
 
         private void MacroEditor_Window_Activated(object sender, EventArgs e)
