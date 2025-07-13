@@ -47,3 +47,4 @@
 |指令名称|内部命名|作用|详细信息|
 |-|-|-|-|
 |重复执行|`SUB_FOR`|重复值执行被附加的主指令|[跳转](Command/SubCommand/Sub_for/Sub_for.md)|
+|判断|`SUB_IF`|如果指定的条件成立才执行主指令，否则跳过被附加的主指令，执行下一条命令|[跳转](Command/SubCommand/Sub_if/Sub_if.md)|

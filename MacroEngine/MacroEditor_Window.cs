@@ -172,6 +172,10 @@ namespace MacroEngine
                     {
                         listBox_MacroList.Items[listBox_MacroList.Items.Count - 1] = $"{listBox_MacroList.Items[listBox_MacroList.Items.Count - 1]} [重复执行]";
                     }
+                    else if (StepSubType == "SUB_IF")
+                    {
+                        listBox_MacroList.Items[listBox_MacroList.Items.Count - 1] = $"{listBox_MacroList.Items[listBox_MacroList.Items.Count - 1]} [判断]";
+                    }
                     //===============================================================================================================
 
                 }
@@ -493,7 +497,7 @@ namespace MacroEngine
                 string LastConfig = $"{listBox_MacroList.SelectedIndex}";
 
                 /*       <======================如有新项添加到此=============================>     */
-                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay", "SUB_FOR_num", "SUB_FOR_delay", "image", "title" };
+                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay", "SUB_FOR_num", "SUB_FOR_delay", "image", "title", "SUB_IF_color_pos-x", "SUB_IF_color_pos-y", "SUB_IF_color_R", "SUB_IF_color_G", "SUB_IF_color_B" };
 
 
                 WriteConfig(tempPath, "tempNow", "type", ReadConfig(tempPath, NowConfig, "type"));
@@ -573,7 +577,7 @@ namespace MacroEngine
                 string LastConfig = $"{listBox_MacroList.SelectedIndex + 2}";
 
                 /*       <======================如有新项添加到此=============================>     */
-                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay", "SUB_FOR_num", "SUB_FOR_delay", "image", "title" };
+                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay", "SUB_FOR_num", "SUB_FOR_delay", "image", "title", "SUB_IF_color_pos-x", "SUB_IF_color_pos-y", "SUB_IF_color_R", "SUB_IF_color_G", "SUB_IF_color_B" };
 
 
                 WriteConfig(tempPath, "tempNow", "type", ReadConfig(tempPath, NowConfig, "type"));
@@ -701,11 +705,6 @@ namespace MacroEngine
                     {
                         //None
                     }
-                    else if (temp_sub == "SUB_FOR")
-                    {
-                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "SUB_FOR_num", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "SUB_FOR_num"));
-                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "SUB_FOR_delay", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "SUB_FOR_delay"));
-                    }
                     else if (temp == "CB_SETIMG")
                     {
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "image", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "image"));
@@ -714,6 +713,22 @@ namespace MacroEngine
                     {
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "title", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "title"));
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "text", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "text"));
+                    }
+
+
+
+                    if (temp_sub == "SUB_FOR")
+                    {
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "SUB_FOR_num", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "SUB_FOR_num"));
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "SUB_FOR_delay", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "SUB_FOR_delay"));
+                    }
+                    else if (temp_sub == "SUB_IF")
+                    {
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "SUB_IF_color_pos-x", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "SUB_IF_color_pos-x"));
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "SUB_IF_color_pos-y", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "SUB_IF_color_pos-y"));
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "SUB_IF_color_R", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "SUB_IF_color_R"));
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "SUB_IF_color_G", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "SUB_IF_color_G"));
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "SUB_IF_color_B", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "SUB_IF_color_B"));
                     }
 
 
@@ -764,6 +779,16 @@ namespace MacroEngine
                     WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_FOR_delay", "100");
                     listBox_MacroList.Items[listBox_MacroList.SelectedIndex] = $"{listBox_MacroList.Items[listBox_MacroList.SelectedIndex]} [重复执行]";
                 }
+                else if (AddSubW_TYPE == "SUB_IF")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "subtype", "SUB_IF");
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_pos-x", "0");
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_pos-y", "0");
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_R", "0");
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_G", "0");
+                    WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_B", "0");
+                    listBox_MacroList.Items[listBox_MacroList.SelectedIndex] = $"{listBox_MacroList.Items[listBox_MacroList.SelectedIndex]} [判断]";
+                }
             }
             catch (Exception ex)
             {
@@ -787,10 +812,22 @@ namespace MacroEngine
                     button_ToSubtypeEdit.Text = "编辑主指令";
                     temp_lastSelect = tabControl_Edit.SelectedIndex;
 
+                    //    <===============================修改此处=========================================>
                     if (ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "subtype") == "SUB_FOR")
                     {
                         numericUpDown_SUB_FOR_num.Value = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_FOR_num"));
                         numericUpDown_SUB_FOR_delay.Value = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_FOR_delay"));
+
+                        tabControl_Edit.SelectedIndex = 9;
+                    }
+                    else if (ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "subtype") == "SUB_IF")
+                    {
+                        comboBox_SUB_IF_cond.SelectedIndex = 0;
+                        panel_SUB_IF_color.BackColor = Color.FromArgb(int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_R")), int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_G")), int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_B")));
+                        numericUpDown_SUB_IF_color_pos_x.Value = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_pos-x"));
+                        numericUpDown_SUB_IF_color_pos_y.Value = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_pos-y"));
+
+                        tabControl_Edit.SelectedIndex = 12;
                     }
 
 
@@ -799,7 +836,7 @@ namespace MacroEngine
 
 
 
-                    tabControl_Edit.SelectedIndex = 9;
+                    
                 }
                 else if (button_ToSubtypeEdit.Text == "编辑主指令")
                 {
@@ -1023,6 +1060,45 @@ namespace MacroEngine
         private void textBox_MSGBOX_text_TextChanged(object sender, EventArgs e)
         {
             WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "text", $"{textBox_MSGBOX_text.Text}");
+        }
+
+        private void button_SUB_IF_color_select_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                panel_SUB_IF_color.BackColor = colorDialog.Color;
+
+                WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_R", $"{panel_SUB_IF_color.BackColor.R}");
+                WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_G", $"{panel_SUB_IF_color.BackColor.G}");
+                WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_B", $"{panel_SUB_IF_color.BackColor.B}");
+
+            }
+            
+        }
+
+        private void button_SUB_IF_color_pos_quick_Click(object sender, EventArgs e)
+        {
+            button_SUB_IF_color_pos_quick.Text = "请点击要选择的位置";
+            button_SUB_IF_color_pos_quick.Enabled = false;
+            using (Pos_Window pos_Window = new Pos_Window())
+            {
+                pos_Window.ShowDialog();
+            }
+            numericUpDown_SUB_IF_color_pos_x.Value = QuickSelectPos.X;
+            numericUpDown_SUB_IF_color_pos_y.Value = QuickSelectPos.Y;
+
+            button_SUB_IF_color_pos_quick.Text = "快速选择坐标";
+            button_SUB_IF_color_pos_quick.Enabled = true;
+        }
+
+        private void numericUpDown_SUB_IF_color_pos_x_ValueChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "SUB_IF_color_pos-x", $"{numericUpDown_SUB_IF_color_pos_x.Value}");
+        }
+
+        private void numericUpDown_SUB_IF_color_pos_y_ValueChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", $"SUB_IF_color_pos-y", $"{numericUpDown_SUB_IF_color_pos_y.Value}");
         }
     }
 }

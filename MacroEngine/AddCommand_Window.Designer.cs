@@ -35,15 +35,15 @@
             this.button_MOUSE_PRESS = new System.Windows.Forms.Button();
             this.button_MOUSE_POS = new System.Windows.Forms.Button();
             this.groupBox_Mics = new System.Windows.Forms.GroupBox();
+            this.button_MSGBOX = new System.Windows.Forms.Button();
             this.button_WAIT = new System.Windows.Forms.Button();
             this.groupBox_Kbd = new System.Windows.Forms.GroupBox();
             this.button_KBD_TYPE = new System.Windows.Forms.Button();
             this.button_KBD_PRESS = new System.Windows.Forms.Button();
             this.groupBox_CB = new System.Windows.Forms.GroupBox();
+            this.button_CB_SETIMG = new System.Windows.Forms.Button();
             this.button_CB_GETOBJ = new System.Windows.Forms.Button();
             this.button_CB_SETTEXT = new System.Windows.Forms.Button();
-            this.button_CB_SETIMG = new System.Windows.Forms.Button();
-            this.button_MSGBOX = new System.Windows.Forms.Button();
             this.groupBox_MOUSE.SuspendLayout();
             this.groupBox_Mics.SuspendLayout();
             this.groupBox_Kbd.SuspendLayout();
@@ -96,12 +96,22 @@
             // 
             this.groupBox_Mics.Controls.Add(this.button_MSGBOX);
             this.groupBox_Mics.Controls.Add(this.button_WAIT);
-            this.groupBox_Mics.Location = new System.Drawing.Point(12, 88);
+            this.groupBox_Mics.Location = new System.Drawing.Point(12, 164);
             this.groupBox_Mics.Name = "groupBox_Mics";
             this.groupBox_Mics.Size = new System.Drawing.Size(480, 70);
             this.groupBox_Mics.TabIndex = 5;
             this.groupBox_Mics.TabStop = false;
             this.groupBox_Mics.Text = "杂项";
+            // 
+            // button_MSGBOX
+            // 
+            this.button_MSGBOX.Location = new System.Drawing.Point(163, 22);
+            this.button_MSGBOX.Name = "button_MSGBOX";
+            this.button_MSGBOX.Size = new System.Drawing.Size(151, 31);
+            this.button_MSGBOX.TabIndex = 3;
+            this.button_MSGBOX.Text = "弹出信息框";
+            this.button_MSGBOX.UseVisualStyleBackColor = true;
+            this.button_MSGBOX.Click += new System.EventHandler(this.button_MSGBOX_Click);
             // 
             // button_WAIT
             // 
@@ -117,7 +127,7 @@
             // 
             this.groupBox_Kbd.Controls.Add(this.button_KBD_TYPE);
             this.groupBox_Kbd.Controls.Add(this.button_KBD_PRESS);
-            this.groupBox_Kbd.Location = new System.Drawing.Point(12, 164);
+            this.groupBox_Kbd.Location = new System.Drawing.Point(12, 88);
             this.groupBox_Kbd.Name = "groupBox_Kbd";
             this.groupBox_Kbd.Size = new System.Drawing.Size(480, 70);
             this.groupBox_Kbd.TabIndex = 6;
@@ -156,6 +166,16 @@
             this.groupBox_CB.TabStop = false;
             this.groupBox_CB.Text = "剪贴板操作";
             // 
+            // button_CB_SETIMG
+            // 
+            this.button_CB_SETIMG.Location = new System.Drawing.Point(163, 22);
+            this.button_CB_SETIMG.Name = "button_CB_SETIMG";
+            this.button_CB_SETIMG.Size = new System.Drawing.Size(151, 31);
+            this.button_CB_SETIMG.TabIndex = 5;
+            this.button_CB_SETIMG.Text = "剪贴板_复制图像";
+            this.button_CB_SETIMG.UseVisualStyleBackColor = true;
+            this.button_CB_SETIMG.Click += new System.EventHandler(this.button_CB_SETIMG_Click);
+            // 
             // button_CB_GETOBJ
             // 
             this.button_CB_GETOBJ.Location = new System.Drawing.Point(320, 22);
@@ -175,26 +195,6 @@
             this.button_CB_SETTEXT.Text = "剪贴板_复制文本";
             this.button_CB_SETTEXT.UseVisualStyleBackColor = true;
             this.button_CB_SETTEXT.Click += new System.EventHandler(this.button_CB_SETTEXT_Click);
-            // 
-            // button_CB_SETIMG
-            // 
-            this.button_CB_SETIMG.Location = new System.Drawing.Point(163, 22);
-            this.button_CB_SETIMG.Name = "button_CB_SETIMG";
-            this.button_CB_SETIMG.Size = new System.Drawing.Size(151, 31);
-            this.button_CB_SETIMG.TabIndex = 5;
-            this.button_CB_SETIMG.Text = "剪贴板_复制图像";
-            this.button_CB_SETIMG.UseVisualStyleBackColor = true;
-            this.button_CB_SETIMG.Click += new System.EventHandler(this.button_CB_SETIMG_Click);
-            // 
-            // button_MSGBOX
-            // 
-            this.button_MSGBOX.Location = new System.Drawing.Point(163, 22);
-            this.button_MSGBOX.Name = "button_MSGBOX";
-            this.button_MSGBOX.Size = new System.Drawing.Size(151, 31);
-            this.button_MSGBOX.TabIndex = 3;
-            this.button_MSGBOX.Text = "弹出信息框";
-            this.button_MSGBOX.UseVisualStyleBackColor = true;
-            this.button_MSGBOX.Click += new System.EventHandler(this.button_MSGBOX_Click);
             // 
             // AddCommand_Window
             // 

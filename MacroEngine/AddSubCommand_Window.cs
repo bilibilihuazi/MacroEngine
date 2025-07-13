@@ -22,5 +22,11 @@ namespace MacroEngine
             MacroEditor_Window.AddSubW_TYPE = "SUB_FOR";
             this.Close();
         }
+
+        private void button_SUB_IF_Click(object sender, EventArgs e)
+        {
+            MacroEditor_Window.AddSubW_TYPE = "SUB_IF";
+            this.Close();
+        }
     }
 }

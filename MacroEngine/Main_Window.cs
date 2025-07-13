@@ -94,7 +94,7 @@ namespace MacroEngine
         }
         //变量========================================================================================
         public static string RunPath = Directory.GetCurrentDirectory();
-        public static string Version = "Pre-Release 1.0.2.6";
+        public static string Version = "Release 1.0.2.17";
         public static string MacroDir = $"{RunPath}\\Macros";
         public static string ConfigPath = $"{RunPath}\\Config\\Global_Config.ini";
         string[] Macros;
@@ -196,188 +196,194 @@ namespace MacroEngine
                     string NowCmdSubType = ReadConfig(CommandPath, $"{i + 1}", "subtype");
                     int temp_fornum = 1;
                     int temp_fordelay = 0;
+                    Color temp_ifcolor = Color.FromArgb(0, 0, 0);
+                    Point temp_ifpos = new Point(0, 0);
+
 
                     if (NowCmdSubType == "SUB_FOR")
                     {
                         temp_fornum = int.Parse(ReadConfig(CommandPath, $"{i + 1}", "SUB_FOR_num"));
                         temp_fordelay = int.Parse(ReadConfig(CommandPath, $"{i + 1}", "SUB_FOR_delay"));
                     }
-
-                    for (int n = 0; n < temp_fornum; n++) 
+                    else if (NowCmdSubType == "SUB_IF")
                     {
-                        if (NowCmdType == "MOUSE_POS")         //<====================================此处修改================
-                        {
-                            m_SetPositionPoint(new Point(int.Parse(ReadConfig(CommandPath, $"{i + 1}", "pos-x")), int.Parse(ReadConfig(CommandPath, $"{i + 1}", "pos-y"))));
-                        }
-                        else if (NowCmdType == "WAIT")
-                        {
-                            await Task.Delay(int.Parse(ReadConfig(CommandPath, $"{i + 1}", "time")));
-                        }
-                        else if (NowCmdType == "MOUSE_PRESS")
-                        {
-                            string temp_key = ReadConfig(CommandPath, $"{i + 1}", "key");
-                            string temp_keytype = ReadConfig(CommandPath, $"{i + 1}", "keytype");
+                        temp_ifcolor = Color.FromArgb(int.Parse(ReadConfig(CommandPath, $"{i + 1}", "SUB_IF_color_R")), int.Parse(ReadConfig(CommandPath, $"{i + 1}", "SUB_IF_color_G")), int.Parse(ReadConfig(CommandPath, $"{i + 1}", "SUB_IF_color_B")));
+                        temp_ifpos = new Point(int.Parse(ReadConfig(CommandPath, $"{i + 1}", "SUB_IF_color_pos-x")), int.Parse(ReadConfig(CommandPath, $"{i + 1}", "SUB_IF_color_pos-y")));
+                    }
 
-                            if (temp_key == "0")
+                    if (GetPixelRgb(temp_ifpos) == temp_ifcolor || NowCmdSubType != "SUB_IF") 
+                    {
+                        for (int n = 0; n < temp_fornum; n++)
+                        {
+                            if (NowCmdType == "MOUSE_POS")         //<====================================此处修改================
                             {
+                                m_SetPositionPoint(new Point(int.Parse(ReadConfig(CommandPath, $"{i + 1}", "pos-x")), int.Parse(ReadConfig(CommandPath, $"{i + 1}", "pos-y"))));
+                            }
+                            else if (NowCmdType == "WAIT")
+                            {
+                                await Task.Delay(int.Parse(ReadConfig(CommandPath, $"{i + 1}", "time")));
+                            }
+                            else if (NowCmdType == "MOUSE_PRESS")
+                            {
+                                string temp_key = ReadConfig(CommandPath, $"{i + 1}", "key");
+                                string temp_keytype = ReadConfig(CommandPath, $"{i + 1}", "keytype");
+
+                                if (temp_key == "0")
+                                {
+                                    if (temp_keytype == "0")
+                                    {
+                                        m_LeftClick();
+                                    }
+                                    else if (temp_keytype == "1")
+                                    {
+                                        m_LeftDown();
+                                    }
+                                    else if (temp_keytype == "2")
+                                    {
+                                        m_LeftUp();
+                                    }
+                                }
+                                else if (temp_key == "1")
+                                {
+                                    if (temp_keytype == "0")
+                                    {
+                                        m_MiddleClick();
+                                    }
+                                    else if (temp_keytype == "1")
+                                    {
+                                        m_MiddleDown();
+                                    }
+                                    else if (temp_keytype == "2")
+                                    {
+                                        m_MiddleUp();
+                                    }
+                                }
+                                else if (temp_key == "2")
+                                {
+                                    if (temp_keytype == "0")
+                                    {
+                                        m_RightClick();
+                                    }
+                                    else if (temp_keytype == "1")
+                                    {
+                                        m_RightDown();
+                                    }
+                                    else if (temp_keytype == "2")
+                                    {
+                                        m_RightUp();
+                                    }
+                                }
+                            }
+                            else if (NowCmdType == "MOUSE_WHEEL")
+                            {
+                                string temp_dire = ReadConfig(CommandPath, $"{i + 1}", "dire");
+                                string temp_dis = ReadConfig(CommandPath, $"{i + 1}", "dis");
+
+                                if (temp_dire == "0")
+                                {
+                                    m_WheelUp(int.Parse(temp_dis));
+                                }
+                                else if (temp_dire == "1")
+                                {
+                                    m_WheelDown(int.Parse(temp_dis));
+                                }
+
+                            }
+                            else if (NowCmdType == "KBD_PRESS")
+                            {
+                                string temp_keytype = ReadConfig(CommandPath, $"{i + 1}", "keytype");
+                                string temp_pkey = ReadConfig(CommandPath, $"{i + 1}", "pkey");
+                                string temp_key = ReadConfig(CommandPath, $"{i + 1}", "key");
+
+                                if (temp_pkey == "1")
+                                {
+                                    kbd_KeyDown(Keys.ControlKey);
+                                }
+                                else if (temp_pkey == "2")
+                                {
+                                    kbd_KeyDown(Keys.ShiftKey);
+                                }
+                                else if (temp_pkey == "3")
+                                {
+                                    kbd_KeyDown(Keys.Alt);
+                                }
+
+
+
+
+
                                 if (temp_keytype == "0")
                                 {
-                                    m_LeftClick();
+                                    kbd_KeyPress((Keys)Enum.Parse(typeof(Keys), temp_key));
                                 }
                                 else if (temp_keytype == "1")
                                 {
-                                    m_LeftDown();
+                                    kbd_KeyDown((Keys)Enum.Parse(typeof(Keys), temp_key));
                                 }
                                 else if (temp_keytype == "2")
                                 {
-                                    m_LeftUp();
+                                    kbd_KeyUp((Keys)Enum.Parse(typeof(Keys), temp_key));
                                 }
+
+
+
+                                kbd_KeyUp(Keys.ControlKey);
+                                kbd_KeyUp(Keys.ShiftKey);
+                                kbd_KeyUp(Keys.Alt);
                             }
-                            else if (temp_key == "1")
+                            else if (NowCmdType == "KBD_TYPE")
                             {
-                                if (temp_keytype == "0")
+                                string temp_text = ReadConfig(CommandPath, $"{i + 1}", "text");
+                                string temp_delay = ReadConfig(CommandPath, $"{i + 1}", "delay");
+
+                                for (int j = 0; j < temp_text.Length; j++)
                                 {
-                                    m_MiddleClick();
+                                    Clipboard.SetText(temp_text.Substring(j, 1));
+                                    kbd_KeyDown(Keys.ControlKey);
+                                    kbd_KeyPress(Keys.V);
+                                    kbd_KeyUp(Keys.ControlKey);
+
+                                    await Task.Delay(int.Parse(temp_delay));
                                 }
-                                else if (temp_keytype == "1")
-                                {
-                                    m_MiddleDown();
-                                }
-                                else if (temp_keytype == "2")
-                                {
-                                    m_MiddleUp();
-                                }
+
+
                             }
-                            else if (temp_key == "2")
+                            else if (NowCmdType == "CB_SETTEXT")
                             {
-                                if (temp_keytype == "0")
-                                {
-                                    m_RightClick();
-                                }
-                                else if (temp_keytype == "1")
-                                {
-                                    m_RightDown();
-                                }
-                                else if (temp_keytype == "2")
-                                {
-                                    m_RightUp();
-                                }
+                                string temp_text = ReadConfig(CommandPath, $"{i + 1}", "text");
+
+                                Clipboard.SetText(temp_text);
                             }
-                        }
-                        else if (NowCmdType == "MOUSE_WHEEL")
-                        {
-                            string temp_dire = ReadConfig(CommandPath, $"{i + 1}", "dire");
-                            string temp_dis = ReadConfig(CommandPath, $"{i + 1}", "dis");
-
-                            if (temp_dire == "0")
+                            else if (NowCmdType == "CB_GETOBJ")
                             {
-                                m_WheelUp(int.Parse(temp_dis));
-                            }
-                            else if (temp_dire == "1")
-                            {
-                                m_WheelDown(int.Parse(temp_dis));
-                            }
-
-                        }
-                        else if (NowCmdType == "KBD_PRESS")
-                        {
-                            string temp_keytype = ReadConfig(CommandPath, $"{i + 1}", "keytype");
-                            string temp_pkey = ReadConfig(CommandPath, $"{i + 1}", "pkey");
-                            string temp_key = ReadConfig(CommandPath, $"{i + 1}", "key");
-
-                            if (temp_pkey == "1")
-                            {
-                                kbd_KeyDown(Keys.ControlKey);
-                            }
-                            else if (temp_pkey == "2")
-                            {
-                                kbd_KeyDown(Keys.ShiftKey);
-                            }
-                            else if (temp_pkey == "3")
-                            {
-                                kbd_KeyDown(Keys.Alt);
-                            }
-
-
-
-
-
-                            if (temp_keytype == "0")
-                            {
-                                kbd_KeyPress((Keys)Enum.Parse(typeof(Keys), temp_key));
-                            }
-                            else if (temp_keytype == "1")
-                            {
-                                kbd_KeyDown((Keys)Enum.Parse(typeof(Keys), temp_key));
-                            }
-                            else if (temp_keytype == "2")
-                            {
-                                kbd_KeyUp((Keys)Enum.Parse(typeof(Keys), temp_key));
-                            }
-
-
-
-                            kbd_KeyUp(Keys.ControlKey);
-                            kbd_KeyUp(Keys.ShiftKey);
-                            kbd_KeyUp(Keys.Alt);
-                        }
-                        else if (NowCmdType == "KBD_TYPE")
-                        {
-                            string temp_text = ReadConfig(CommandPath, $"{i + 1}", "text");
-                            string temp_delay = ReadConfig(CommandPath, $"{i + 1}", "delay");
-
-                            for (int j = 0; j < temp_text.Length; j++)
-                            {
-                                Clipboard.SetText(temp_text.Substring(j, 1));
                                 kbd_KeyDown(Keys.ControlKey);
                                 kbd_KeyPress(Keys.V);
                                 kbd_KeyUp(Keys.ControlKey);
+                            }
+                            else if (NowCmdType == "CB_SETIMG")
+                            {
+                                string temp_image = ReadConfig(CommandPath, $"{i + 1}", "image");
 
-                                await Task.Delay(int.Parse(temp_delay));
+                                Clipboard.SetImage(Image.FromFile(temp_image));
+
+                            }
+                            else if (NowCmdType == "MSGBOX")
+                            {
+                                string temp_title = ReadConfig(CommandPath, $"{i + 1}", "title");
+                                string temp_text = ReadConfig(CommandPath, $"{i + 1}", "text");
+
+                                MessageBox.Show(temp_text, temp_title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                             }
 
 
-                        }
-                        else if (NowCmdType == "CB_SETTEXT")
-                        {
-                            string temp_text = ReadConfig(CommandPath, $"{i + 1}", "text");
-
-                            Clipboard.SetText(temp_text);
-                        }
-                        else if (NowCmdType == "CB_GETOBJ")
-                        {
-                            kbd_KeyDown(Keys.ControlKey);
-                            kbd_KeyPress(Keys.V);
-                            kbd_KeyUp(Keys.ControlKey);
-                        }
-                        else if (NowCmdType == "CB_SETIMG")
-                        {
-                            string temp_image = ReadConfig(CommandPath, $"{i + 1}", "image");
-
-                            Clipboard.SetImage(Image.FromFile(temp_image));
-                            
-                        }
-                        else if (NowCmdType == "MSGBOX")
-                        {
-                            string temp_title = ReadConfig(CommandPath, $"{i + 1}", "title");
-                            string temp_text = ReadConfig(CommandPath, $"{i + 1}", "text");
-
-                            MessageBox.Show(temp_text, temp_title, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        }
-
-
-
-
-
-
-
-
                             await Task.Delay(temp_fordelay);
+                        }
                     }
-
-
                     
+
+
+
                 }
 
                 pictureBox_Icon.Image = Properties.Resources.icon;

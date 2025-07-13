@@ -9,3 +9,4 @@
   - [数据类型](DataType/Home.md)
   - [疑难解答](Help/Home.md)
   - [配置文件](Config/Home.md)
+  - [Wiki百科更新日志](UpdateLog.md)

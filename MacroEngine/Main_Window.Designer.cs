@@ -147,6 +147,7 @@ namespace MacroEngine
             this.button_Create.Size = new System.Drawing.Size(100, 32);
             this.button_Create.TabIndex = 4;
             this.button_Create.Text = "新建";
+            this.button_Create.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button_Create.UseVisualStyleBackColor = true;
             this.button_Create.Click += new System.EventHandler(this.button_Create_Click);
             // 
@@ -223,14 +224,14 @@ namespace MacroEngine
             // 关于程序ToolStripMenuItem
             // 
             this.关于程序ToolStripMenuItem.Name = "关于程序ToolStripMenuItem";
-            this.关于程序ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.关于程序ToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.关于程序ToolStripMenuItem.Text = "关于程序";
             this.关于程序ToolStripMenuItem.Click += new System.EventHandler(this.关于程序ToolStripMenuItem_Click);
             // 
             // 帮助ToolStripMenuItem
             // 
             this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.帮助ToolStripMenuItem.Text = "项目主页*";
             this.帮助ToolStripMenuItem.Click += new System.EventHandler(this.帮助ToolStripMenuItem_Click);
             // 
