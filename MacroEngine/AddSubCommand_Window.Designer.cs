@@ -62,7 +62,9 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(353, 95);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(353, 95);
             this.Name = "AddSubCommand_Window";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

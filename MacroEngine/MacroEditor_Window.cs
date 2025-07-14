@@ -134,7 +134,7 @@ namespace MacroEngine
                     {
                         listBox_MacroList.Items.Add("鼠标_滚轮");
                     }
-                    else if (StepType == "KBD_PRESS") 
+                    else if (StepType == "KBD_PRESS")
                     {
                         listBox_MacroList.Items.Add("键盘_按键");
                     }
@@ -157,6 +157,10 @@ namespace MacroEngine
                     else if (StepType == "MSGBOX")
                     {
                         listBox_MacroList.Items.Add("弹出信息框");
+                    }
+                    else if (StepType == "MOUSE_RELAPOS") 
+                    {
+                        listBox_MacroList.Items.Add("鼠标_置相对坐标");
                     }
 
 
@@ -313,6 +317,13 @@ namespace MacroEngine
                     textBox_MSGBOX_title.Text = ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "title");
                     textBox_MSGBOX_text.Text = ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "text");                    
                 }
+                else if (temp_type == "MOUSE_RELAPOS")
+                {
+                    tabControl_Edit.SelectedIndex = 13;
+
+                    numericUpDown_MOUSE_RELAPOS_dis_x.Value = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dis-x"));
+                    numericUpDown_MOUSE_RELAPOS_dis_y.Value = int.Parse(ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dis-y"));
+                }
 
 
                 //===============================================================================================================
@@ -461,6 +472,13 @@ namespace MacroEngine
                     WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "text", "Hello world!");
                     listBox_MacroList.Items.Add("弹出信息框");
                 }
+                else if (AddW_TYPE == "MOUSE_RELAPOS")
+                {
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "type", "MOUSE_RELAPOS");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "dis-x", "10");
+                    WriteConfig(tempPath, $"{listBox_MacroList.Items.Count + 1}", "dis-y", "10");
+                    listBox_MacroList.Items.Add("鼠标_置相对坐标");
+                }
 
 
 
@@ -497,7 +515,7 @@ namespace MacroEngine
                 string LastConfig = $"{listBox_MacroList.SelectedIndex}";
 
                 /*       <======================如有新项添加到此=============================>     */
-                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay", "SUB_FOR_num", "SUB_FOR_delay", "image", "title", "SUB_IF_color_pos-x", "SUB_IF_color_pos-y", "SUB_IF_color_R", "SUB_IF_color_G", "SUB_IF_color_B" };
+                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay", "SUB_FOR_num", "SUB_FOR_delay", "image", "title", "SUB_IF_color_pos-x", "SUB_IF_color_pos-y", "SUB_IF_color_R", "SUB_IF_color_G", "SUB_IF_color_B", "dis-x", "dis-y" };
 
 
                 WriteConfig(tempPath, "tempNow", "type", ReadConfig(tempPath, NowConfig, "type"));
@@ -577,7 +595,7 @@ namespace MacroEngine
                 string LastConfig = $"{listBox_MacroList.SelectedIndex + 2}";
 
                 /*       <======================如有新项添加到此=============================>     */
-                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay", "SUB_FOR_num", "SUB_FOR_delay", "image", "title", "SUB_IF_color_pos-x", "SUB_IF_color_pos-y", "SUB_IF_color_R", "SUB_IF_color_G", "SUB_IF_color_B" };
+                string[] Types = { "pos-x", "pos-y", "time", "keytype", "key", "dire", "dis", "pkey", "text", "delay", "SUB_FOR_num", "SUB_FOR_delay", "image", "title", "SUB_IF_color_pos-x", "SUB_IF_color_pos-y", "SUB_IF_color_R", "SUB_IF_color_G", "SUB_IF_color_B", "dis-x", "dis-y" };
 
 
                 WriteConfig(tempPath, "tempNow", "type", ReadConfig(tempPath, NowConfig, "type"));
@@ -714,6 +732,18 @@ namespace MacroEngine
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "title", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "title"));
                         WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "text", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "text"));
                     }
+                    else if (temp == "MOUSE_RELAPOS")
+                    {
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "dis-x", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "dis-x"));
+                        WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1 + i}", "dis-y", ReadConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 2 + i}", "dis-y"));
+                    }
+
+
+
+
+                    //
+                    //
+                    //
 
 
 
@@ -968,6 +998,7 @@ namespace MacroEngine
             button_MOUSE_POS_select.Enabled = false;
             using(Pos_Window pos_Window=new Pos_Window())
             {
+                Pos_Window.TYPE = "ABS";
                 pos_Window.ShowDialog();
             }
             numericUpDown_MOUSE_POS_x.Value = QuickSelectPos.X;
@@ -1099,6 +1130,32 @@ namespace MacroEngine
         private void numericUpDown_SUB_IF_color_pos_y_ValueChanged(object sender, EventArgs e)
         {
             WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", $"SUB_IF_color_pos-y", $"{numericUpDown_SUB_IF_color_pos_y.Value}");
+        }
+
+        private void numericUpDown_MOUSE_RELAPOS_dis_x_ValueChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dis-x", $"{numericUpDown_MOUSE_RELAPOS_dis_x.Value}");
+        }
+
+        private void numericUpDown_MOUSE_RELAPOS_dis_y_ValueChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "dis-y", $"{numericUpDown_MOUSE_RELAPOS_dis_y.Value}");
+        }
+
+        private void button_MOUSE_RELAPOS_pos_Click(object sender, EventArgs e)
+        {
+            button_MOUSE_RELAPOS_pos.Text = "请点击要选择的位置";
+            button_MOUSE_RELAPOS_pos.Enabled = false;
+            using (Pos_Window pos_Window = new Pos_Window())
+            {
+                Pos_Window.TYPE = "RELA";
+                pos_Window.ShowDialog();
+            }
+            numericUpDown_MOUSE_RELAPOS_dis_x.Value = QuickSelectPos.X;
+            numericUpDown_MOUSE_RELAPOS_dis_y.Value = QuickSelectPos.Y;
+
+            button_MOUSE_RELAPOS_pos.Text = "快速选择坐标";
+            button_MOUSE_RELAPOS_pos.Enabled = true;
         }
     }
 }

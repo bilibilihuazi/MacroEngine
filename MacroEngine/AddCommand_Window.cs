@@ -87,5 +87,11 @@ namespace MacroEngine
             MacroEditor_Window.AddW_TYPE = "MSGBOX";
             this.Close();
         }
+
+        private void button_RELAPOS_Click(object sender, EventArgs e)
+        {
+            MacroEditor_Window.AddW_TYPE = "MOUSE_RELAPOS";
+            this.Close();
+        }
     }
 }

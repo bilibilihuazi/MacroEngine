@@ -44,6 +44,7 @@
             this.button_CB_SETIMG = new System.Windows.Forms.Button();
             this.button_CB_GETOBJ = new System.Windows.Forms.Button();
             this.button_CB_SETTEXT = new System.Windows.Forms.Button();
+            this.button_RELAPOS = new System.Windows.Forms.Button();
             this.groupBox_MOUSE.SuspendLayout();
             this.groupBox_Mics.SuspendLayout();
             this.groupBox_Kbd.SuspendLayout();
@@ -52,12 +53,13 @@
             // 
             // groupBox_MOUSE
             // 
+            this.groupBox_MOUSE.Controls.Add(this.button_RELAPOS);
             this.groupBox_MOUSE.Controls.Add(this.button_MOUSE_WHEEL);
             this.groupBox_MOUSE.Controls.Add(this.button_MOUSE_PRESS);
             this.groupBox_MOUSE.Controls.Add(this.button_MOUSE_POS);
             this.groupBox_MOUSE.Location = new System.Drawing.Point(12, 12);
             this.groupBox_MOUSE.Name = "groupBox_MOUSE";
-            this.groupBox_MOUSE.Size = new System.Drawing.Size(480, 70);
+            this.groupBox_MOUSE.Size = new System.Drawing.Size(480, 100);
             this.groupBox_MOUSE.TabIndex = 4;
             this.groupBox_MOUSE.TabStop = false;
             this.groupBox_MOUSE.Text = "鼠标操作";
@@ -96,7 +98,7 @@
             // 
             this.groupBox_Mics.Controls.Add(this.button_MSGBOX);
             this.groupBox_Mics.Controls.Add(this.button_WAIT);
-            this.groupBox_Mics.Location = new System.Drawing.Point(12, 164);
+            this.groupBox_Mics.Location = new System.Drawing.Point(12, 194);
             this.groupBox_Mics.Name = "groupBox_Mics";
             this.groupBox_Mics.Size = new System.Drawing.Size(480, 70);
             this.groupBox_Mics.TabIndex = 5;
@@ -127,7 +129,7 @@
             // 
             this.groupBox_Kbd.Controls.Add(this.button_KBD_TYPE);
             this.groupBox_Kbd.Controls.Add(this.button_KBD_PRESS);
-            this.groupBox_Kbd.Location = new System.Drawing.Point(12, 88);
+            this.groupBox_Kbd.Location = new System.Drawing.Point(12, 118);
             this.groupBox_Kbd.Name = "groupBox_Kbd";
             this.groupBox_Kbd.Size = new System.Drawing.Size(480, 70);
             this.groupBox_Kbd.TabIndex = 6;
@@ -159,7 +161,7 @@
             this.groupBox_CB.Controls.Add(this.button_CB_SETIMG);
             this.groupBox_CB.Controls.Add(this.button_CB_GETOBJ);
             this.groupBox_CB.Controls.Add(this.button_CB_SETTEXT);
-            this.groupBox_CB.Location = new System.Drawing.Point(12, 240);
+            this.groupBox_CB.Location = new System.Drawing.Point(12, 270);
             this.groupBox_CB.Name = "groupBox_CB";
             this.groupBox_CB.Size = new System.Drawing.Size(480, 70);
             this.groupBox_CB.TabIndex = 7;
@@ -196,11 +198,21 @@
             this.button_CB_SETTEXT.UseVisualStyleBackColor = true;
             this.button_CB_SETTEXT.Click += new System.EventHandler(this.button_CB_SETTEXT_Click);
             // 
+            // button_RELAPOS
+            // 
+            this.button_RELAPOS.Location = new System.Drawing.Point(6, 59);
+            this.button_RELAPOS.Name = "button_RELAPOS";
+            this.button_RELAPOS.Size = new System.Drawing.Size(151, 31);
+            this.button_RELAPOS.TabIndex = 7;
+            this.button_RELAPOS.Text = "鼠标_置相对坐标";
+            this.button_RELAPOS.UseVisualStyleBackColor = true;
+            this.button_RELAPOS.Click += new System.EventHandler(this.button_RELAPOS_Click);
+            // 
             // AddCommand_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(505, 323);
+            this.ClientSize = new System.Drawing.Size(505, 350);
             this.Controls.Add(this.groupBox_CB);
             this.Controls.Add(this.groupBox_Kbd);
             this.Controls.Add(this.groupBox_Mics);
@@ -208,7 +220,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(521, 362);
+            this.MaximumSize = new System.Drawing.Size(521, 389);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(521, 362);
             this.Name = "AddCommand_Window";
@@ -240,5 +252,6 @@
         private System.Windows.Forms.Button button_CB_GETOBJ;
         private System.Windows.Forms.Button button_CB_SETIMG;
         private System.Windows.Forms.Button button_MSGBOX;
+        private System.Windows.Forms.Button button_RELAPOS;
     }
 }

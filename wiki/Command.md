@@ -14,6 +14,7 @@
 |指令名称|内部命名|作用|详细信息|
 |-|-|-|-|
 |鼠标-置坐标|`MOUSE_POS`|设置鼠标的坐标|[跳转](Command/Mouse/Mouse-pos/Mouse-pos.md)|
+|鼠标-置相对坐标|`MOUSE_RELAPOS`|在鼠标当前的坐标上移动指定距离|[跳转](Command/Mouse/Mouse-relapos/Mouse-relapos.md)|
 |鼠标-按键|`MOUSE_PRESS`|控制鼠标的三个按键(左键、中键、右键)|[跳转](Command/Mouse/Mouse-press/Mouse-press.md)|
 |鼠标-滚轮|`MOUSE_WHEEL`|控制鼠标滚轮|[跳转](Command/Mouse/Mouse-wheel/Mouse-wheel.md)|
 

@@ -94,7 +94,7 @@ namespace MacroEngine
         }
         //变量========================================================================================
         public static string RunPath = Directory.GetCurrentDirectory();
-        public static string Version = "Release 1.0.2.17";
+        public static string Version = "Pre-Release 1.1.1.4";
         public static string MacroDir = $"{RunPath}\\Macros";
         public static string ConfigPath = $"{RunPath}\\Config\\Global_Config.ini";
         string[] Macros;
@@ -375,9 +375,16 @@ namespace MacroEngine
                                 MessageBox.Show(temp_text, temp_title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             }
+                            else if (NowCmdType == "MOUSE_RELAPOS")
+                            {
+                                string temp_dis_x = ReadConfig(CommandPath, $"{i + 1}", "dis-x");
+                                string temp_dis_y = ReadConfig(CommandPath, $"{i + 1}", "dis-y");
+
+                                m_SetPositionPoint(new Point(m_GetPosition().X + int.Parse(temp_dis_x), m_GetPosition().Y + int.Parse(temp_dis_y)));
+                            }
 
 
-                            await Task.Delay(temp_fordelay);
+                                await Task.Delay(temp_fordelay);
                         }
                     }
                     
