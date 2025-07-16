@@ -53,6 +53,7 @@ namespace MacroEngine
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.pictureBox_Icon = new System.Windows.Forms.PictureBox();
+            this.label_info_LoopCount = new System.Windows.Forms.Label();
             this.groupBox_Info.SuspendLayout();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Icon)).BeginInit();
@@ -70,6 +71,7 @@ namespace MacroEngine
             // 
             // groupBox_Info
             // 
+            this.groupBox_Info.Controls.Add(this.label_info_LoopCount);
             this.groupBox_Info.Controls.Add(this.label_info_Step);
             this.groupBox_Info.Controls.Add(this.label_info_Key);
             this.groupBox_Info.Controls.Add(this.button_Edit);
@@ -255,6 +257,15 @@ namespace MacroEngine
             this.pictureBox_Icon.TabIndex = 8;
             this.pictureBox_Icon.TabStop = false;
             // 
+            // label_info_LoopCount
+            // 
+            this.label_info_LoopCount.Location = new System.Drawing.Point(6, 79);
+            this.label_info_LoopCount.Name = "label_info_LoopCount";
+            this.label_info_LoopCount.Size = new System.Drawing.Size(274, 20);
+            this.label_info_LoopCount.TabIndex = 6;
+            this.label_info_LoopCount.Text = "循环次数：Unknown";
+            this.label_info_LoopCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Main_Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -276,7 +287,6 @@ namespace MacroEngine
             this.Name = "Main_Window";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main_Window";
-            this.Load += new System.EventHandler(this.Main_Window_Load);
             this.groupBox_Info.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
@@ -310,6 +320,7 @@ namespace MacroEngine
         private System.Windows.Forms.PictureBox pictureBox_Icon;
         private System.Windows.Forms.Label label_info_Key;
         private System.Windows.Forms.Label label_info_Step;
+        private System.Windows.Forms.Label label_info_LoopCount;
     }
 }
 

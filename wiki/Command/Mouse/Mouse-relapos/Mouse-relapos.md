@@ -16,7 +16,7 @@
 
 ```ini
 [x]
-type=MOUSE_POS
+type=MOUSE_RELAPOS
 dis-x=10
 dis-y=10
 ```

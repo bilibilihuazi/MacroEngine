@@ -36,6 +36,7 @@ namespace MacroEngine
                     WriteConfig(tempPath, "info", "SubKey", "NONE");
                     WriteConfig(tempPath, "info", "Key", "F1");
                     WriteConfig(tempPath, "info", "Step", "3");
+                    WriteConfig(tempPath, "info", "LoopCount", "1");
 
                     WriteConfig(tempPath, "1", "type", "MOUSE_POS");
                     WriteConfig(tempPath, "1", "pos-x", "0");
@@ -87,8 +88,10 @@ namespace MacroEngine
 
             try
             {
+                numericUpDown_Fornum.Value = int.Parse(ReadConfig(tempPath, "info", "LoopCount"));
                 textBox_title.Text = ReadConfig(tempPath, "info", "Title");
                 textBox_text.Text = ReadConfig(tempPath, "info", "Text");
+                
 
                 hotkeyTextBox.Hotkey = (Keys)Enum.Parse(typeof(Keys), ReadConfig(tempPath, "info", "Key"));
                 if (ReadConfig(tempPath, "info", "SubKey") == "NONE")
@@ -198,8 +201,7 @@ namespace MacroEngine
 
             }
             
-        }
-
+        }//          <==========添加指令需修改<==========
 
 
         public static string Path = $"{Main_Window.MacroDir}\\{Main_Window.Editor_NOWMACRO}.ini";
@@ -213,7 +215,7 @@ namespace MacroEngine
         public static int temp_lastSelect = 0;
 
 
-
+        //窗口构造
         public MacroEditor_Window()
         {
             InitializeComponent();
@@ -229,13 +231,10 @@ namespace MacroEngine
                 MessageBox.Show($"在初始化编辑器时发生错误！\n\n错误原因：{ex.Message}", "发生错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 
             }
-            
-
-
-
 
         }
 
+        //宏列表选择  //          <==========添加指令需修改<========== 主
         private void listBox_MacroList_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -392,6 +391,7 @@ namespace MacroEngine
             
         }
 
+        //添加指令  //          <==========添加指令需修改<========== 主
         private void button_Add_Click(object sender, EventArgs e)
         {
             try
@@ -507,6 +507,7 @@ namespace MacroEngine
             
         }
 
+        //上移  //          <==========添加指令参数需修改<========== 参
         private void button_Up_Click(object sender, EventArgs e)
         {
             try
@@ -587,6 +588,7 @@ namespace MacroEngine
 
         }
 
+        //下移  //          <==========添加指令参数需修改<========== 参
         private void button_Down_Click(object sender, EventArgs e)
         {
             try
@@ -667,6 +669,7 @@ namespace MacroEngine
 
         }
 
+        //移除指令  //          <==========添加指令需修改<========== 主
         private void button_Remove_Click(object sender, EventArgs e)
         {
             try
@@ -792,6 +795,7 @@ namespace MacroEngine
 
         }
 
+        //添加附加指令  //          <==========添加附加指令需修改<========== 附
         private void button_AddSub_Click(object sender, EventArgs e)
         {
             try
@@ -832,6 +836,7 @@ namespace MacroEngine
 
         }
 
+        //主/附加指令切换  //          <==========添加附加指令需修改<========== 附
         private void button_ToSubtypeEdit_Click(object sender, EventArgs e)
         {
 
@@ -882,12 +887,14 @@ namespace MacroEngine
 
         }
 
+        //窗口加载
         private void MacroEditor_Window_Load(object sender, EventArgs e)
         {
             Path = $"{Main_Window.RunPath}\\Macros\\{Main_Window.Editor_NOWMACRO}.ini";
 
         }
 
+        //保存文件
         private void button_Save_Click(object sender, EventArgs e)
         {
             try
@@ -914,6 +921,16 @@ namespace MacroEngine
 
         }
 
+        //取消
+        private void button_Cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        //
+        // <==========>
+        //
+
         private void numericUpDown_MOUSE_POS_x_ValueChanged(object sender, EventArgs e)
         {
             WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pos-x", $"{numericUpDown_MOUSE_POS_x.Value}");
@@ -922,11 +939,6 @@ namespace MacroEngine
         private void numericUpDown_MOUSE_POS_y_ValueChanged(object sender, EventArgs e)
         {
             WriteConfig(tempPath, $"{listBox_MacroList.SelectedIndex + 1}", "pos-y", $"{numericUpDown_MOUSE_POS_y.Value}");
-        }
-
-        private void button_Cancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void numericUpDown_WAIT_time_ValueChanged(object sender, EventArgs e)
@@ -1156,6 +1168,11 @@ namespace MacroEngine
 
             button_MOUSE_RELAPOS_pos.Text = "快速选择坐标";
             button_MOUSE_RELAPOS_pos.Enabled = true;
+        }
+
+        private void numericUpDown_Fornum_ValueChanged(object sender, EventArgs e)
+        {
+            WriteConfig(tempPath, "info", "LoopCount", $"{numericUpDown_Fornum.Value}");
         }
     }
 }

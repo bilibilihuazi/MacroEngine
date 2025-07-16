@@ -19,6 +19,7 @@
 |SubKey|主键的修饰键，例如`Ctrl + A`，那么此值为CTRL|NONE|string|
 |Key|触发热键|F1|Keys|
 |Step|此宏的脚本数(步数)|3|int|
+|LoopCount|整个宏的循环次数|1|int|
 
 他们在配置文件中看起来是这样的：
 
@@ -31,6 +32,7 @@ Enabled=false
 SubKey=NONE
 Key=F1
 Step=3
+LoopCount=1
 
 ```
 

@@ -106,6 +106,7 @@
             this.textBox_CB_SETIMG_image = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
+            this.pictureBox_CB_SETIMG_image = new System.Windows.Forms.PictureBox();
             this.tabPage_MSGBOX = new System.Windows.Forms.TabPage();
             this.textBox_MSGBOX_text = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
@@ -123,10 +124,6 @@
             this.comboBox_SUB_IF_cond = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.listBox_MacroList = new System.Windows.Forms.ListBox();
-            this.label_HotKey = new System.Windows.Forms.Label();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.tabPage_MOUSE_RELAPOS = new System.Windows.Forms.TabPage();
             this.button_MOUSE_RELAPOS_pos = new System.Windows.Forms.Button();
             this.numericUpDown_MOUSE_RELAPOS_dis_y = new System.Windows.Forms.NumericUpDown();
@@ -134,7 +131,12 @@
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.pictureBox_CB_SETIMG_image = new System.Windows.Forms.PictureBox();
+            this.listBox_MacroList = new System.Windows.Forms.ListBox();
+            this.label_HotKey = new System.Windows.Forms.Label();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
+            this.label34 = new System.Windows.Forms.Label();
+            this.numericUpDown_Fornum = new System.Windows.Forms.NumericUpDown();
             this.groupBox_info.SuspendLayout();
             this.groupBox_edit.SuspendLayout();
             this.tabControl_Edit.SuspendLayout();
@@ -156,6 +158,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SUB_FOR_delay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SUB_FOR_num)).BeginInit();
             this.tabPage_CB_SETIMG.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_CB_SETIMG_image)).BeginInit();
             this.tabPage_MSGBOX.SuspendLayout();
             this.tabPage_SUB_IF.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SUB_IF_color_pos_y)).BeginInit();
@@ -163,11 +166,13 @@
             this.tabPage_MOUSE_RELAPOS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_MOUSE_RELAPOS_dis_y)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_MOUSE_RELAPOS_dis_x)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_CB_SETIMG_image)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Fornum)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox_info
             // 
+            this.groupBox_info.Controls.Add(this.numericUpDown_Fornum);
+            this.groupBox_info.Controls.Add(this.label34);
             this.groupBox_info.Controls.Add(this.textBox_text);
             this.groupBox_info.Controls.Add(this.label_Text);
             this.groupBox_info.Controls.Add(this.textBox_title);
@@ -183,15 +188,15 @@
             // 
             // textBox_text
             // 
-            this.textBox_text.Location = new System.Drawing.Point(328, 48);
+            this.textBox_text.Location = new System.Drawing.Point(270, 48);
             this.textBox_text.Name = "textBox_text";
-            this.textBox_text.Size = new System.Drawing.Size(437, 23);
+            this.textBox_text.Size = new System.Drawing.Size(285, 23);
             this.textBox_text.TabIndex = 12;
             this.textBox_text.TextChanged += new System.EventHandler(this.textBox_text_TextChanged);
             // 
             // label_Text
             // 
-            this.label_Text.Location = new System.Drawing.Point(277, 48);
+            this.label_Text.Location = new System.Drawing.Point(219, 48);
             this.label_Text.Name = "label_Text";
             this.label_Text.Size = new System.Drawing.Size(45, 23);
             this.label_Text.TabIndex = 11;
@@ -202,7 +207,7 @@
             // 
             this.textBox_title.Location = new System.Drawing.Point(57, 48);
             this.textBox_title.Name = "textBox_title";
-            this.textBox_title.Size = new System.Drawing.Size(214, 23);
+            this.textBox_title.Size = new System.Drawing.Size(158, 23);
             this.textBox_title.TabIndex = 10;
             this.textBox_title.TextChanged += new System.EventHandler(this.textBox_title_TextChanged);
             // 
@@ -1000,6 +1005,16 @@
             this.label24.Text = "向剪贴板内复制图像";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // pictureBox_CB_SETIMG_image
+            // 
+            this.pictureBox_CB_SETIMG_image.Image = global::MacroEngine.Properties.Resources.icon;
+            this.pictureBox_CB_SETIMG_image.Location = new System.Drawing.Point(9, 55);
+            this.pictureBox_CB_SETIMG_image.Name = "pictureBox_CB_SETIMG_image";
+            this.pictureBox_CB_SETIMG_image.Size = new System.Drawing.Size(136, 125);
+            this.pictureBox_CB_SETIMG_image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_CB_SETIMG_image.TabIndex = 57;
+            this.pictureBox_CB_SETIMG_image.TabStop = false;
+            // 
             // tabPage_MSGBOX
             // 
             this.tabPage_MSGBOX.Controls.Add(this.textBox_MSGBOX_text);
@@ -1175,30 +1190,6 @@
             this.label29.Text = "判断一个条件是否成立，成立才可执行主指令";
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // listBox_MacroList
-            // 
-            this.listBox_MacroList.FormattingEnabled = true;
-            this.listBox_MacroList.ItemHeight = 17;
-            this.listBox_MacroList.Location = new System.Drawing.Point(6, 22);
-            this.listBox_MacroList.Name = "listBox_MacroList";
-            this.listBox_MacroList.Size = new System.Drawing.Size(147, 242);
-            this.listBox_MacroList.TabIndex = 3;
-            this.listBox_MacroList.SelectedIndexChanged += new System.EventHandler(this.listBox_MacroList_SelectedIndexChanged);
-            // 
-            // label_HotKey
-            // 
-            this.label_HotKey.AutoSize = true;
-            this.label_HotKey.Location = new System.Drawing.Point(335, 247);
-            this.label_HotKey.Name = "label_HotKey";
-            this.label_HotKey.Size = new System.Drawing.Size(68, 17);
-            this.label_HotKey.TabIndex = 9;
-            this.label_HotKey.Text = "触发热键：";
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.Filter = "PNG图像|*.png|JPG图像|*.jpg|位图|*.bmp";
-            this.openFileDialog.Title = "选择一个有效的图像文件";
-            // 
             // tabPage_MOUSE_RELAPOS
             // 
             this.tabPage_MOUSE_RELAPOS.Controls.Add(this.button_MOUSE_RELAPOS_pos);
@@ -1286,15 +1277,61 @@
             this.label33.Text = "在鼠标当前坐标的基础上，移动指定距离";
             this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pictureBox_CB_SETIMG_image
+            // listBox_MacroList
             // 
-            this.pictureBox_CB_SETIMG_image.Image = global::MacroEngine.Properties.Resources.icon;
-            this.pictureBox_CB_SETIMG_image.Location = new System.Drawing.Point(9, 55);
-            this.pictureBox_CB_SETIMG_image.Name = "pictureBox_CB_SETIMG_image";
-            this.pictureBox_CB_SETIMG_image.Size = new System.Drawing.Size(136, 125);
-            this.pictureBox_CB_SETIMG_image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox_CB_SETIMG_image.TabIndex = 57;
-            this.pictureBox_CB_SETIMG_image.TabStop = false;
+            this.listBox_MacroList.FormattingEnabled = true;
+            this.listBox_MacroList.ItemHeight = 17;
+            this.listBox_MacroList.Location = new System.Drawing.Point(6, 22);
+            this.listBox_MacroList.Name = "listBox_MacroList";
+            this.listBox_MacroList.Size = new System.Drawing.Size(147, 242);
+            this.listBox_MacroList.TabIndex = 3;
+            this.listBox_MacroList.SelectedIndexChanged += new System.EventHandler(this.listBox_MacroList_SelectedIndexChanged);
+            // 
+            // label_HotKey
+            // 
+            this.label_HotKey.AutoSize = true;
+            this.label_HotKey.Location = new System.Drawing.Point(335, 247);
+            this.label_HotKey.Name = "label_HotKey";
+            this.label_HotKey.Size = new System.Drawing.Size(68, 17);
+            this.label_HotKey.TabIndex = 9;
+            this.label_HotKey.Text = "触发热键：";
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Filter = "PNG图像|*.png|JPG图像|*.jpg|位图|*.bmp";
+            this.openFileDialog.Title = "选择一个有效的图像文件";
+            // 
+            // label34
+            // 
+            this.label34.Location = new System.Drawing.Point(561, 48);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(70, 23);
+            this.label34.TabIndex = 13;
+            this.label34.Text = "循环次数：";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // numericUpDown_Fornum
+            // 
+            this.numericUpDown_Fornum.Location = new System.Drawing.Point(637, 48);
+            this.numericUpDown_Fornum.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.numericUpDown_Fornum.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_Fornum.Name = "numericUpDown_Fornum";
+            this.numericUpDown_Fornum.Size = new System.Drawing.Size(128, 23);
+            this.numericUpDown_Fornum.TabIndex = 14;
+            this.numericUpDown_Fornum.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_Fornum.ValueChanged += new System.EventHandler(this.numericUpDown_Fornum_ValueChanged);
             // 
             // MacroEditor_Window
             // 
@@ -1342,6 +1379,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_SUB_FOR_num)).EndInit();
             this.tabPage_CB_SETIMG.ResumeLayout(false);
             this.tabPage_CB_SETIMG.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_CB_SETIMG_image)).EndInit();
             this.tabPage_MSGBOX.ResumeLayout(false);
             this.tabPage_MSGBOX.PerformLayout();
             this.tabPage_SUB_IF.ResumeLayout(false);
@@ -1350,7 +1388,7 @@
             this.tabPage_MOUSE_RELAPOS.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_MOUSE_RELAPOS_dis_y)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_MOUSE_RELAPOS_dis_x)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_CB_SETIMG_image)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Fornum)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1462,5 +1500,7 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.NumericUpDown numericUpDown_Fornum;
+        private System.Windows.Forms.Label label34;
     }
 }
